@@ -1,5 +1,5 @@
 const ButtonComponent = ({ actionOnClick, text }) => {
-  return <Button onClick={actionOnClick}>{text}</Button>;
+  return <button onClick={actionOnClick}>{text}</button>;
 };
 
 export default ButtonComponent;
