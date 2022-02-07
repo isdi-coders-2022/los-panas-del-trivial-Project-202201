@@ -1,13 +1,14 @@
+import MainPage from "./components/MainPage/MainPageComponent";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 
 function App() {
   return (
     <>
-      <p>Hello</p>
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={"Placeholder for element <HomePage />"} />
+
+        <Route path="/home" element={<MainPage/>} />
         <Route
           path="/games-list"
           element={"Placeholder for element <GamesListPage />"}
