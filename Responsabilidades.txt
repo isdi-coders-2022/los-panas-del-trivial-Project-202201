@@ -18,3 +18,10 @@ Components:
   - Pasar las props las acciones a los botones (links)
   - Pasar la prop para el texto del botón
 
+- Create Game Page:
+  - Renderizar el componente title y los dos componentes buttons
+  - Pasar las props al componente Title (size, color, text)
+  - Pasar las props las acciones a los botones (links)
+  - Renderizar el componente formulario
+  - Pasar las props al componente formulario para crear
+
