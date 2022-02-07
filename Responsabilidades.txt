@@ -54,12 +54,22 @@ Components:
   - Renderizar el objeto preguntas
   - Cambiar el color según el booleano (selected)
 
+- Componente GamesList
+  - Renderizar arrow component
+  - Pasarle a arrow la acción
+  - Renderizar titulo
+  - Renderizar cada carta de SavedGame
+  - Pasar las acciones editar y borrar al componente SavedGame
+  - Pasar los props al compnente SavedGame
+
+- SavedGame component
+  - Renderizar iconos de editar y borrar
+  - Renderizar los datos del objeto de la partida
 
 
-que datos hay
-que modificaciones sufre
 
-DATOS:
+DATOS:que datos hay
+      que modificaciones sufre
 
 - Partidas creadas (guardadas) API LOCAL: cada una tendrá su array de preguntas y los datos del formulario
   - Añadir una Partida
