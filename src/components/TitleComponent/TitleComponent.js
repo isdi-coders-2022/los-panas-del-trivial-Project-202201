@@ -18,6 +18,11 @@ const TitleComponent = ({ size, text, textColor }) => {
     justify-content: center;
   `;
 
+  const TitleLogo = styled.img`
+    height: 60px;
+    width: 60px;
+  `;
+
   return (
     <TitleContainer>
       <TitleLogo src="images/favicon.png" alt="Trivial logo" className={size} />
