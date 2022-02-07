@@ -25,3 +25,8 @@ Components:
   - Renderizar el componente formulario
   - Pasar las props al componente formulario para crear
 
+- Forumlario Component:
+  - Renderizar dos input text con sus respectivos labels
+  - Renderizar el input desplegable
+  - Dejar desplegable inactivo o no según las props recibidas
+
