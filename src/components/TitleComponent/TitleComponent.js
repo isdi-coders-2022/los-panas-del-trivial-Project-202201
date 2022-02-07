@@ -19,16 +19,17 @@ const Title = styled.h1`
   font-family: Comfortaa;
   margin: 0px;
   padding-top: 2px;
+  font-weigth: 400;
 `;
 
 const TitleComponent = ({ size, text, textColor }) => {
   let fontSize;
   if (size === "small") {
-    fontSize = "24px";
+    fontSize = "20px";
   } else if (size === "medium") {
-    fontSize = "30px";
+    fontSize = "36px";
   } else {
-    fontSize = "38px";
+    fontSize = "48px";
   }
   let imgSize;
   if (size === "small") {
