@@ -23,6 +23,13 @@ const TitleComponent = ({ size, text, textColor }) => {
     width: 60px;
   `;
 
+  const Title = styled.h1`
+    color: ${textColor};
+    font-size: ${fontSize()};
+    font-family: Comfortaa;
+    margin: 0px;
+  `;
+
   return (
     <TitleContainer>
       <TitleLogo src="images/favicon.png" alt="Trivial logo" className={size} />
