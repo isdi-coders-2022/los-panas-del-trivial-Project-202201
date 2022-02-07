@@ -4,7 +4,11 @@ function App() {
   return (
     <>
       <p>Hello</p>
-      <TitleComponent text={"Esto es un título"} size={"large"} />
+      <TitleComponent
+        text={"Esto es un título"}
+        size={"small"}
+        textColor={"black"}
+      />
     </>
   );
 }
