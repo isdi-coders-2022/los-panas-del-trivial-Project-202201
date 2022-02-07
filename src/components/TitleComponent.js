@@ -3,7 +3,7 @@ const TitleComponent = ({ size, text }) => {
     <>
       <div>
         <h1 className={size}>{text}</h1>
-        <img src="images/favicon.png" alt="Trivial logo" />
+        <img src="images/favicon.png" alt="Trivial logo" className={size} />
       </div>
     </>
   );
