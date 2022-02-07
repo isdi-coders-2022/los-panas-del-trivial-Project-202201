@@ -2,10 +2,81 @@ Components:
 
 - Title:
   - Recibir el texto a renderizar
-  - Recibir el tamaño de la fuente y de la imagen
   - Renderizar un texto con una imagen (icono)
+  - Cambiar el color del texto según la prop recibida
+  - Cambiar el tamaño del texto y de la imagen según la prop recibida
+
 
 - Button:
   - Renderizar un botón con texto
   - Recibir una acción y ejecutarla al hacer click
 
+- Main Page:
+  - Renderizar el componente title y los dos componentes buttons
+  - Renderizar el texto Let's Play
+  - Pasar las props al componente Title (size, color, text)
+  - Pasar las props las acciones a los botones (links)
+  - Pasar la prop para el texto del botón
+
+- Create Game Page:
+  - Renderizar el componente title
+  - Pasar las props al componente Title (size, color, text)
+  - Renderizar el componente formulario
+  - Pasar las props al componente formulario para crear
+  - Renderizar el componente arrow y mandarle la acción de retornar a home
+
+- Arrow component:
+  - renderizar el icono arrow
+  - recibir una acción
+
+- Forumlario Component:
+  - Renderizar dos input text con sus respectivos labels
+  - Renderizar el input desplegable
+  - Dejar desplegable inactivo o no según las props recibidas
+  - Renderizar el componente botón con type = submit y el texto correspondiente
+  - Pasar las props la acción para el botón
+
+- Select your questions component:
+  - Renderizar title
+  - Renderizar el componente arrow y mandarle la acción de retornar a home
+  - Renderizar componente de filtrado desplegable
+  - Renderizar el listado de preguntas a partir del desplegable component y pasarle una acción para saber si está selected
+  - Renderizar un texto con el número de preguntas seleccionadas
+  - Renderizar un componente button con texto save y pasarle la acción
+
+- Filtrado desplegable Component
+  - Pasarle el texto y la acción a cada ítem
+  - Renderizar los dos drop downs 
+  - Renderizar los items de los drop dows
+
+
+- Pregunta Component
+  - Renderizar el objeto preguntas
+  - Cambiar el color según el booleano (selected)
+
+- Componente GamesList
+  - Renderizar arrow component
+  - Pasarle a arrow la acción
+  - Renderizar titulo
+  - Renderizar cada carta de SavedGame
+  - Pasar las acciones editar y borrar al componente SavedGame
+  - Pasar los props al compnente SavedGame
+
+- SavedGame component
+  - Renderizar iconos de editar y borrar
+  - Renderizar los datos del objeto de la partida
+
+
+
+DATOS:que datos hay
+      que modificaciones sufre
+
+- Partidas creadas (guardadas) API LOCAL: cada una tendrá su array de preguntas y los datos del formulario
+  - Añadir una Partida
+  - Modificar los nombre de la partida
+  - Eliminar partida
+- Array de preguntas recibidas de la API
+- Array de preguntas seleccionadas para la partida
+  - Añadir o quitar preguntas
+- Array de preguntas filtradas
+(- Array de número de preguntas acertadas y falladas)
