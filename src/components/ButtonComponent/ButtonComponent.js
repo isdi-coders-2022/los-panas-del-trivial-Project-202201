@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { primary, secondary } from "../../globalStyles";
 
 const buttonHeight = 75;
 const buttonWidth = 318;
@@ -7,8 +8,8 @@ const RoundedButton = styled.button`
   width: ${buttonWidth}px;
   height: ${buttonHeight}px;
 
-  background-color: #9882ac;
-  color: #f6f7eb;
+  background-color: ${primary};
+  color: ${secondary};
 
   border-radius: ${buttonHeight}px;
   border: none;
