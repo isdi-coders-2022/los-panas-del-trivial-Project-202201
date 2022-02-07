@@ -1,50 +1,52 @@
 import styled from "styled-components";
 
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: ${(props) => props.fontSize};
+`;
+
+const TitleLogo = styled.img`
+  height: ${(props) => props.imgSize};
+  width: ${(props) => props.imgSize};
+  margin-right: 3px;
+`;
+
+const Title = styled.h1`
+  color: ${(props) => props.textColor};
+  font-size: ${(props) => props.fontSize};
+  font-family: Comfortaa;
+  margin: 0px;
+  padding-top: 2px;
+`;
+
 const TitleComponent = ({ size, text, textColor }) => {
-  const fontSize = (size) => {
-    if (size === "small") {
-      return "24px";
-    }
-    if (size === "medium") {
-      return "30px";
-    } else {
-      return "38px";
-    }
-  };
-
-  const imgSize = (size) => {
-    if (size === "small") {
-      return "20px";
-    }
-    if (size === "medium") {
-      return "50px";
-    } else {
-      return "60px";
-    }
-  };
-
-  const TitleContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `;
-
-  const TitleLogo = styled.img`
-    height: ${imgSize(size)};
-    width: ${imgSize(size)};
-  `;
-
-  const Title = styled.h1`
-    color: ${textColor};
-    font-size: ${fontSize(size)};
-    font-family: Comfortaa;
-    margin: 0px;
-  `;
+  let fontSize;
+  if (size === "small") {
+    fontSize = "24px";
+  } else if (size === "medium") {
+    fontSize = "30px";
+  } else {
+    fontSize = "38px";
+  }
+  let imgSize;
+  if (size === "small") {
+    imgSize = "22px";
+  } else if (size === "medium") {
+    imgSize = "52px";
+  } else {
+    imgSize = "62px";
+  }
 
   return (
-    <TitleContainer>
-      <TitleLogo src="images/favicon.png" alt="Trivial logo" />
-      <Title>{text}</Title>
+    <TitleContainer fontSize={fontSize} textColor={textColor}>
+      <TitleLogo
+        imgSize={imgSize}
+        src="images/favicon.png"
+        alt="Trivial logo"
+      />
+      <Title fontSize={fontSize}>{text}</Title>
     </TitleContainer>
   );
 };
