@@ -24,6 +24,7 @@ const ButtonsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  height: 30%;
 `;
 
 const MainPage = () => {
