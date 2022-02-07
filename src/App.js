@@ -1,6 +1,7 @@
 import MainPage from "./components/MainPage/MainPageComponent";
 import { Navigate, Route, Routes } from "react-router-dom";
 
+
 function App() {
   return (
     <>
