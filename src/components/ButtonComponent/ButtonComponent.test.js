@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import ButtonComponent from "./ButtonComponent";
 
 describe("Given ButtonComponent", () => {
@@ -11,6 +12,19 @@ describe("Given ButtonComponent", () => {
       const foundElement = screen.queryByText(text);
 
       expect(foundElement).not.toBeNull();
+    });
+  });
+
+  describe("When it recieves an actionOnClick", () => {
+    test("Then actionOnClick should be invoked when the button is clicked", () => {
+      const action = jest.fn();
+
+      render(<ButtonComponent actionOnClick={action} />);
+
+      const foundElement = screen.queryByRole("button");
+      userEvent.click(foundElement);
+
+      expect(action).toHaveBeenCalled();
     });
   });
 });
