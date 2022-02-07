@@ -2,10 +2,19 @@ Components:
 
 - Title:
   - Recibir el texto a renderizar
-  - Recibir el tamaño de la fuente y de la imagen
   - Renderizar un texto con una imagen (icono)
+  - Cambiar el color del texto según la prop recibida
+  - Cambiar el tamaño del texto y de la imagen según la prop recibida
+
 
 - Button:
   - Renderizar un botón con texto
   - Recibir una acción y ejecutarla al hacer click
+
+- Main Page:
+  - Renderizar el componente title y los dos componentes buttons
+  - Renderizar el texto Let's Play
+  - Pasar las props al componente Title (size, color, text)
+  - Pasar las props las acciones a los botones (links)
+  - Pasar la prop para el texto del botón
 
