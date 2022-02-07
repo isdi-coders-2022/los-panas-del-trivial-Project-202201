@@ -1,11 +1,30 @@
+import styled from "styled-components";
+
 const TitleComponent = ({ size, text, textColor }) => {
+  const fontSize = (size) => {
+    if (size === "small") {
+      return "24px";
+    }
+    if (size === "medium") {
+      return "30px";
+    } else {
+      return "38px";
+    }
+  };
+
+  const TitleContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `;
+
   return (
-    <div>
-      <img src="images/favicon.png" alt="Trivial logo" className={size} />
-      <h1 className={`${size} ${textColor === "" ? "black" : "white"}`}>
+    <TitleContainer>
+      <TitleLogo src="images/favicon.png" alt="Trivial logo" className={size} />
+      <Title className={`${size} ${textColor === "" ? "black" : "white"}`}>
         {text}
-      </h1>
-    </div>
+      </Title>
+    </TitleContainer>
   );
 };
 
