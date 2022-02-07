@@ -1,0 +1,11 @@
+Components:
+
+- Title:
+  - Recibir el texto a renderizar
+  - Recibir el tamaño de la fuente y de la imagen
+  - Renderizar un texto con una imagen (icono)
+
+- Button:
+  - Renderizar un botón con texto
+  - Recibir una acción y ejecutarla al hacer click
+
