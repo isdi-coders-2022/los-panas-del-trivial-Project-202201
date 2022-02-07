@@ -2,6 +2,18 @@ import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import TitleComponent from "../TitleComponent/TitleComponent";
 import styled from "styled-components";
 
+const PageContainer = styled.div`
+  background-color: #f6f7eb;
+  height: 100vh;
+`;
+
+const TitleContainer = styled.div`
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const TextMedium = styled.h2`
   font-size: 48px;
   text-align: center;
@@ -30,17 +42,21 @@ const ButtonsContainer = styled.div`
 const MainPage = () => {
   return (
     <>
-      <TitleComponent
-        text={"Trivial.Provider"}
-        size={"medium"}
-      ></TitleComponent>
-      <ContainerInferior>
-        <TextMedium>Let's Play!</TextMedium>
-        <ButtonsContainer>
-          <ButtonComponent text={"Play Now"}></ButtonComponent>
-          <ButtonComponent text={"Create Game"}></ButtonComponent>
-        </ButtonsContainer>
-      </ContainerInferior>
+      <PageContainer>
+        <TitleContainer>
+          <TitleComponent
+            text={"Trivial.Provider"}
+            size={"large"}
+          ></TitleComponent>
+        </TitleContainer>
+        <ContainerInferior>
+          <TextMedium>Let's Play!</TextMedium>
+          <ButtonsContainer>
+            <ButtonComponent text={"Play Now"}></ButtonComponent>
+            <ButtonComponent text={"Create Game"}></ButtonComponent>
+          </ButtonsContainer>
+        </ContainerInferior>
+      </PageContainer>
     </>
   );
 };

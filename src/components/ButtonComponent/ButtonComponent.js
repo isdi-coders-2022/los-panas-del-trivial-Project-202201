@@ -16,6 +16,7 @@ const RoundedButton = styled.button`
 
   font-size: 36px;
   font-weight: 600;
+  font-family: inherit;
 
   &:hover {
     background-color: #baacc6;
