@@ -63,13 +63,13 @@ describe("Given a removeGameAction function", () => {
 describe("Given a addQuestionAction function", () => {
   describe("When it receives an id = 43", () => {
     test("Then it should return an action with type 'radd-question' and id = id", () => {
-      const id = 43;
+      const question = {};
       const expectedAction = {
         type: "add-question",
-        id: id,
+        question: question,
       };
 
-      const action = addQuestionAction(id);
+      const action = addQuestionAction(question);
 
       expect(action).toEqual(expectedAction);
     });

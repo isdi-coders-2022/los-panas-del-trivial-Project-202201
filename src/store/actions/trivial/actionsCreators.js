@@ -16,9 +16,9 @@ export const removeGameAction = (id) => ({
   id: id,
 });
 
-export const addQuestionAction = (id) => ({
+export const addQuestionAction = (question) => ({
   type: actionTypes.addQuestion,
-  id: id,
+  question: question,
 });
 
 export const removeQuestions = (id) => ({
