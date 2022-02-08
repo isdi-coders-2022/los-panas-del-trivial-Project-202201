@@ -3,6 +3,7 @@ import {
   modifyGameNamesAction,
   removeGameAction,
   addQuestionAction,
+  removeQuestions,
 } from "./actionsCreators";
 
 describe("Given a addGameAction function", () => {
@@ -69,6 +70,22 @@ describe("Given a addQuestionAction function", () => {
       };
 
       const action = addQuestionAction(id);
+
+      expect(action).toEqual(expectedAction);
+    });
+  });
+});
+
+describe("Given a removeQuestions function", () => {
+  describe("When it receives an id = 3", () => {
+    test("Then it should return an action with type 'remove-question' and id = id", () => {
+      const id = 3;
+      const expectedAction = {
+        type: "remove-question",
+        id: id,
+      };
+
+      const action = removeQuestions(id);
 
       expect(action).toEqual(expectedAction);
     });
