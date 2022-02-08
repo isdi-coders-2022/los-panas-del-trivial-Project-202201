@@ -1,4 +1,8 @@
-import { addGameAction, modifyGameNamesAction } from "./actionsCreators";
+import {
+  addGameAction,
+  modifyGameNamesAction,
+  removeGameAction,
+} from "./actionsCreators";
 
 describe("Given a addGameAction function", () => {
   describe("When it receives an object game", () => {
@@ -32,6 +36,22 @@ describe("Given a modifyGameNamesAction function", () => {
       };
 
       const action = modifyGameNamesAction(gameNames);
+
+      expect(action).toEqual(expectedAction);
+    });
+  });
+});
+
+describe("Given a removeGameAction function", () => {
+  describe("When it receives an id = 33", () => {
+    test("Then it should return an action with type 'remove-game' and id = id", () => {
+      const id = 33;
+      const expectedAction = {
+        type: "remove-game",
+        id: id,
+      };
+
+      const action = removeGameAction(id);
 
       expect(action).toEqual(expectedAction);
     });
