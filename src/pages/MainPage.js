@@ -1,5 +1,6 @@
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
+import FormComponent from "../components/FormComponent/FormComponent";
 import styled from "styled-components";
 import { backgroundLight, secondary } from "../globalStyles";
 
@@ -51,7 +52,7 @@ const MainPage = () => {
           ></TitleComponent>
         </TitleContainer>
         <ContainerInferior>
-          <TextMedium>Let's Play!</TextMedium>
+          {/* <TextMedium>Let's Play!</TextMedium>
           <ButtonsContainer>
             <ButtonComponent
               text={"Play Now"}
@@ -61,7 +62,8 @@ const MainPage = () => {
               text={"Create Game"}
               actionOnClick={() => {}}
             ></ButtonComponent>
-          </ButtonsContainer>
+          </ButtonsContainer> */}
+          <FormComponent />
         </ContainerInferior>
       </PageContainer>
     </>
