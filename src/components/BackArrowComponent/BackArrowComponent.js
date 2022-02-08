@@ -1,13 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
+import { secondary } from "../../globalStyles";
 
-const BackArrow = ({ size }) => {
-  return <FontAwesomeIcon icon={faArrowLeftLong} />;
-};
-
-BackArrow.propTypes = {
-  size: PropTypes.oneOf(["70", "50"]).isRequired,
+const BackArrow = ({ action }) => {
+  return (
+    <FontAwesomeIcon
+      icon={faArrowLeftLong}
+      size="3x"
+      color={secondary}
+      onClick={action}
+    />
+  );
 };
 
 export default BackArrow;
