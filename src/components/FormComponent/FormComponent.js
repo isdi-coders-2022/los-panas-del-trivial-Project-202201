@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { backgroundDark, textPrimary } from "../../globalStyles";
+import ButtonComponent from "../ButtonComponent/ButtonComponent";
 
 const FormContainer = styled.form`
   margin: 0 auto;
@@ -62,7 +63,7 @@ const FormComponent = ({ onSubmit, editing = false }) => {
         onSubmit();
       }}
     >
-      <label for="name">
+      <label htmlFor="name">
         <InputTitle>Your name</InputTitle>
         <InputField
           type="text"
@@ -71,7 +72,7 @@ const FormComponent = ({ onSubmit, editing = false }) => {
           placeholder="Input your name"
         />
       </label>
-      <label for="gameName">
+      <label htmlFor="gameName">
         <InputTitle>Game's name</InputTitle>
         <InputField
           type="text"
@@ -99,6 +100,8 @@ const FormComponent = ({ onSubmit, editing = false }) => {
           </SelectInput>
         </div>
       )}
+
+      <ButtonComponent type="submit" actionOnClick={() => {}} text="Create" />
     </FormContainer>
   );
 };
