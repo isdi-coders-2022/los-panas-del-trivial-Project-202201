@@ -18,7 +18,7 @@ describe("Given a setLoadingAction function", () => {
 
 describe("Given a setErrorAction function", () => {
   describe("When it receives an mode false", () => {
-    test("Then it should return an action with type 'set-loading' and mode false", () => {
+    test("Then it should return an action with type 'set-error' and mode false", () => {
       const mode = false;
       const expectedAction = {
         type: "set-error",
