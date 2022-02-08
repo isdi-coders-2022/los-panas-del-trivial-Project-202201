@@ -4,13 +4,21 @@ import MainPage from "./MainPage";
 describe("Given a MainPage component", () => {
   describe("When it's instantiated", () => {
     test("Then it should render a heading with the text 'Let's Play!'", () => {
-      const text = "Let's Play!";
+      const expectedText = "Let's Play!";
 
       render(<MainPage />);
+      const foundHeading = screen.queryAllByRole("heading");
 
-      const foundHeading = screen.queryAllByText(text);
-
-      expect(foundHeading).not.toBeNull();
+      expect(foundHeading[1].textContent).toBe(expectedText);
     });
+  });
+
+  test("Then it should render two buttons'", () => {
+    const expectedNumButtons = 2;
+
+    render(<MainPage />);
+    const foundNumButtons = screen.queryAllByRole("button");
+
+    expect(foundNumButtons.length).toBe(expectedNumButtons);
   });
 });
