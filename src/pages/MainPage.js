@@ -1,5 +1,5 @@
-import ButtonComponent from "../ButtonComponent/ButtonComponent";
-import TitleComponent from "../TitleComponent/TitleComponent";
+import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
+import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
@@ -46,7 +46,7 @@ const MainPage = () => {
         <TitleContainer>
           <TitleComponent
             text={"Trivial.Provider"}
-            size={"large"}
+            size={"medium"}
           ></TitleComponent>
         </TitleContainer>
         <ContainerInferior>
