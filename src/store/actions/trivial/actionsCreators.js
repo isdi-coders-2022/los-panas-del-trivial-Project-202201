@@ -5,9 +5,10 @@ export const addGameAction = (game) => ({
   game: game,
 });
 
-export const modifyGameNamesAction = (gameNames) => ({
+export const modifyGameNamesAction = (gameNames, id) => ({
   type: actionTypes.modifyGameNames,
   gameNames: gameNames,
+  id: id,
 });
 
 export const removeGameAction = (id) => ({
