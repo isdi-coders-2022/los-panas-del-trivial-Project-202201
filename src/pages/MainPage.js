@@ -1,7 +1,7 @@
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
-import GameComponent from "../components/GameComponent/GameComponent";
+import BackArrow from "../components/BackArrowComponent/BackArrowComponent";
 
 const PageContainer = styled.div`
   background-color: #f6f7eb;
