@@ -1,9 +1,9 @@
-import { ArrowCircleLeft } from "react-swm-icon-pack";
-import { secondary } from "../../globalStyles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 const BackArrow = ({ size }) => {
-  return <ArrowCircleLeft color={secondary} strokeWidth={"2px"} size={size} />;
+  return <FontAwesomeIcon icon={faArrowLeftLong} />;
 };
 
 BackArrow.propTypes = {

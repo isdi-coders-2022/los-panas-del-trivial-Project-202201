@@ -1,4 +1,5 @@
-import { SWMIcon } from "react-swm-icon-pack";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { backgroundDark, textPrimary } from "../../globalStyles";
@@ -65,13 +66,8 @@ const GameComponent = ({ game: { name, creator, questions, difficulty } }) => {
         <GameCreator>{creator}</GameCreator>
       </InfoContiner>
       <IconContainer>
-        <SWMIcon name="Edit1" color={textPrimary} set="outline" size="50" />
-        <SWMIcon
-          name="CrossCircle"
-          color={textPrimary}
-          set="outline"
-          size="50"
-        />
+        <FontAwesomeIcon icon={faPencil} />
+        <FontAwesomeIcon icon={faTrashAlt} />
       </IconContainer>
     </GameContainer>
   );
