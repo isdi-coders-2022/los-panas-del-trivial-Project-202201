@@ -24,19 +24,16 @@ const Title = styled.h1`
 
 const TitleComponent = ({ size, text, textColor }) => {
   let fontSize;
+  let imgSize;
+
   if (size === "small") {
     fontSize = "20px";
-  } else if (size === "medium") {
-    fontSize = "36px";
-  } else {
-    fontSize = "48px";
-  }
-  let imgSize;
-  if (size === "small") {
     imgSize = "22px";
   } else if (size === "medium") {
+    fontSize = "36px";
     imgSize = "52px";
   } else {
+    fontSize = "48px";
     imgSize = "62px";
   }
 
