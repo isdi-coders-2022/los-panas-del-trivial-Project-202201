@@ -7,3 +7,19 @@ Se listaran las 100 preguntas que provienen de la API, mostrando el texto de la 
 Desde la lista de juegos guardados, se puede borrar el juego o modificar el juego (modificar nombre de usuario o nombre del juego).
 
 Una siguiente version de la aplicacion (a desarollar en la próxima fase), incluirá tambien el desarrollo de la partida de trivial que se ha guardado, permitiendo al usuario jugar. En esta fase, se seleccionará cualquiera de los juegos guardados en el listado de juegos. Una vez seleccionado el juego, se redirigirá a la pagina del juego, donde se mostrará una pregunta en cada pantalla, y al contestarla pasará a la siguiente pregunta hasta finalizar todas las preguntas. Al acabar el juego se mostraran los resultados de la partida (partias acertadas y falladas).
+
+## INSTALACION
+
+Para instalar la aplicacion a nivel de desarrolladores, abrir los archivos en el editor de código y ejecutar el comando "npm install" en la consola.
+
+## TESTING
+
+Para ejecutar los tests de la aplicacion ejecuta el comando "npm test" en la consola.
+
+## SERVIDOR LOCAL
+
+Para poder ejecutar la aplicacion en un servidor local ejecutar el comando "npm start" en la consola.
+
+## PRODUCCION
+
+La pagina para poder utilizar la aplicacion es https://los-panas-del-trivial.netlify.app/home
