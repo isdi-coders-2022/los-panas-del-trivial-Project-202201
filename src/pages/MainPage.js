@@ -1,6 +1,7 @@
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
+import BackArrow from "../components/BackArrowComponent/BackArrowComponent";
 
 const PageContainer = styled.div`
   background-color: #f6f7eb;
@@ -48,6 +49,7 @@ const MainPage = () => {
             text={"Trivial.Provider"}
             size={"medium"}
           ></TitleComponent>
+          <BackArrow />
         </TitleContainer>
         <ContainerInferior>
           <TextMedium>Let's Play!</TextMedium>
