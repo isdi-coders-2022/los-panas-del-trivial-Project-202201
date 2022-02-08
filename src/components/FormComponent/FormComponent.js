@@ -56,7 +56,8 @@ const SelectInput = styled.select`
 `;
 
 const ButtonContainer = styled.div`
-  margin-top: 150px;
+  margin-top: 100px;
+  text-align: center;
 `;
 
 const FormComponent = ({ onSubmit, editing = false }) => {

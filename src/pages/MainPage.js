@@ -48,6 +48,7 @@ const MainPage = () => {
           <TitleComponent
             text={"Trivial.Provider"}
             size={"medium"}
+            textColor={"#242423"}
           ></TitleComponent>
         </TitleContainer>
         <ContainerInferior>
