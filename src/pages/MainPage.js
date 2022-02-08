@@ -49,7 +49,6 @@ const MainPage = () => {
             text={"Trivial.Provider"}
             size={"medium"}
           ></TitleComponent>
-          <BackArrow />
         </TitleContainer>
         <ContainerInferior>
           <TextMedium>Let's Play!</TextMedium>
