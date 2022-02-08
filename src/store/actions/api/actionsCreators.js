@@ -1,11 +1,11 @@
 import actionTypes from "./actionTypes";
 
-export const toggleLoadingAction = (mode) => ({
-  type: actionTypes.toggleLoading,
+export const setLoadingAction = (mode) => ({
+  type: actionTypes.setLoading,
   mode: mode,
 });
 
-export const toggleErrorAction = (mode) => ({
-  type: actionTypes.toggleError,
+export const setErrorAction = (mode) => ({
+  type: actionTypes.setError,
   mode: mode,
 });

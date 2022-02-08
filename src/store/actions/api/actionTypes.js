@@ -1,6 +1,6 @@
 const actionTypes = {
-  toggleLoading: "toggle-loading",
-  toggleError: "toggle-error",
+  setLoading: "set-loading",
+  setError: "set-error",
 };
 
 export default actionTypes;
