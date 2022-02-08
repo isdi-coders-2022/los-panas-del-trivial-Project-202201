@@ -1,6 +1,5 @@
-import MainPage from "./components/MainPage/MainPageComponent";
+import MainPage from "./pages/MainPage";
 import { Navigate, Route, Routes } from "react-router-dom";
-
 
 function App() {
   return (
@@ -8,7 +7,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
 
-        <Route path="/home" element={<MainPage/>} />
+        <Route path="/home" element={<MainPage />} />
         <Route
           path="/games-list"
           element={"Placeholder for element <GamesListPage />"}
