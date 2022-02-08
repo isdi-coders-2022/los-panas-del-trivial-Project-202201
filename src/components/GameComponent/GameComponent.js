@@ -1,5 +1,6 @@
 import { SWMIcon } from "react-swm-icon-pack";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { backgroundDark, textPrimary } from "../../globalStyles";
 
 const GameContainer = styled.article`
@@ -74,6 +75,15 @@ const GameComponent = ({ game: { name, creator, questions, difficulty } }) => {
       </IconContainer>
     </GameContainer>
   );
+};
+
+GameComponent.propTypes = {
+  game: PropTypes.shape({
+    name: PropTypes.string,
+    creator: PropTypes.string,
+    difficulty: PropTypes.string,
+    questions: PropTypes.array,
+  }).isRequired,
 };
 
 export default GameComponent;
