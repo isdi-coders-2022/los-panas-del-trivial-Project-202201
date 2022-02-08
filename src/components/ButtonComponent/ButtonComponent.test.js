@@ -7,7 +7,7 @@ describe("Given ButtonComponent", () => {
     test("Then it should render a button with the text 'hello'", () => {
       const text = "hello";
 
-      render(<ButtonComponent text={text} />);
+      render(<ButtonComponent text={text} actionOnClick={() => {}} />);
 
       const foundElement = screen.queryByRole("button", { name: text });
 
@@ -19,7 +19,7 @@ describe("Given ButtonComponent", () => {
     test("Then actionOnClick should be invoked when the button is clicked", () => {
       const action = jest.fn();
 
-      render(<ButtonComponent actionOnClick={action} />);
+      render(<ButtonComponent actionOnClick={action} text={""} />);
 
       const foundElement = screen.queryByRole("button");
       userEvent.click(foundElement);
