@@ -13,39 +13,63 @@ const GameContainer = styled.article`
 
   display: flex;
   justify-content: space-between;
+
+  padding: 15px;
+  margin: 0 auto;
 `;
 
 const InfoContiner = styled.div`
-  height: 100%;
   width: fit-content;
-`;
-
-const IconContainer = styled.div`
-  width: fit-content;
-
-  padding: 15px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
 
+const IconContainer = styled.div`
+  width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const GameName = styled.h2`
+  color: ${textPrimary};
+
+  margin: 0;
+  padding: 0;
+
+  font-size: 30px;
+`;
+
+const GameInfoItem = styled.p`
+  margin: 0;
+  padding: 0;
+
+  font-size: 20px;
+`;
+
+const GameCreator = styled(GameInfoItem)`
+  color: #80807e;
+`;
+
 const GameComponent = ({ game: { name, creator, questions, difficulty } }) => {
   return (
     <GameContainer>
       <InfoContiner>
-        <h2>{name}</h2>
-        <p>{`Difficulty: ${difficulty}`}</p>
-        <p>{`Questions: ${questions.length}`}</p>
-        <p>{creator}</p>
+        <GameName>{name}</GameName>
+        <GameInfoItem>{`Difficulty: ${difficulty}`}</GameInfoItem>
+        <GameInfoItem>{`Questions: ${questions.length}`}</GameInfoItem>
+        <GameCreator>{creator}</GameCreator>
       </InfoContiner>
       <IconContainer>
-        <SWMIcon name="Edit1" color={textPrimary} set="outline" size="40" />
+        <SWMIcon name="Edit1" color={textPrimary} set="outline" size="50" />
         <SWMIcon
           name="CrossCircle"
           color={textPrimary}
           set="outline"
-          size="40"
+          size="50"
         />
       </IconContainer>
     </GameContainer>

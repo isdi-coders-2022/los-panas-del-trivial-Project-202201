@@ -52,14 +52,6 @@ const MainPage = () => {
         </TitleContainer>
         <ContainerInferior>
           <TextMedium>Let's Play!</TextMedium>
-          <GameComponent
-            game={{
-              name: "AAAAAAAAAA",
-              creator: "Mario",
-              difficulty: "Medium",
-              questions: [],
-            }}
-          />
           <ButtonsContainer>
             <ButtonComponent text={"Play Now"}></ButtonComponent>
             <ButtonComponent text={"Create Game"}></ButtonComponent>
