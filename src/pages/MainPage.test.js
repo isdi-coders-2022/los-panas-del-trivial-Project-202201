@@ -21,4 +21,13 @@ describe("Given a MainPage component", () => {
 
     expect(foundNumButtons.length).toBe(expectedNumButtons);
   });
+
+  test("Then it should render a title with the text 'Trivial.Provider'", () => {
+    const title = "Trivial.Provider";
+
+    render(<MainPage />);
+    const foundTitle = screen.queryByText(title);
+
+    expect(foundTitle).toBeInTheDocument();
+  });
 });
