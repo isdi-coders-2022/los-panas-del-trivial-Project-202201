@@ -53,8 +53,14 @@ const MainPage = () => {
         <ContainerInferior>
           <TextMedium>Let's Play!</TextMedium>
           <ButtonsContainer>
-            <ButtonComponent text={"Play Now"}></ButtonComponent>
-            <ButtonComponent text={"Create Game"}></ButtonComponent>
+            <ButtonComponent
+              text={"Play Now"}
+              actionOnClick={() => {}}
+            ></ButtonComponent>
+            <ButtonComponent
+              text={"Create Game"}
+              actionOnClick={() => {}}
+            ></ButtonComponent>
           </ButtonsContainer>
         </ContainerInferior>
       </PageContainer>
