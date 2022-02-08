@@ -22,10 +22,9 @@ describe("Given a TitleComponent", () => {
 
       render(<TitleComponent size={size} text={text} textColor={""} />);
 
-      const foundTitle = screen.queryByText(text);
-      const expectedSize = "36px";
+      const foundTitle = screen.queryByRole("heading", { text: text });
 
-      expect(foundTitle.style.fontSize).toMatch(expectedSize);
+      expect(foundTitle).toHaveStyle("font-size: 36px;");
     });
   });
   describe("When it's instantiated", () => {
