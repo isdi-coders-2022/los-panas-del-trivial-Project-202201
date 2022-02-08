@@ -10,7 +10,7 @@ describe("Given a MainPage component", () => {
 
       const foundHeading = screen.queryAllByText(text);
 
-      expect(foundHeading).toBeInTheDocument();
+      expect(foundHeading).not.toBeNull();
     });
   });
 });
