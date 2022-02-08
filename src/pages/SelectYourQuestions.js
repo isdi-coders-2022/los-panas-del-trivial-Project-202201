@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import BackArrow from "../components/BackArrowComponent/BackArrowComponent";
+import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import { backgroundLight, secondary } from "../globalStyles";
 
@@ -27,6 +28,23 @@ const TitleContainer = styled.div`
   left: 20px;
 `;
 
+const MainContainer = styled.div``;
+
+const FooterContainer = styled.div`
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const TotalSelectedQuestons = styled.p`
+  font-family: "Nunito";
+  color: #fff;
+  font-size: 25px;
+  font-weight: semi-bold;
+`;
+
 const SelectYourQuestions = () => {
   return (
     <>
@@ -43,6 +61,11 @@ const SelectYourQuestions = () => {
             />
           </TitleContainer>
         </HeaderContainer>
+        <MainContainer></MainContainer>
+        <FooterContainer>
+          <TotalSelectedQuestons>20 selected questions</TotalSelectedQuestons>
+          <ButtonComponent />
+        </FooterContainer>
       </PageContainer>
     </>
   );
