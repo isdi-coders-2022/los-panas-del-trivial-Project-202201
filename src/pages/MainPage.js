@@ -1,6 +1,7 @@
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
+import GameComponent from "../components/GameComponent/GameComponent";
 
 const PageContainer = styled.div`
   background-color: #f6f7eb;
@@ -51,6 +52,14 @@ const MainPage = () => {
         </TitleContainer>
         <ContainerInferior>
           <TextMedium>Let's Play!</TextMedium>
+          <GameComponent
+            game={{
+              name: "AAAAAAAAAA",
+              creator: "Mario",
+              difficulty: "Medium",
+              questions: [],
+            }}
+          />
           <ButtonsContainer>
             <ButtonComponent text={"Play Now"}></ButtonComponent>
             <ButtonComponent text={"Create Game"}></ButtonComponent>
