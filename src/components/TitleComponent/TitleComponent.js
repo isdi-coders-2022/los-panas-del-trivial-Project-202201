@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import { secondary } from "../../globalStyles";
 
 const TitleContainer = styled.div`
   display: flex;
@@ -22,7 +24,7 @@ const Title = styled.h1`
   font-weigth: 400;
 `;
 
-const TitleComponent = ({ size, text, textColor }) => {
+const TitleComponent = ({ size, text, textColor = secondary }) => {
   let fontSize;
   let imgSize;
 
@@ -47,6 +49,12 @@ const TitleComponent = ({ size, text, textColor }) => {
       <Title fontSize={fontSize}>{text}</Title>
     </TitleContainer>
   );
+};
+
+TitleComponent.propTypes = {
+  size: PropTypes.oneOf(["small", "medium", "large"]).isRequired,
+  text: PropTypes.string.isRequired,
+  textColor: PropTypes.string,
 };
 
 export default TitleComponent;
