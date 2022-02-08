@@ -1,4 +1,4 @@
-import MainPage from "./components/MainPage/MainPageComponent";
+import MainPage from "./pages/MainPage";
 import CreateGamePage from "./pages/CreateGamePage";
 import { Navigate, Route, Routes } from "react-router-dom";
 

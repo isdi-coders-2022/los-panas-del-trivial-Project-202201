@@ -40,13 +40,15 @@ const TitleComponent = ({ size, text, textColor = secondary }) => {
   }
 
   return (
-    <TitleContainer fontSize={fontSize} textColor={textColor}>
+    <TitleContainer fontSize={fontSize}>
       <TitleLogo
         imgSize={imgSize}
         src="images/favicon.png"
         alt="Trivial logo"
       />
-      <Title fontSize={fontSize}>{text}</Title>
+      <Title textColor={textColor} fontSize={fontSize}>
+        {text}
+      </Title>
     </TitleContainer>
   );
 };
