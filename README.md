@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# Trivial.Provider
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Trivial.Provider es una aplicacion para mobile y desktop, para crear partidas de Trivial con preguntas variadas. La aplicacion permite guardar juegos, pidiendo una serie de datos en un formulario inicial (nombre de usuario, nombre del juego, nivel de las preguntas). Una vez rellenado el formulario, se mostraran 100 preguntas (20 preguntas de cada categoria, 5 categorias diferentes) al azar que provienen de la api "OPEN TRIVIA DATABASE" (https://opentdb.com/).
 
-## Available Scripts
+Se listaran las 100 preguntas que provienen de la API, mostrando el texto de la pregunta y el tipo de pregunta (true/false o de seleccion múltiple). Este listado se podrá filtrar por categoria o por tipo de pregunta, para que muestre solamente las preguntas filtradas. El usuario irá seleccionando las preguntas que desee añadir a su juego. Una vez seleccionadas las deseadas, se guardará el juego (en una API local) y se redireccionará a la página del listado de juegos guardados.
 
-In the project directory, you can run:
+Desde la lista de juegos guardados, se puede borrar el juego o modificar el juego (modificar nombre de usuario o nombre del juego).
 
-### `npm start`
+Una siguiente version de la aplicacion (a desarollar en la próxima fase), incluirá tambien el desarrollo de la partida de trivial que se ha guardado, permitiendo al usuario jugar. En esta fase, se seleccionará cualquiera de los juegos guardados en el listado de juegos. Una vez seleccionado el juego, se redirigirá a la pagina del juego, donde se mostrará una pregunta en cada pantalla, y al contestarla pasará a la siguiente pregunta hasta finalizar todas las preguntas. Al acabar el juego se mostraran los resultados de la partida (partias acertadas y falladas).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## INSTALACION
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para instalar la aplicacion a nivel de desarrolladores, abrir los archivos en el editor de código y ejecutar el comando "npm install" en la consola.
 
-### `npm test`
+## TESTING
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para ejecutar los tests de la aplicacion ejecuta el comando "npm test" en la consola.
 
-### `npm run build`
+## SERVIDOR LOCAL
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para poder ejecutar la aplicacion en un servidor local ejecutar el comando "npm start" en la consola.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## PRODUCCION
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+La pagina para poder utilizar la aplicacion es https://los-panas-del-trivial.netlify.app/home
