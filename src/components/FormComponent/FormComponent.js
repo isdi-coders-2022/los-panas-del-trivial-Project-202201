@@ -35,3 +35,5 @@ const FormComponent = ({ onSubmit, editing }) => {
     </form>
   );
 };
+
+export default FormComponent;
