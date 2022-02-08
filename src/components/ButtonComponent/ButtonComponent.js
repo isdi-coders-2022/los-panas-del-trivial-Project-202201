@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { primary, secondary } from "../../globalStyles";
 
 const buttonHeight = 75;
@@ -27,4 +28,8 @@ const ButtonComponent = ({ actionOnClick, text }) => {
   return <RoundedButton onClick={actionOnClick}>{text}</RoundedButton>;
 };
 
+ButtonComponent.propTypes = {
+  text: PropTypes.string.isRequired,
+  actionOnClick: PropTypes.func.isRequired,
+};
 export default ButtonComponent;
