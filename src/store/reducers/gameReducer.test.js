@@ -102,4 +102,42 @@ describe("Given a gameReducer function", () => {
       expect(newGameArray).toEqual(expectedNewGames);
     });
   });
+
+  describe("When it receives a 'modify-game-names' action, to add a new game with id 4", () => {
+    test("Then it should return an array of games including the new game with id 4", () => {
+      const currentGames = [
+        {
+          id: 3,
+          name: "Janis",
+          creator: "Joplin",
+          difficulty: "Easy",
+          questions: [],
+        },
+      ];
+
+      const action = {
+        type: actionTypes.modifyGameNames,
+        id: 3,
+      };
+
+      action.gameNames = {
+        name: "Ringo",
+        creator: "Star",
+      };
+
+      const expectedNewGames = [
+        {
+          id: 3,
+          name: "Ringo",
+          creator: "Star",
+          difficulty: "Easy",
+          questions: [],
+        },
+      ];
+
+      const newGameArray = gameReducer(currentGames, action);
+
+      expect(newGameArray).toEqual(expectedNewGames);
+    });
+  });
 });
