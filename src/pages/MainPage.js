@@ -1,9 +1,10 @@
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
+import { backgroundLight, secondary } from "../globalStyles";
 
 const PageContainer = styled.div`
-  background-color: #f6f7eb;
+  background-color: ${secondary};
   height: 100vh;
 `;
 
@@ -17,13 +18,13 @@ const TitleContainer = styled.div`
 const TextMedium = styled.h2`
   font-size: 48px;
   text-align: center;
-  color: #f6f7eb;
+  color: ${secondary};
   padding-top: 150px;
   padding-bottom: 50px;
 `;
 
 const ContainerInferior = styled.div`
-  background-color: #333533;
+  background-color: ${backgroundLight};
   border-radius: 50px 50px 0 0;
   width: 100%;
   position: absolute;
