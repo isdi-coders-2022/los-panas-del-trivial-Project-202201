@@ -55,6 +55,10 @@ const SelectInput = styled.select`
   font-family: inherit;
 `;
 
+const ButtonContainer = styled.div`
+  margin-top: 150px;
+`;
+
 const FormComponent = ({ onSubmit, editing = false }) => {
   return (
     <FormContainer
@@ -100,8 +104,9 @@ const FormComponent = ({ onSubmit, editing = false }) => {
           </SelectInput>
         </div>
       )}
-
-      <ButtonComponent type="submit" actionOnClick={() => {}} text="Create" />
+      <ButtonContainer>
+        <ButtonComponent type="submit" actionOnClick={() => {}} text="Create" />
+      </ButtonContainer>
     </FormContainer>
   );
 };
