@@ -1,4 +1,6 @@
-const FormComponent = ({ onSubmit, editing }) => {
+import PropTypes from "prop-types";
+
+const FormComponent = ({ onSubmit, editing = false }) => {
   return (
     <form
       onSubmit={(event) => {
@@ -34,6 +36,11 @@ const FormComponent = ({ onSubmit, editing }) => {
       </div>
     </form>
   );
+};
+
+FormComponent.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  editing: PropTypes.bool,
 };
 
 export default FormComponent;
