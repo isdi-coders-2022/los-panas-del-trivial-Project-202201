@@ -12,5 +12,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
 
       expect(foundHeading.textContent).toBe(expectedText);
     });
+
+    test("Then it should render a button with the text 'Save'", () => {});
   });
 });
