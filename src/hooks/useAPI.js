@@ -19,6 +19,10 @@ const useAPI = () => {
       const questionsListSports = questionsSports.results;
       allQuestions.push([...questionsListSports]);
 
+      const responseAnimals = await fetch(getTrivialUrl(27, difficulty));
+      const questionsAnimals = await responseAnimals.json();
+      const questionsListAnimals = questionsAnimals.results;
+      allQuestions.push([...questionsListAnimals]);
       allQuestionsDispatch(loadQuestionsAction(allQuestions));
     },
     [allQuestionsDispatch]
