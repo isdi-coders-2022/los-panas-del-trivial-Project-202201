@@ -3,7 +3,8 @@ import {
   modifyGameNamesAction,
   removeGameAction,
   addQuestionAction,
-  removeQuestions,
+  removeQuestionsAction,
+  loadQuestionsAction,
 } from "./actionsCreators";
 
 describe("Given a addGameAction function", () => {
@@ -85,7 +86,23 @@ describe("Given a removeQuestions function", () => {
         id: id,
       };
 
-      const action = removeQuestions(id);
+      const action = removeQuestionsAction(id);
+
+      expect(action).toEqual(expectedAction);
+    });
+  });
+});
+
+describe("Given loadQuestionsAction function", () => {
+  describe("When it receives an array of questions", () => {
+    test("Then it should return an action with type 'load-all-questions' with the question array", () => {
+      const questions = ["hola", "hi"];
+      const expectedAction = {
+        type: "load-all-questions",
+        questions: questions,
+      };
+
+      const action = loadQuestionsAction(questions);
 
       expect(action).toEqual(expectedAction);
     });
