@@ -7,7 +7,7 @@ import TrivialContext from "./TrivialContext";
 const TrivialContextProvider = ({ children }) => {
   const [currentGames, gamesDispatch] = useReducer(gameReducer, []);
   const [currentQuestions, questionDispatch] = useReducer(questionsReducer, []);
-  const [currentAllQuestions, allquestionsDispatch] = useReducer(
+  const [currentAllQuestions, allQuestionsDispatch] = useReducer(
     allQuestionsReducer,
     []
   );
@@ -18,7 +18,7 @@ const TrivialContextProvider = ({ children }) => {
     currentQuestions,
     questionDispatch,
     currentAllQuestions,
-    allquestionsDispatch,
+    allQuestionsDispatch,
   };
 
   return (
