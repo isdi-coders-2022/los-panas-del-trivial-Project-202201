@@ -21,7 +21,12 @@ export const addQuestionAction = (question) => ({
   question: question,
 });
 
-export const removeQuestions = (id) => ({
+export const removeQuestionsAction = (id) => ({
   type: actionTypes.removeQuestion,
   id: id,
+});
+
+export const loadQuestionsAction = (questions) => ({
+  type: actionTypes.loadQuestions,
+  questions: questions,
 });
