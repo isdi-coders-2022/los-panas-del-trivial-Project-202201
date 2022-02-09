@@ -7,6 +7,7 @@ import { useContext } from "react";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import QuestionComponent from "../QuestionComponent/QuestionComponent";
 import { useNavigate } from "react-router-dom";
+import FilterComponentHTML from "../FilterComponent/FilterComponent";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -100,6 +101,7 @@ const SelectYourQuestionsComponent = () => {
             />
           </TitleContainer>
         </HeaderContainer>
+        <FilterComponentHTML />
         <MainContainer>
           {currentAllQuestions.map((question, index) => (
             <QuestionComponent
