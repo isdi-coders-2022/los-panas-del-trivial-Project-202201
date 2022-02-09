@@ -2,9 +2,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { backgroundDark, primary, textPrimary } from "../../globalStyles";
 
-const CardContainer = styled.div`
+const CardContainer = styled.li`
   background-color: ${(props) => props.backgroundColor};
-  min-height: 77px;
   width: 365px;
   border-radius: 9px;
   padding: 10px;
@@ -19,6 +18,7 @@ const QuestionText = styled.p`
 const TypeQuestionText = styled.p`
   color: #fff;
   margin: 5px;
+  margin-top: 10px;
   font-size: 16px;
 `;
 
