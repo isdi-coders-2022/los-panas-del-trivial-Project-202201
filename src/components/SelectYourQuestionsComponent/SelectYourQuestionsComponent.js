@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import {
   addQuestionAction,
   removeQuestionsAction,
+  toggeleSelectQuestionsAction,
 } from "../../store/actions/trivial/actionsCreators";
 
 const PageContainer = styled.div`
@@ -119,6 +120,7 @@ const SelectYourQuestionsComponent = () => {
                 } else {
                   questionDispatch(addQuestionAction(question));
                 }
+                allQuestionsDispatch(toggeleSelectQuestionsAction(question.id));
               }}
             />
           ))}

@@ -8,15 +8,19 @@ const allQuestionsReducer = (currentAllQuestions, action) => {
       newAllQuestions = action.questions.map((question, index) => ({
         ...question,
         id: index,
-        selected: false,
+        selected: 0,
       }));
       break;
 
     case actionTypes.toggleSelectQuestion:
-      newAllQuestions = [...currentAllQuestions];
-      const questionToEdit = newAllQuestions.find(({ id }) => action.id === id);
-      questionToEdit.selected = !questionToEdit.selected;
+      newAllQuestions = currentAllQuestions.map((question) => {
+        if (question.id === action.id) {
+          return { ...question, selected: !question.selected };
+        }
+        return { ...question };
+      });
       break;
+
     default:
       newAllQuestions = [...currentAllQuestions];
       break;
