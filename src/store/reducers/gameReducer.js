@@ -22,6 +22,9 @@ const gameReducer = (currentGames, action) => {
         }
       });
       break;
+    case actionTypes.loadGames:
+      newGames = [...action.gamesList];
+      break;
 
     default:
       newGames = [...currentGames];

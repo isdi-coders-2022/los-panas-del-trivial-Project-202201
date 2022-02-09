@@ -16,6 +16,11 @@ export const removeGameAction = (id) => ({
   id: id,
 });
 
+export const loadGamesAction = (gamesList) => ({
+  type: actionTypes.loadGames,
+  gamesList: gamesList,
+});
+
 export const addQuestionAction = (question) => ({
   type: actionTypes.addQuestion,
   question: question,
