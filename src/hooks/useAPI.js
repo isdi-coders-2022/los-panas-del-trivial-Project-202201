@@ -7,11 +7,10 @@ const useAPI = () => {
     `https://opentdb.com/api.php?amount=20&category=${category}&difficulty=${difficulty}`;
 
   const gamesAPIurl = "https://trivial-provider.herokuapp.com/games";
-  const { allQuestionsDispatch } = useContext(TrivialContext);
+  const { allQuestionsDispatch, gamesDispatch } = useContext(TrivialContext);
 
   const loadQuestionsAPI = useCallback(
     async (difficulty) => {
-      const idCategory = [21, 27, 15, 18, 22];
       let allQuestions = [];
 
       const responseSports = await fetch(getTrivialUrl(21, difficulty));
@@ -45,6 +44,13 @@ const useAPI = () => {
     },
     [allQuestionsDispatch]
   );
+
+  const loadGamesAPI = useCallback(async () => {
+    const response = await fetch(gamesAPIurl);
+    const gamesList = await response.json();
+    gamesDispatch();
+  });
+
   return loadQuestionsAPI;
 };
 
