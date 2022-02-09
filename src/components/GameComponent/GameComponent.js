@@ -37,6 +37,8 @@ const IconContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  color: ${textPrimary};
 `;
 
 const GameName = styled.h2`
@@ -81,6 +83,7 @@ const GameComponent = ({
           onClick={goToEdit}
           icon={faPencil}
           data-testid="editIcon"
+          size="2x"
         />
         <FontAwesomeIcon
           onClick={() => {
@@ -88,6 +91,7 @@ const GameComponent = ({
           }}
           icon={faTrashAlt}
           data-testid="deleteIcon"
+          size="2x"
         />
       </IconContainer>
     </GameContainer>
