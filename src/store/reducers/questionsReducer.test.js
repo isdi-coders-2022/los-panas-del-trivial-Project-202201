@@ -1,7 +1,7 @@
 import actionTypes from "../actions/trivial/actionTypes";
-import questionReducer from "./questionsReducer";
+import questionsReducer from "./questionsReducer";
 
-describe("Given questionReducer", () => {
+describe("Given questionsReducer", () => {
   describe("When it's passed an array with 2 questions and the removeQuestion action", () => {
     test("Then it should return an array without the removed question", () => {
       const questions = [{ id: 3456456456 }, { id: 2 }];
@@ -11,7 +11,7 @@ describe("Given questionReducer", () => {
         id: 2,
       };
 
-      const newQuestions = questionReducer(questions, action);
+      const newQuestions = questionsReducer(questions, action);
 
       expect(newQuestions).toEqual(expectedQuestions);
     });
@@ -31,7 +31,7 @@ describe("Given questionReducer", () => {
         question: questionToAdd,
       };
 
-      const newQuestions = questionReducer(questions, action);
+      const newQuestions = questionsReducer(questions, action);
 
       expect(newQuestions).toEqual(expectedQuestions);
     });

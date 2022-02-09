@@ -1,6 +1,6 @@
 import actionTypes from "../actions/trivial/actionTypes";
 
-const questionReducer = (currentSelectedQuestions, action) => {
+const questionsReducer = (currentSelectedQuestions, action) => {
   let newSelectedQuestions;
 
   switch (action.type) {
@@ -27,4 +27,4 @@ const questionReducer = (currentSelectedQuestions, action) => {
   return newSelectedQuestions;
 };
 
-export default questionReducer;
+export default questionsReducer;
