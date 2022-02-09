@@ -25,3 +25,8 @@ export const removeQuestions = (id) => ({
   type: actionTypes.removeQuestion,
   id: id,
 });
+
+export const loadQuestions = (questions) => ({
+  type: actionTypes.loadQuestions,
+  questions: questions,
+});
