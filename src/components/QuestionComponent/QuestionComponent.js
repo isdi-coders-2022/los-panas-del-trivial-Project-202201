@@ -8,10 +8,14 @@ const CardContainer = styled.div`
   border-radius: 9px;
 `;
 
+const QuestionText = styled.p`
+  color: ${(props) => props.questionTextColor};
+`;
+
 const QuestionComponent = ({ isSelected }) => {
   let backgroundColor = `${backgroundDark}`;
   let questionTextColor = `${textPrimary}`;
-  let typeTextQuestionColor = "#fff";
+  let typeQuestionTextColor = "#fff";
 
   if (isSelected) {
     backgroundColor = `${primary}`;
@@ -20,7 +24,11 @@ const QuestionComponent = ({ isSelected }) => {
 
   return (
     <>
-      <CardContainer isSelected={isSelected}></CardContainer>
+      <CardContainer isSelected={isSelected} backgroundColor={backgroundColor}>
+        <QuestionText questionTextColor={questionTextColor}>
+          holiis
+        </QuestionText>
+      </CardContainer>
     </>
   );
 };
