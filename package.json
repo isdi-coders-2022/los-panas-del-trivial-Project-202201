@@ -49,8 +49,7 @@
       "!src/**/*.test.js",
       "!src/index.js",
       "!src/reportWebVitals.js",
-      "!src/setupTests.js",
-      "!src/App.js"
+      "!src/setupTests.js"
     ]
   }
 }
