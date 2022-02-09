@@ -65,7 +65,11 @@ const SelectYourQuestionsComponent = () => {
             />
           </TitleContainer>
         </HeaderContainer>
-        <MainContainer></MainContainer>
+        <MainContainer>
+          {currentAllQuestions.map((question) => (
+            <QuestionComponent />
+          ))}
+        </MainContainer>
         <FooterContainer>
           <TotalSelectedQuestons>20 selected questions</TotalSelectedQuestons>
           <ButtonComponent text="Save" actionOnClick={() => {}} />
