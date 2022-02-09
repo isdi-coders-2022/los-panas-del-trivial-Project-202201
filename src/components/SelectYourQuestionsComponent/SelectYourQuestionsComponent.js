@@ -49,6 +49,13 @@ const TotalSelectedQuestons = styled.p`
 `;
 
 const SelectYourQuestionsComponent = () => {
+  let questionType = (type) => {
+    if (type.correct_answer === "True" || type.correct_answer === "False") {
+      return "True/False";
+    } else {
+      return "Multiple Choice";
+    }
+  };
   const { currentAllQuestions } = useContext(TrivialContext);
   return (
     <>
