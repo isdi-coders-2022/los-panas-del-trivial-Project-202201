@@ -7,7 +7,7 @@ describe("Given GameListPage", () => {
       render(<GameListPage />);
 
       const backarrow = screen.queryByTestId("arrow");
-      const title = screen.queryByRole("heading");
+      const title = screen.queryByRole("heading", { level: 1 });
       const list = screen.queryByRole("list");
 
       expect(backarrow).toBeInTheDocument();
