@@ -3,8 +3,7 @@ import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
 import { backgroundLight } from "../globalStyles";
 import FormComponent from "../components/FormComponent/FormComponent";
-import { useContext, useEffect, useState } from "react";
-import TrivialContext from "../store/contexts/TrivialContext";
+import { useState } from "react";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
