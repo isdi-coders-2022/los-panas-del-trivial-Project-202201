@@ -3,6 +3,7 @@ import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
 import { backgroundLight } from "../globalStyles";
 import FormComponent from "../components/FormComponent/FormComponent";
+import useAPI from "../hooks/useAPI";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -20,6 +21,8 @@ const BackArrowContainer = styled.div`
 `;
 
 const CreateGamePage = () => {
+  const { loadQuestionsAPI } = useAPI();
+
   return (
     <>
       <PageContainer>
@@ -27,7 +30,11 @@ const CreateGamePage = () => {
           <BackArrowComponent />
         </BackArrowContainer>
         <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
-        <FormComponent onSubmit={() => {}}></FormComponent>
+        <FormComponent
+          onSubmit={() => {
+            loadQuestionsAPI("easy");
+          }}
+        ></FormComponent>
       </PageContainer>
     </>
   );
