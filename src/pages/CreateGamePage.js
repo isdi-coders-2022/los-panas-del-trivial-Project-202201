@@ -3,7 +3,8 @@ import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
 import { backgroundLight } from "../globalStyles";
 import FormComponent from "../components/FormComponent/FormComponent";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import TrivialContext from "../store/contexts/TrivialContext";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -24,16 +25,20 @@ const CreateGamePage = () => {
   const [name, setName] = useState("");
   const [creator, setCreator] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
-  const [newGame, setNewGame] = useState({});
+  const [, setNewGame] = useState({});
 
-  useEffect(() => {
+  const buildGame = () => {
     const game = {
       name,
       creator,
       difficulty,
     };
     setNewGame(game);
-  }, [name, creator, difficulty]);
+  };
+
+  const actionOnSubmit = () => {
+    buildGame();
+  };
 
   return (
     <PageContainer>
@@ -45,7 +50,7 @@ const CreateGamePage = () => {
         name={{ name, setName }}
         creator={{ creator, setCreator }}
         difficulty={{ difficulty, setDifficulty }}
-        onSubmit={() => {}}
+        onSubmit={actionOnSubmit}
       ></FormComponent>
     </PageContainer>
   );
