@@ -2,6 +2,7 @@ import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
 import { backgroundLight, secondary } from "../globalStyles";
+import { useNavigate } from "react-router-dom";
 
 const PageContainer = styled.div`
   background-color: ${secondary};
@@ -41,6 +42,15 @@ const ButtonsContainer = styled.div`
 `;
 
 const MainPage = () => {
+  const navigate = useNavigate();
+  const gotoGameList = () => {
+    navigate(`/games-list`);
+  };
+
+  const gotoCreateGame = () => {
+    navigate(`/game/new`);
+  };
+
   return (
     <>
       <PageContainer>
@@ -56,11 +66,11 @@ const MainPage = () => {
           <ButtonsContainer>
             <ButtonComponent
               text={"Play Now"}
-              actionOnClick={() => {}}
+              actionOnClick={gotoGameList}
             ></ButtonComponent>
             <ButtonComponent
               text={"Create Game"}
-              actionOnClick={() => {}}
+              actionOnClick={gotoCreateGame}
             ></ButtonComponent>
           </ButtonsContainer>
         </ContainerInferior>
