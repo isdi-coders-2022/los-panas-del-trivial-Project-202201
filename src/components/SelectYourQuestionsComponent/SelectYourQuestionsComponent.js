@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import BackArrow from "../components/BackArrowComponent/BackArrowComponent";
-import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
-import TitleComponent from "../components/TitleComponent/TitleComponent";
-import { backgroundLight, secondary } from "../globalStyles";
+import BackArrow from "../BackArrowComponent/BackArrowComponent";
+import ButtonComponent from "../ButtonComponent/ButtonComponent";
+import TitleComponent from "../TitleComponent/TitleComponent";
+import { backgroundLight, secondary } from "../../globalStyles";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -45,7 +45,7 @@ const TotalSelectedQuestons = styled.p`
   font-weight: semi-bold;
 `;
 
-const SelectYourQuestions = () => {
+const SelectYourQuestionsComponent = () => {
   return (
     <>
       <PageContainer>
@@ -71,4 +71,4 @@ const SelectYourQuestions = () => {
   );
 };
 
-export default SelectYourQuestions;
+export default SelectYourQuestionsComponent;
