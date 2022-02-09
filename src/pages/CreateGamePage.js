@@ -27,7 +27,7 @@ const CreateGamePage = () => {
           <BackArrowComponent />
         </BackArrowContainer>
         <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
-        <FormComponent></FormComponent>
+        <FormComponent onSubmit={() => {}}></FormComponent>
       </PageContainer>
     </>
   );
