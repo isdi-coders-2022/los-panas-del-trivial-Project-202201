@@ -17,30 +17,30 @@ const useAPI = () => {
       const responseSports = await fetch(getTrivialUrl(21, difficulty));
       const questionsSports = await responseSports.json();
       const questionsListSports = questionsSports.results;
-      allQuestions.push([...questionsListSports]);
+      allQuestions.push(...questionsListSports);
 
       const responseAnimals = await fetch(getTrivialUrl(27, difficulty));
       const questionsAnimals = await responseAnimals.json();
       const questionsListAnimals = questionsAnimals.results;
-      allQuestions.push([...questionsListAnimals]);
+      allQuestions.push(...questionsListAnimals);
       allQuestionsDispatch(loadQuestionsAction(allQuestions));
 
       const responseVideogames = await fetch(getTrivialUrl(15, difficulty));
       const questionsVideogames = await responseVideogames.json();
       const questionsListVideogames = questionsVideogames.results;
-      allQuestions.push([...questionsListVideogames]);
+      allQuestions.push(...questionsListVideogames);
       allQuestionsDispatch(loadQuestionsAction(allQuestions));
 
       const responseComputers = await fetch(getTrivialUrl(18, difficulty));
       const questionsComputers = await responseComputers.json();
       const questionsListComputers = questionsComputers.results;
-      allQuestions.push([...questionsListComputers]);
+      allQuestions.push(...questionsListComputers);
       allQuestionsDispatch(loadQuestionsAction(allQuestions));
 
       const responseGeography = await fetch(getTrivialUrl(22, difficulty));
       const questionsGeography = await responseGeography.json();
       const questionsListGeography = questionsGeography.results;
-      allQuestions.push([...questionsListGeography]);
+      allQuestions.push(...questionsListGeography);
       allQuestionsDispatch(loadQuestionsAction(allQuestions));
     },
     [allQuestionsDispatch]
