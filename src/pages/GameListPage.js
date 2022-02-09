@@ -38,63 +38,7 @@ const GameListPage = () => {
         <BackArrowComponent actionOnClick={() => {}} />
       </BackArrowContainer>
       <TitleComponent size="medium" text="Game List" />
-      <GameList>
-        <GameHolder>
-          <GameComponent
-            game={{
-              id: 3,
-              name: "Hola",
-              creator: "Mi papa",
-              difficulty: "",
-              questions: [],
-            }}
-          ></GameComponent>
-        </GameHolder>
-        <GameHolder>
-          <GameComponent
-            game={{
-              id: 3,
-              name: "Hola",
-              creator: "Mi papa",
-              difficulty: "",
-              questions: [],
-            }}
-          ></GameComponent>
-        </GameHolder>
-        <GameHolder>
-          <GameComponent
-            game={{
-              id: 3,
-              name: "Hola",
-              creator: "Mi papa",
-              difficulty: "",
-              questions: [],
-            }}
-          ></GameComponent>
-        </GameHolder>
-        <GameHolder>
-          <GameComponent
-            game={{
-              id: 3,
-              name: "Hola",
-              creator: "Mi papa",
-              difficulty: "",
-              questions: [],
-            }}
-          ></GameComponent>
-        </GameHolder>
-        <GameHolder>
-          <GameComponent
-            game={{
-              id: 3,
-              name: "Hola",
-              creator: "Mi papa",
-              difficulty: "",
-              questions: [],
-            }}
-          ></GameComponent>
-        </GameHolder>
-      </GameList>
+      <GameList></GameList>
     </PageContainer>
   );
 };
