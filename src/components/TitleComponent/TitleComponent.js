@@ -21,7 +21,7 @@ const Title = styled.h1`
   font-family: Comfortaa;
   margin: 0px;
   padding-top: 2px;
-  font-weigth: 400;
+  font-weight: 400;
 `;
 
 const TitleComponent = ({ size, text, textColor = secondary }) => {
