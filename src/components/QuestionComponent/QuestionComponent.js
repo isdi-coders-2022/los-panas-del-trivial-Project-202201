@@ -21,7 +21,11 @@ const TypeQuestionText = styled.p`
   font-size: 16px;
 `;
 
-const QuestionComponent = ({ isSelected }) => {
+const QuestionComponent = ({
+  questionText,
+  typeQuestionText,
+  isSelected = false,
+}) => {
   let backgroundColor = `${backgroundDark}`;
   let questionTextColor = `${textPrimary}`;
 
@@ -34,11 +38,9 @@ const QuestionComponent = ({ isSelected }) => {
     <>
       <CardContainer isSelected={isSelected} backgroundColor={backgroundColor}>
         <QuestionText questionTextColor={questionTextColor}>
-          holiisfdsafdasafsdfd sfasdfadsfdsfdsf sdafasdfs dfsdafadsfadsfsad
+          {questionText}
         </QuestionText>
-        <TypeQuestionText>
-          adiooodfasfadsadsf sadfsfsdafsadfsdfds asfadfdsafsadafdsfads
-        </TypeQuestionText>
+        <TypeQuestionText>{typeQuestionText}</TypeQuestionText>
       </CardContainer>
     </>
   );
