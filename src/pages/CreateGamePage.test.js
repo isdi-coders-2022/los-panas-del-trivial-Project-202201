@@ -11,5 +11,12 @@ describe("Given a CreateGamePage component", () => {
 
       expect(foundHeading[0].textContent).toBe(expectedText);
     });
+    test("Then it should render a BackArrow component", () => {
+      render(<CreateGamePage />);
+
+      const foundArrow = screen.queryByTestId("arrow");
+
+      expect(foundArrow).toBeInTheDocument();
+    });
   });
 });
