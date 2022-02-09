@@ -6,6 +6,7 @@ const GameListPage = () => {
     <div>
       <BackArrowComponent actionOnClick={() => {}} />
       <TitleComponent size="medium" text="Game List" />
+      <ul></ul>
     </div>
   );
 };
