@@ -14,6 +14,8 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  padding-bottom: 80px;
 `;
 
 const HeaderContainer = styled.div`
@@ -28,10 +30,21 @@ const ArrowContainer = styled.div`
 
 const TitleContainer = styled.div`
   position: relative;
+  margin-bottom: 25px;
   left: 20px;
 `;
 
-const MainContainer = styled.div``;
+const MainContainer = styled.ul`
+  list-style: none;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 0;
+  height: 597px;
+  overflow-y: scroll;
+`;
 
 const FooterContainer = styled.div`
   height: 175px;
