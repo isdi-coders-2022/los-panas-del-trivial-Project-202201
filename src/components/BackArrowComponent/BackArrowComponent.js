@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { secondary } from "../../globalStyles";
+import PropTypes from "prop-types";
 
 const BackArrowComponent = ({ actionOnClick }) => {
   return (
@@ -12,6 +13,10 @@ const BackArrowComponent = ({ actionOnClick }) => {
       onClick={actionOnClick}
     />
   );
+};
+
+BackArrowComponent.propTypes = {
+  actionOnClick: PropTypes.func.isRequired,
 };
 
 export default BackArrowComponent;
