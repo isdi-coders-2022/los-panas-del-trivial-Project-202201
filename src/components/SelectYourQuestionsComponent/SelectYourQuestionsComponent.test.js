@@ -22,5 +22,13 @@ describe("Given a SelectYourQuestionsComponent", () => {
 
       expect(foundHeading.textContent).toBe(expectedText);
     });
+
+    test("Then it should render a BackArrowComponent", () => {
+      render(<SelectYourQuestionsComponent />);
+
+      const foundHeading = screen.queryByTestId("arrow");
+
+      expect(foundHeading).toBeInTheDocument();
+    });
   });
 });
