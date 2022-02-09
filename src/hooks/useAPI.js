@@ -30,6 +30,12 @@ const useAPI = () => {
       const questionsListVideogames = questionsVideogames.results;
       allQuestions.push([...questionsListVideogames]);
       allQuestionsDispatch(loadQuestionsAction(allQuestions));
+
+      const responseComputers = await fetch(getTrivialUrl(18, difficulty));
+      const questionsComputers = await responseComputers.json();
+      const questionsListComputers = questionsComputers.results;
+      allQuestions.push([...questionsListComputers]);
+      allQuestionsDispatch(loadQuestionsAction(allQuestions));
     },
     [allQuestionsDispatch]
   );
