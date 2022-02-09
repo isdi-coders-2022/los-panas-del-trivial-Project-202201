@@ -1,5 +1,6 @@
 import { useCallback, useContext } from "react";
 import {
+  addGameAction,
   loadGamesAction,
   loadQuestionsAction,
 } from "../store/actions/trivial/actionsCreators";
@@ -54,7 +55,21 @@ const useAPI = () => {
     gamesDispatch(loadGamesAction(gamesList));
   }, [gamesDispatch]);
 
-  return { loadQuestionsAPI, loadGamesAPI };
+  const addGameAPI = async (game) => {
+    const response = await fetch(gamesAPIurl, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(game),
+    });
+
+    const newGame = response.json();
+
+    gamesDispatch(addGameAction(newGame));
+  };
+
+  return { loadQuestionsAPI, loadGamesAPI, addGameAPI };
 };
 
 export default useAPI;
