@@ -23,4 +23,14 @@ describe("Given NotFoundPage", () => {
       expect(headingElement.textContent).toBe(expectedText);
     });
   });
+
+  test("Then it should present an image element with the alt text 'Sad page'", () => {
+    const expectedAltText = "Sad page";
+
+    render(<NotFoundPage />);
+
+    const imgElement = screen.queryByRole("img", { alt: expectedAltText });
+
+    expect(imgElement).toBeInTheDocument();
+  });
 });

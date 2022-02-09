@@ -34,7 +34,7 @@ const NotFoundPage = () => {
     <PageHolder>
       <Status>404</Status>
       <Info>Page Not Found</Info>
-      <NotFoundImg src="images/notFound.png" />
+      <NotFoundImg src="images/notFound.png" alt="Sad page" />
     </PageHolder>
   );
 };
