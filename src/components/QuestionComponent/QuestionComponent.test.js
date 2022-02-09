@@ -3,37 +3,43 @@ import QuestionComponent from "./QuestionComponent";
 
 describe("Given a QuestionComponent", () => {
   describe("When it's instantiated with a questionText = 'hola", () => {
-    test("Then it should render a questionText text", () => {
+    test("Then it should render a the text 'hola'", () => {
       const expectedText = "hola";
-      const typeQuestionText = "nohola";
 
       render(
         <QuestionComponent
-          questionText="hola"
-          typeQuestionText={typeQuestionText}
+          question={{
+            question: "hola",
+            type: "",
+            selected: false,
+            category: "",
+          }}
         />
       );
 
-      const findText = screen.queryByText(expectedText);
+      const foundElement = screen.queryByText(expectedText);
 
-      expect(findText.textContent).toBe(expectedText);
+      expect(foundElement).toBeInTheDocument();
     });
   });
-  describe("When it's instantiated with a typeQuestionText = 'hola", () => {
-    test("Then it should render a questionText text", () => {
-      const expectedText = "hola";
-      const questionText = "nohola";
-
+  describe("When it's instantiated with a typeQuestionText = 'multiple", () => {
+    test("Then it should render the text 'Multiple Choice'", () => {
+      const type = "multiple";
+      const expectedText = "Multiple Choice";
       render(
         <QuestionComponent
-          questionText={questionText}
-          typeQuestionText={"hola"}
+          question={{
+            question: "",
+            type: type,
+            selected: false,
+            category: "",
+          }}
         />
       );
 
-      const findText = screen.queryByText(expectedText);
+      const foundElement = screen.queryByText(expectedText);
 
-      expect(findText.textContent).toBe(expectedText);
+      expect(foundElement).toBeInTheDocument();
     });
   });
 });
