@@ -36,6 +36,12 @@ const useAPI = () => {
       const questionsListComputers = questionsComputers.results;
       allQuestions.push([...questionsListComputers]);
       allQuestionsDispatch(loadQuestionsAction(allQuestions));
+
+      const responseGeography = await fetch(getTrivialUrl(22, difficulty));
+      const questionsGeography = await responseGeography.json();
+      const questionsListGeography = questionsGeography.results;
+      allQuestions.push([...questionsListGeography]);
+      allQuestionsDispatch(loadQuestionsAction(allQuestions));
     },
     [allQuestionsDispatch]
   );
