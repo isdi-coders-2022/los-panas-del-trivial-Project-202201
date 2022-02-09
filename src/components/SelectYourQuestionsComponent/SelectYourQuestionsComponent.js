@@ -30,6 +30,7 @@ const ArrowContainer = styled.div`
 
 const TitleContainer = styled.div`
   position: relative;
+  margin-bottom: 25px;
   left: 20px;
 `;
 
