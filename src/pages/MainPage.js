@@ -43,6 +43,7 @@ const ButtonsContainer = styled.div`
 
 const MainPage = () => {
   const navigate = useNavigate();
+
   const gotoGameList = () => {
     navigate(`/games-list`);
   };

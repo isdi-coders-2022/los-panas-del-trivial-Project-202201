@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BackArrowComponent from "../components/BackArrowComponent/BackArrowComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
@@ -29,10 +30,15 @@ const GameList = styled.ul`
 `;
 
 const GameListPage = () => {
+  const navigate = useNavigate();
+
+  const gotoMainPage = () => {
+    navigate(`/games-list`);
+  };
   return (
     <PageContainer>
       <BackArrowContainer>
-        <BackArrowComponent actionOnClick={() => {}} />
+        <BackArrowComponent actionOnClick={gotoMainPage} />
       </BackArrowContainer>
       <TitleComponent size="medium" text="Game List" />
       <GameList></GameList>
