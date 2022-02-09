@@ -77,8 +77,12 @@ const SelectYourQuestionsComponent = () => {
       return "Multiple Choice";
     }
   };
-  const { currentAllQuestions, allQuestionsDispatch, questionDispatch } =
-    useContext(TrivialContext);
+  const {
+    currentAllQuestions,
+    allQuestionsDispatch,
+    currentQuestions,
+    questionDispatch,
+  } = useContext(TrivialContext);
 
   const decodeString = (str) => {
     var element = document.createElement("div");
@@ -126,7 +130,7 @@ const SelectYourQuestionsComponent = () => {
           ))}
         </MainContainer>
         <FooterContainer>
-          <TotalSelectedQuestons>20 selected questions</TotalSelectedQuestons>
+          <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
           <ButtonComponent text="Save" actionOnClick={() => {}} />
         </FooterContainer>
       </PageContainer>
