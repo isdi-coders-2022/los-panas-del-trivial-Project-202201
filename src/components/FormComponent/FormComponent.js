@@ -147,7 +147,7 @@ FormComponent.propTypes = {
   difficulty: PropTypes.shape({
     difficulty: PropTypes.string.isRequired,
     setDifficulty: PropTypes.func.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default FormComponent;
