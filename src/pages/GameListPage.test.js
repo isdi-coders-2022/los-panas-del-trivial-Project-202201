@@ -1,10 +1,15 @@
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import GameListPage from "./GameListPage";
 
 describe("Given GameListPage", () => {
   describe("When it is invoked", () => {
     test("Then it should render the backArrowComponent, the TitleComponent and a ul", () => {
-      render(<GameListPage />);
+      render(
+        <BrowserRouter>
+          <GameListPage />
+        </BrowserRouter>
+      );
 
       const backarrow = screen.queryByTestId("arrow");
       const title = screen.queryByRole("heading", { level: 1 });
@@ -18,7 +23,11 @@ describe("Given GameListPage", () => {
     test("The title component should display 'Game List'", () => {
       const expectedTitle = "Game List";
 
-      render(<GameListPage />);
+      render(
+        <BrowserRouter>
+          <GameListPage />
+        </BrowserRouter>
+      );
 
       const title = screen.queryByText(expectedTitle);
 

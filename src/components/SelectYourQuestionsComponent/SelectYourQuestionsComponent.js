@@ -6,6 +6,7 @@ import { backgroundLight, secondary } from "../../globalStyles";
 import { useContext } from "react";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import QuestionComponent from "../QuestionComponent/QuestionComponent";
+import { useNavigate } from "react-router-dom";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -14,6 +15,8 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  padding-bottom: 80px;
 `;
 
 const HeaderContainer = styled.div`
@@ -28,10 +31,21 @@ const ArrowContainer = styled.div`
 
 const TitleContainer = styled.div`
   position: relative;
+  margin-bottom: 25px;
   left: 20px;
 `;
 
-const MainContainer = styled.div``;
+const MainContainer = styled.ul`
+  list-style: none;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 0;
+  height: 597px;
+  overflow-y: scroll;
+`;
 
 const FooterContainer = styled.div`
   height: 175px;
@@ -49,6 +63,7 @@ const TotalSelectedQuestons = styled.p`
 `;
 
 const SelectYourQuestionsComponent = () => {
+  const navigate = useNavigate();
   let questionType = (type) => {
     if (type.correct_answer === "True" || type.correct_answer === "False") {
       return "True/False";
@@ -66,12 +81,16 @@ const SelectYourQuestionsComponent = () => {
       : String(element.childNodes[0].nodeValue);
   };
 
+  const gotoMainPage = () => {
+    navigate(`/home`);
+  };
+
   return (
     <>
       <PageContainer>
         <HeaderContainer>
           <ArrowContainer>
-            <BackArrow />
+            <BackArrow actionOnClick={gotoMainPage} />
           </ArrowContainer>
           <TitleContainer>
             <TitleComponent
@@ -85,7 +104,7 @@ const SelectYourQuestionsComponent = () => {
           {currentAllQuestions.map((question, index) => (
             <QuestionComponent
               key={index}
-              questionText={question.question}
+              questionText={decodeString(question.question)}
               typeQuestionText={questionType(question)}
             />
           ))}
