@@ -64,7 +64,7 @@ const SelectYourQuestionsComponent = () => {
         <MainContainer></MainContainer>
         <FooterContainer>
           <TotalSelectedQuestons>20 selected questions</TotalSelectedQuestons>
-          <ButtonComponent />
+          <ButtonComponent text="Save" actionOnClick={() => {}} />
         </FooterContainer>
       </PageContainer>
     </>
