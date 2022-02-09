@@ -3,7 +3,7 @@ import QuestionComponent from "./QuestionComponent";
 
 describe("Given a QuestionComponent", () => {
   describe("When it's instantiated with a questionText = 'hola", () => {
-    test("Then it should render a questionText", () => {
+    test("Then it should render a questionText text", () => {
       const expectedText = "hola";
       const typeQuestionText = "nohola";
 
@@ -20,7 +20,7 @@ describe("Given a QuestionComponent", () => {
     });
   });
   describe("When it's instantiated with a typeQuestionText = 'hola", () => {
-    test("Then it should render a questionText", () => {
+    test("Then it should render a questionText text", () => {
       const expectedText = "hola";
       const questionText = "nohola";
 
