@@ -85,7 +85,7 @@ const SelectYourQuestionsComponent = () => {
           {currentAllQuestions.map((question, index) => (
             <QuestionComponent
               key={index}
-              questionText={question.question}
+              questionText={decodeString(question.question)}
               typeQuestionText={questionType(question)}
             />
           ))}
