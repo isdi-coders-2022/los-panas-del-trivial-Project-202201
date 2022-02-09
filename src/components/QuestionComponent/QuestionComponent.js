@@ -6,16 +6,22 @@ const CardContainer = styled.div`
   min-height: 77px;
   width: 365px;
   border-radius: 9px;
+  padding: 10px;
 `;
 
 const QuestionText = styled.p`
   color: ${(props) => props.questionTextColor};
+  margin: 5px;
+`;
+
+const TypeQuestionText = styled.p`
+  color: #fff;
+  margin: 5px;
 `;
 
 const QuestionComponent = ({ isSelected }) => {
   let backgroundColor = `${backgroundDark}`;
   let questionTextColor = `${textPrimary}`;
-  let typeQuestionTextColor = "#fff";
 
   if (isSelected) {
     backgroundColor = `${primary}`;
@@ -26,8 +32,11 @@ const QuestionComponent = ({ isSelected }) => {
     <>
       <CardContainer isSelected={isSelected} backgroundColor={backgroundColor}>
         <QuestionText questionTextColor={questionTextColor}>
-          holiis
+          holiisfdsafdasafsdfd sfasdfadsfdsfdsf sdafasdfs dfsdafadsfadsfsad
         </QuestionText>
+        <TypeQuestionText>
+          adiooodfasfadsadsf sadfsfsdafsadfsdfds asfadfdsafsadafdsfads
+        </TypeQuestionText>
       </CardContainer>
     </>
   );
