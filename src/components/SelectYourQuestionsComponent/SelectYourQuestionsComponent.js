@@ -16,7 +16,6 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 80px;
 `;
 
 const HeaderContainer = styled.div`
@@ -49,6 +48,8 @@ const MainContainer = styled.ul`
 
 const FooterContainer = styled.div`
   height: 175px;
+  width: 100vw;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
