@@ -24,6 +24,12 @@ const useAPI = () => {
       const questionsListAnimals = questionsAnimals.results;
       allQuestions.push([...questionsListAnimals]);
       allQuestionsDispatch(loadQuestionsAction(allQuestions));
+
+      const responseVideogames = await fetch(getTrivialUrl(15, difficulty));
+      const questionsVideogames = await responseVideogames.json();
+      const questionsListVideogames = questionsVideogames.results;
+      allQuestions.push([...questionsListVideogames]);
+      allQuestionsDispatch(loadQuestionsAction(allQuestions));
     },
     [allQuestionsDispatch]
   );
