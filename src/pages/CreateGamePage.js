@@ -24,6 +24,20 @@ const CreateGamePage = () => {
   const [name, setName] = useState("");
   const [creator, setCreator] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
+  const [, setNewGame] = useState({});
+
+  const buildGame = () => {
+    const game = {
+      name,
+      creator,
+      difficulty,
+    };
+    setNewGame(game);
+  };
+
+  const actionOnSubmit = () => {
+    buildGame();
+  };
 
   return (
     <PageContainer>
@@ -35,7 +49,7 @@ const CreateGamePage = () => {
         name={{ name, setName }}
         creator={{ creator, setCreator }}
         difficulty={{ difficulty, setDifficulty }}
-        onSubmit={() => {}}
+        onSubmit={actionOnSubmit}
       ></FormComponent>
     </PageContainer>
   );
