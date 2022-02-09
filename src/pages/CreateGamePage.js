@@ -24,6 +24,7 @@ const CreateGamePage = () => {
   const [name, setName] = useState("");
   const [creator, setCreator] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
+  const [newGame, setNewGame] = useState({});
 
   return (
     <PageContainer>
