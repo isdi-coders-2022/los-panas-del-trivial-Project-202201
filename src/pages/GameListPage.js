@@ -6,8 +6,15 @@ import { backgroundLight } from "../globalStyles";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
-  padding: 36px 20px;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 80px;
+`;
+const BackArrowContainer = styled.div`
+  padding: 36px 20px;
+  width: 100%;
 `;
 
 const GameList = styled.ul`
@@ -17,6 +24,9 @@ const GameList = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 25px;
+  padding: 0;
+  height: 597px;
+  overflow-y: scroll;
 `;
 
 const GameHolder = styled.li``;
@@ -24,15 +34,61 @@ const GameHolder = styled.li``;
 const GameListPage = () => {
   return (
     <PageContainer>
-      <BackArrowComponent actionOnClick={() => {}} />
+      <BackArrowContainer>
+        <BackArrowComponent actionOnClick={() => {}} />
+      </BackArrowContainer>
       <TitleComponent size="medium" text="Game List" />
       <GameList>
         <GameHolder>
           <GameComponent
             game={{
               id: 3,
-              name: "",
-              creator: "",
+              name: "Hola",
+              creator: "Mi papa",
+              difficulty: "",
+              questions: [],
+            }}
+          ></GameComponent>
+        </GameHolder>
+        <GameHolder>
+          <GameComponent
+            game={{
+              id: 3,
+              name: "Hola",
+              creator: "Mi papa",
+              difficulty: "",
+              questions: [],
+            }}
+          ></GameComponent>
+        </GameHolder>
+        <GameHolder>
+          <GameComponent
+            game={{
+              id: 3,
+              name: "Hola",
+              creator: "Mi papa",
+              difficulty: "",
+              questions: [],
+            }}
+          ></GameComponent>
+        </GameHolder>
+        <GameHolder>
+          <GameComponent
+            game={{
+              id: 3,
+              name: "Hola",
+              creator: "Mi papa",
+              difficulty: "",
+              questions: [],
+            }}
+          ></GameComponent>
+        </GameHolder>
+        <GameHolder>
+          <GameComponent
+            game={{
+              id: 3,
+              name: "Hola",
+              creator: "Mi papa",
               difficulty: "",
               questions: [],
             }}
