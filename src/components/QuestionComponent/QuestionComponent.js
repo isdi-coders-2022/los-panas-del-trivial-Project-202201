@@ -15,6 +15,11 @@ const QuestionText = styled.p`
   font-size: 18px;
 `;
 
+const InfoHolder = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const TypeQuestionText = styled.p`
   color: #fff;
   margin: 5px;
@@ -22,35 +27,57 @@ const TypeQuestionText = styled.p`
   font-size: 16px;
 `;
 
+const QuestionCategory = styled.p`
+  color: #fff;
+  margin: 5px;
+  margin-top: 10px;
+  font-size: 16px;
+`;
+
 const QuestionComponent = ({
-  questionText,
-  typeQuestionText,
-  isSelected = false,
+  question: { question, type, selected, category },
 }) => {
   let backgroundColor = `${backgroundDark}`;
   let questionTextColor = `${textPrimary}`;
 
-  if (isSelected) {
+  const decodeString = (str) => {
+    var element = document.createElement("div");
+    element.innerHTML = str;
+    return element.childNodes.length === 0
+      ? ""
+      : String(element.childNodes[0].nodeValue);
+  };
+
+  const getRenderType = (type) =>
+    type === "boolean" ? "True / False" : "Multiple Choice";
+
+  if (selected) {
     backgroundColor = `${primary}`;
     questionTextColor = `${backgroundDark}`;
   }
 
   return (
     <>
-      <CardContainer isSelected={isSelected} backgroundColor={backgroundColor}>
+      <CardContainer isSelected={selected} backgroundColor={backgroundColor}>
         <QuestionText questionTextColor={questionTextColor}>
-          {questionText}
+          {decodeString(question)}
         </QuestionText>
-        <TypeQuestionText>{typeQuestionText}</TypeQuestionText>
+        <InfoHolder>
+          <TypeQuestionText>{getRenderType(type)}</TypeQuestionText>
+          <QuestionCategory>{category}</QuestionCategory>
+        </InfoHolder>
       </CardContainer>
     </>
   );
 };
 
 QuestionComponent.propTypes = {
-  isSelected: PropTypes.bool,
-  questionText: PropTypes.string.isRequired,
-  typeQuestionText: PropTypes.string.isRequired,
+  question: PropTypes.shape({
+    question: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    selected: PropTypes.bool.isRequired,
+    category: PropTypes.string.isRequired,
+  }),
 };
 
 export default QuestionComponent;
