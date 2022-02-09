@@ -3,10 +3,11 @@ import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
 import { backgroundLight } from "../globalStyles";
 import FormComponent from "../components/FormComponent/FormComponent";
-import SelectYourQuestionsComponent from "../components/SelectYourQuestionsComponent/SelectYourQuestionsComponent";
+import useAPI from "../hooks/useAPI";
 import { useState } from "react";
+import SelectYourQuestionsComponent from "../components/SelectYourQuestionsComponent/SelectYourQuestionsComponent";
 
-const PageContainerCreateGame = styled.div`
+const PageContainer = styled.div`
   background-color: ${backgroundLight};
   height: 100vh;
   display: flex;
@@ -22,27 +23,51 @@ const BackArrowContainer = styled.div`
 `;
 
 const CreateGamePage = () => {
+  const { loadQuestionsAPI } = useAPI();
+  const [name, setName] = useState("");
+  const [creator, setCreator] = useState("");
+  const [difficulty, setDifficulty] = useState("easy");
+  const [, setNewGame] = useState({});
   const [viewCreateGamePage, setViewCreateGamePage] = useState(true);
+
+  const buildGame = () => {
+    const game = {
+      name,
+      creator,
+      difficulty,
+    };
+    setNewGame(game);
+  };
 
   const changeView = () => {
     setViewCreateGamePage(false);
   };
 
+  const actionOnSubmit = () => {
+    buildGame();
+    loadQuestionsAPI(difficulty);
+    changeView();
+  };
+
   const getView = () => {
     if (viewCreateGamePage) {
       return (
-        <PageContainerCreateGame>
+        <PageContainer>
           <BackArrowContainer>
-            <BackArrowComponent />
+            <BackArrowComponent actionOnClick={() => {}} />
           </BackArrowContainer>
           <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
-          <FormComponent onSubmit={() => {}}></FormComponent>
-        </PageContainerCreateGame>
+          <FormComponent
+            name={{ name, setName }}
+            creator={{ creator, setCreator }}
+            difficulty={{ difficulty, setDifficulty }}
+            onSubmit={actionOnSubmit}
+          ></FormComponent>
+        </PageContainer>
       );
     }
     return <SelectYourQuestionsComponent />;
   };
-
   return getView();
 };
 

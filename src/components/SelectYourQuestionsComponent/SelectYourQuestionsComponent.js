@@ -3,6 +3,9 @@ import BackArrow from "../BackArrowComponent/BackArrowComponent";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import TitleComponent from "../TitleComponent/TitleComponent";
 import { backgroundLight, secondary } from "../../globalStyles";
+import { useContext } from "react";
+import TrivialContext from "../../store/contexts/TrivialContext";
+import QuestionComponent from "../QuestionComponent/QuestionComponent";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -46,6 +49,14 @@ const TotalSelectedQuestons = styled.p`
 `;
 
 const SelectYourQuestionsComponent = () => {
+  let questionType = (type) => {
+    if (type.correct_answer === "True" || type.correct_answer === "False") {
+      return "True/False";
+    } else {
+      return "Multiple Choice";
+    }
+  };
+  const { currentAllQuestions } = useContext(TrivialContext);
   return (
     <>
       <PageContainer>
@@ -61,7 +72,15 @@ const SelectYourQuestionsComponent = () => {
             />
           </TitleContainer>
         </HeaderContainer>
-        <MainContainer></MainContainer>
+        <MainContainer>
+          {currentAllQuestions.map((question, index) => (
+            <QuestionComponent
+              key={index}
+              questionText={question.question}
+              typeQuestionText={questionType(question.correct_answer)}
+            />
+          ))}
+        </MainContainer>
         <FooterContainer>
           <TotalSelectedQuestons>20 selected questions</TotalSelectedQuestons>
           <ButtonComponent text="Save" actionOnClick={() => {}} />
