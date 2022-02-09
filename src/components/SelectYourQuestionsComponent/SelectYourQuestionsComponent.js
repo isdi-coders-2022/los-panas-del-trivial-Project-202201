@@ -67,7 +67,11 @@ const SelectYourQuestionsComponent = () => {
         </HeaderContainer>
         <MainContainer>
           {currentAllQuestions.map((question) => (
-            <QuestionComponent />
+            <QuestionComponent
+              isSelected={false}
+              questionText={question.question}
+              typeQuestionText={questionType(question.correct_answer)}
+            />
           ))}
         </MainContainer>
         <FooterContainer>
