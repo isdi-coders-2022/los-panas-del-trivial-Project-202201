@@ -49,11 +49,7 @@
       "!src/**/*.test.js",
       "!src/index.js",
       "!src/reportWebVitals.js",
-      "!src/setupTests.js",
-      "!src/globalStyles.js",
-      "!src/App.js",
-      "!src/store/contexts/APIContext.js",
-      "!src/store/contexts/TrivialContext.js"
+      "!src/setupTests.js"
     ]
   }
 }
