@@ -5,8 +5,9 @@ const allQuestionsReducer = (currentAllQuestions, action) => {
 
   switch (action.type) {
     case actionTypes.loadQuestions:
-      newAllQuestions = action.questions.map((question) => ({
+      newAllQuestions = action.questions.map((question, index) => ({
         ...question,
+        id: index,
         selected: false,
       }));
       break;
