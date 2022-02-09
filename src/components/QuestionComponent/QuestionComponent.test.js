@@ -63,4 +63,25 @@ describe("Given a QuestionComponent", () => {
       expect(foundElement).toBeInTheDocument();
     });
   });
+
+  describe("When it's instantiated with a category of 'hello kitty'", () => {
+    test("Then it should render the text 'category'", () => {
+      const category = "hello kitty";
+      const expectedText = "hello kitty";
+      render(
+        <QuestionComponent
+          question={{
+            question: "",
+            type: "",
+            selected: false,
+            category: category,
+          }}
+        />
+      );
+
+      const foundElement = screen.queryByText(expectedText);
+
+      expect(foundElement).toBeInTheDocument();
+    });
+  });
 });
