@@ -85,6 +85,7 @@ const FormComponent = ({
             setName(event.target.value);
           }}
           placeholder="Input your name"
+          required
         />
       </label>
       <label htmlFor="gameName">
@@ -98,6 +99,7 @@ const FormComponent = ({
             setCreator(event.target.value);
           }}
           placeholder="Input the game's name"
+          required
         />
       </label>
       {editing ? (
