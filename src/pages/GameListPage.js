@@ -33,7 +33,7 @@ const GameListPage = () => {
   const navigate = useNavigate();
 
   const gotoMainPage = () => {
-    navigate(`/games-list`);
+    navigate(`/home`);
   };
   return (
     <PageContainer>

@@ -6,6 +6,7 @@ import FormComponent from "../components/FormComponent/FormComponent";
 import useAPI from "../hooks/useAPI";
 import { useState } from "react";
 import SelectYourQuestionsComponent from "../components/SelectYourQuestionsComponent/SelectYourQuestionsComponent";
+import { useNavigate } from "react-router-dom";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -29,6 +30,7 @@ const CreateGamePage = () => {
   const [difficulty, setDifficulty] = useState("easy");
   const [, setNewGame] = useState({});
   const [viewCreateGamePage, setViewCreateGamePage] = useState(true);
+  const navigate = useNavigate();
 
   const buildGame = () => {
     const game = {
@@ -49,12 +51,16 @@ const CreateGamePage = () => {
     changeView();
   };
 
+  const gotoMainPage = () => {
+    navigate(`/home`);
+  };
+
   const getView = () => {
     if (viewCreateGamePage) {
       return (
         <PageContainer>
           <BackArrowContainer>
-            <BackArrowComponent actionOnClick={() => {}} />
+            <BackArrowComponent actionOnClick={gotoMainPage} />
           </BackArrowContainer>
           <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
           <FormComponent
