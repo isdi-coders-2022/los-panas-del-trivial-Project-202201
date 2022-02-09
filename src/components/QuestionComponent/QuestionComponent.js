@@ -10,7 +10,7 @@ const CardContainer = styled.div`
 const QuestionComponent = ({ isSelected }) => {
   return (
     <>
-      <CardContainer></CardContainer>
+      <CardContainer isSelected={isSelected}></CardContainer>
     </>
   );
 };
