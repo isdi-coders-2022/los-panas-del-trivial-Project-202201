@@ -6,6 +6,7 @@ import { backgroundLight, secondary } from "../../globalStyles";
 import { useContext } from "react";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import QuestionComponent from "../QuestionComponent/QuestionComponent";
+import { useNavigate } from "react-router-dom";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -62,6 +63,7 @@ const TotalSelectedQuestons = styled.p`
 `;
 
 const SelectYourQuestionsComponent = () => {
+  const navigate = useNavigate();
   let questionType = (type) => {
     if (type.correct_answer === "True" || type.correct_answer === "False") {
       return "True/False";
@@ -79,12 +81,16 @@ const SelectYourQuestionsComponent = () => {
       : String(element.childNodes[0].nodeValue);
   };
 
+  const gotoMainPage = () => {
+    navigate(`/home`);
+  };
+
   return (
     <>
       <PageContainer>
         <HeaderContainer>
           <ArrowContainer>
-            <BackArrow />
+            <BackArrow actionOnClick={gotoMainPage} />
           </ArrowContainer>
           <TitleContainer>
             <TitleComponent
