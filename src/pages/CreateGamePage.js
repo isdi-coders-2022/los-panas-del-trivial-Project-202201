@@ -23,6 +23,7 @@ const BackArrowContainer = styled.div`
 const CreateGamePage = () => {
   const [name, setName] = useState("");
   const [creator, setCreator] = useState("");
+  const [difficulty, setDifficulty] = useState("easy");
 
   return (
     <>
@@ -34,6 +35,7 @@ const CreateGamePage = () => {
         <FormComponent
           name={{ name, setName }}
           creator={{ creator, setCreator }}
+          difficulty={{ difficulty, setDifficulty }}
           onSubmit={() => {}}
         ></FormComponent>
       </PageContainer>

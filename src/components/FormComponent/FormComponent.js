@@ -60,7 +60,13 @@ const ButtonContainer = styled.div`
   text-align: center;
 `;
 
-const FormComponent = ({ onSubmit, editing = false }) => {
+const FormComponent = ({
+  onSubmit,
+  editing = false,
+  name: { name, setName },
+  creator: { creator, setCreator },
+  difficulty: { difficulty, setDifficulty },
+}) => {
   return (
     <FormContainer
       onSubmit={(event) => {
@@ -73,7 +79,11 @@ const FormComponent = ({ onSubmit, editing = false }) => {
         <InputField
           type="text"
           name="name"
+          value={name}
           id="name"
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
           placeholder="Input your name"
         />
       </label>
@@ -83,6 +93,10 @@ const FormComponent = ({ onSubmit, editing = false }) => {
           type="text"
           name="gameName"
           id="gameName"
+          value={creator}
+          onChange={(event) => {
+            setCreator(event.target.value);
+          }}
           placeholder="Input the game's name"
         />
       </label>
@@ -98,7 +112,14 @@ const FormComponent = ({ onSubmit, editing = false }) => {
       ) : (
         <div>
           <InputTitle>Difficulty</InputTitle>
-          <SelectInput name="difficulty" id="difficulty">
+          <SelectInput
+            name="difficulty"
+            id="difficulty"
+            value={difficulty}
+            onChange={(event) => {
+              setDifficulty(event.target.value);
+            }}
+          >
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
