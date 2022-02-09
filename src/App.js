@@ -1,6 +1,7 @@
 import MainPage from "./pages/MainPage";
 import CreateGamePage from "./pages/CreateGamePage";
 import { Navigate, Route, Routes } from "react-router-dom";
+import GameListPage from "./pages/GameListPage";
 
 function App() {
   return (
@@ -9,10 +10,7 @@ function App() {
         <Route path="/" element={<Navigate to="/home" />} />
 
         <Route path="/home" element={<MainPage />} />
-        <Route
-          path="/games-list"
-          element={"Placeholder for element <GamesListPage />"}
-        />
+        <Route path="/games-list" element={<GameListPage />} />
         <Route path="/game">
           <Route index element={"Placeholder for element <GamePage />"} />
           <Route path="new" element={<CreateGamePage />} />

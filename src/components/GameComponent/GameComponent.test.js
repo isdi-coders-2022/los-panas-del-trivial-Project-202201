@@ -95,8 +95,8 @@ describe("Given GameComponent", () => {
         </BrowserRouter>
       );
 
-      const deleteElement = screen.queryByTestId("deleteIcon");
-      userEvent.click(deleteElement);
+      const editIcon = screen.queryByTestId("editIcon");
+      userEvent.click(editIcon);
 
       expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
     });

@@ -63,6 +63,9 @@ const GameComponent = ({
   game: { id, name, creator, questions, difficulty },
 }) => {
   const navigate = useNavigate();
+  const goToEdit = () => {
+    navigate(`/game/edit/${id}`);
+  };
   const { deleteGame } = useContext(TrivialContext);
 
   return (
@@ -75,7 +78,7 @@ const GameComponent = ({
       </InfoContiner>
       <IconContainer>
         <FontAwesomeIcon
-          onClick={navigate(`/game/edit/${id}`)}
+          onClick={goToEdit}
           icon={faPencil}
           data-testid="editIcon"
         />
