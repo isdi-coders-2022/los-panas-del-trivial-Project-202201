@@ -57,6 +57,15 @@ const SelectYourQuestionsComponent = () => {
     }
   };
   const { currentAllQuestions } = useContext(TrivialContext);
+
+  const decodeString = (str) => {
+    var element = document.createElement("div");
+    element.innerHTML = str;
+    return element.childNodes.length === 0
+      ? ""
+      : String(element.childNodes[0].nodeValue);
+  };
+
   return (
     <>
       <PageContainer>
