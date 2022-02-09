@@ -12,6 +12,11 @@ const allQuestionsReducer = (currentAllQuestions, action) => {
       }));
       break;
 
+    case actionTypes.toggleSelectQuestion:
+      newAllQuestions = [...currentAllQuestions];
+      const questionToEdit = newAllQuestions.find(({ id }) => action.id === id);
+      questionToEdit.selected = !questionToEdit.selected;
+      break;
     default:
       newAllQuestions = [...currentAllQuestions];
       break;
