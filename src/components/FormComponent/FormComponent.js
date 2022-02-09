@@ -136,6 +136,18 @@ const FormComponent = ({
 FormComponent.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   editing: PropTypes.bool,
+  name: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    setName: PropTypes.func.isRequired,
+  }).isRequired,
+  creator: PropTypes.shape({
+    creator: PropTypes.string.isRequired,
+    setCreator: PropTypes.func.isRequired,
+  }).isRequired,
+  difficulty: PropTypes.shape({
+    difficulty: PropTypes.string.isRequired,
+    setDifficulty: PropTypes.func.isRequired,
+  }),
 };
 
 export default FormComponent;
