@@ -5,18 +5,35 @@ describe("Given a QuestionComponent", () => {
   describe("When it's instantiated with a questionText = 'hola", () => {
     test("Then it should render a questionText", () => {
       const expectedText = "hola";
-      const typeQuestionText = "asds";
+      const typeQuestionText = "nohola";
 
       render(
         <QuestionComponent
-          questionText={expectedText}
+          questionText="hola"
           typeQuestionText={typeQuestionText}
         />
       );
 
-      const findText = screen.queryAllByText(expectedText);
+      const findText = screen.queryByText(expectedText);
 
-      expect(findText[0]).toBeInTheDocument();
+      expect(findText.textContent).toBe(expectedText);
+    });
+  });
+  describe("When it's instantiated with a typeQuestionText = 'hola", () => {
+    test("Then it should render a questionText", () => {
+      const expectedText = "hola";
+      const questionText = "nohola";
+
+      render(
+        <QuestionComponent
+          questionText={questionText}
+          typeQuestionText={"hola"}
+        />
+      );
+
+      const findText = screen.queryByText(expectedText);
+
+      expect(findText.textContent).toBe(expectedText);
     });
   });
 });
