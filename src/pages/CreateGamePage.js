@@ -5,7 +5,7 @@ import { backgroundLight } from "../globalStyles";
 import FormComponent from "../components/FormComponent/FormComponent";
 import useAPI from "../hooks/useAPI";
 import { useState } from "react";
-
+import SelectYourQuestionsComponent from "../components/SelectYourQuestionsComponent/SelectYourQuestionsComponent";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -23,12 +23,12 @@ const BackArrowContainer = styled.div`
 `;
 
 const CreateGamePage = () => {
-
   const { loadQuestionsAPI } = useAPI();
   const [name, setName] = useState("");
   const [creator, setCreator] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
   const [, setNewGame] = useState({});
+  const [viewCreateGamePage, setViewCreateGamePage] = useState(true);
 
   const buildGame = () => {
     const game = {
@@ -39,25 +39,36 @@ const CreateGamePage = () => {
     setNewGame(game);
   };
 
-  const actionOnSubmit = () => {
-    buildGame();
-    loadQuestionsAPI(difficulty)
+  const changeView = () => {
+    setViewCreateGamePage(false);
   };
 
-  return (
-    <PageContainer>
-      <BackArrowContainer>
-        <BackArrowComponent actionOnClick={() => {}} />
-      </BackArrowContainer>
-      <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
-      <FormComponent
-        name={{ name, setName }}
-        creator={{ creator, setCreator }}
-        difficulty={{ difficulty, setDifficulty }}
-        onSubmit={actionOnSubmit}
-      ></FormComponent>
-    </PageContainer>
-  );
+  const actionOnSubmit = () => {
+    buildGame();
+    loadQuestionsAPI(difficulty);
+    changeView();
+  };
+
+  const getView = () => {
+    if (viewCreateGamePage) {
+      return (
+        <PageContainer>
+          <BackArrowContainer>
+            <BackArrowComponent actionOnClick={() => {}} />
+          </BackArrowContainer>
+          <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
+          <FormComponent
+            name={{ name, setName }}
+            creator={{ creator, setCreator }}
+            difficulty={{ difficulty, setDifficulty }}
+            onSubmit={actionOnSubmit}
+          ></FormComponent>
+        </PageContainer>
+      );
+    }
+    return <SelectYourQuestionsComponent />;
+  };
+  return getView();
 };
 
 export default CreateGamePage;
