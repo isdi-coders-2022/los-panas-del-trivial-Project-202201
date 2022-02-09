@@ -8,8 +8,20 @@ describe("Given GameListPage", () => {
 
       const backarrow = screen.queryByTestId("arrow");
       const title = screen.queryByRole("heading");
+      const list = screen.queryByRole("list");
 
       expect(backarrow).toBeInTheDocument();
+      expect(title).toBeInTheDocument();
+      expect(list).toBeInTheDocument();
+    });
+
+    test("The title component should display 'Game List'", () => {
+      const expectedTitle = "Game List";
+
+      render(<GameListPage />);
+
+      const title = screen.queryByText(expectedTitle);
+
       expect(title).toBeInTheDocument();
     });
   });
