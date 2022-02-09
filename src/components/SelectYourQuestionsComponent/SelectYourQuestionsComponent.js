@@ -73,8 +73,9 @@ const SelectYourQuestionsComponent = () => {
           </TitleContainer>
         </HeaderContainer>
         <MainContainer>
-          {currentAllQuestions.map((question) => (
+          {currentAllQuestions.map((question, index) => (
             <QuestionComponent
+              key={index}
               questionText={question.question}
               typeQuestionText={questionType(question.correct_answer)}
             />
