@@ -3,6 +3,7 @@ import {
   addGameAction,
   loadGamesAction,
   loadQuestionsAction,
+  removeGameAction,
 } from "../store/actions/trivial/actionsCreators";
 import TrivialContext from "../store/contexts/TrivialContext";
 
@@ -63,16 +64,19 @@ const useAPI = () => {
       },
       body: JSON.stringify(game),
     });
-
-    const newGame = response.json();
-
-    gamesDispatch(addGameAction(newGame));
+    if (response.ok) {
+      const newGame = response.json();
+      gamesDispatch(addGameAction(newGame));
+    }
   };
 
   const deleteGameAPI = async (id) => {
     const response = await fetch(`${gamesAPIurl}${id}`, {
       method: "DELETE",
     });
+    if (response.ok) {
+      gamesDispatch(removeGameAction(id));
+    }
   };
 
   return { loadQuestionsAPI, loadGamesAPI, addGameAPI, deleteGameAPI };
