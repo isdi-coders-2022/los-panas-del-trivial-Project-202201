@@ -3,7 +3,7 @@ import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
 import { backgroundLight } from "../globalStyles";
 import FormComponent from "../components/FormComponent/FormComponent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -25,6 +25,15 @@ const CreateGamePage = () => {
   const [creator, setCreator] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
   const [newGame, setNewGame] = useState({});
+
+  useEffect(() => {
+    const game = {
+      name,
+      creator,
+      difficulty,
+    };
+    setNewGame(game);
+  }, [name, creator, difficulty]);
 
   return (
     <PageContainer>
