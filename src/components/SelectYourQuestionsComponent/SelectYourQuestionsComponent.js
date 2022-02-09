@@ -3,6 +3,9 @@ import BackArrow from "../BackArrowComponent/BackArrowComponent";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import TitleComponent from "../TitleComponent/TitleComponent";
 import { backgroundLight, secondary } from "../../globalStyles";
+import { useContext } from "react";
+import TrivialContext from "../../store/contexts/TrivialContext";
+import QuestionComponent from "../QuestionComponent/QuestionComponent";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -46,6 +49,7 @@ const TotalSelectedQuestons = styled.p`
 `;
 
 const SelectYourQuestionsComponent = () => {
+  const { currentAllQuestions } = useContext(TrivialContext);
   return (
     <>
       <PageContainer>
