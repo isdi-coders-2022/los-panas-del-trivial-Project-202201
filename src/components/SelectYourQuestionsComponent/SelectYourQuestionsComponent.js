@@ -77,7 +77,7 @@ const SelectYourQuestionsComponent = () => {
             <QuestionComponent
               key={index}
               questionText={question.question}
-              typeQuestionText={questionType(question.correct_answer)}
+              typeQuestionText={questionType(question)}
             />
           ))}
         </MainContainer>
