@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import BackArrowComponent from "../components/BackArrowComponent/BackArrowComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
-import GameComponent from "../components/GameComponent/GameComponent";
 import { backgroundLight } from "../globalStyles";
 
 const PageContainer = styled.div`
@@ -28,8 +27,6 @@ const GameList = styled.ul`
   height: 597px;
   overflow-y: scroll;
 `;
-
-const GameHolder = styled.li``;
 
 const GameListPage = () => {
   return (
