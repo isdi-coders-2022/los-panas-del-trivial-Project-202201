@@ -7,7 +7,7 @@ describe("Given a CreateGamePage component", () => {
       const expectedText = "Create Game";
 
       render(<CreateGamePage />);
-      const foundHeading = screen.queryAllByRole("heading");
+      const foundHeading = screen.getAllByRole("heading");
 
       expect(foundHeading[0].textContent).toBe(expectedText);
     });
