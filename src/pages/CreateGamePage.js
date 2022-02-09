@@ -26,20 +26,18 @@ const CreateGamePage = () => {
   const [difficulty, setDifficulty] = useState("easy");
 
   return (
-    <>
-      <PageContainer>
-        <BackArrowContainer>
-          <BackArrowComponent />
-        </BackArrowContainer>
-        <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
-        <FormComponent
-          name={{ name, setName }}
-          creator={{ creator, setCreator }}
-          difficulty={{ difficulty, setDifficulty }}
-          onSubmit={() => {}}
-        ></FormComponent>
-      </PageContainer>
-    </>
+    <PageContainer>
+      <BackArrowContainer>
+        <BackArrowComponent />
+      </BackArrowContainer>
+      <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
+      <FormComponent
+        name={{ name, setName }}
+        creator={{ creator, setCreator }}
+        difficulty={{ difficulty, setDifficulty }}
+        onSubmit={() => {}}
+      ></FormComponent>
+    </PageContainer>
   );
 };
 
