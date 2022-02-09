@@ -3,6 +3,7 @@ import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
 import { backgroundLight } from "../globalStyles";
 import FormComponent from "../components/FormComponent/FormComponent";
+import { useState } from "react";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -20,16 +21,23 @@ const BackArrowContainer = styled.div`
 `;
 
 const CreateGamePage = () => {
+  const [name, setName] = useState("");
+  const [creator, setCreator] = useState("");
+  const [difficulty, setDifficulty] = useState("easy");
+
   return (
-    <>
-      <PageContainer>
-        <BackArrowContainer>
-          <BackArrowComponent />
-        </BackArrowContainer>
-        <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
-        <FormComponent onSubmit={() => {}}></FormComponent>
-      </PageContainer>
-    </>
+    <PageContainer>
+      <BackArrowContainer>
+        <BackArrowComponent actionOnClick={() => {}} />
+      </BackArrowContainer>
+      <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
+      <FormComponent
+        name={{ name, setName }}
+        creator={{ creator, setCreator }}
+        difficulty={{ difficulty, setDifficulty }}
+        onSubmit={() => {}}
+      ></FormComponent>
+    </PageContainer>
   );
 };
 
