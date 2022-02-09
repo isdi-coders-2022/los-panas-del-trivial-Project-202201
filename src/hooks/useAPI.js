@@ -69,7 +69,9 @@ const useAPI = () => {
     gamesDispatch(addGameAction(newGame));
   };
 
-  return { loadQuestionsAPI, loadGamesAPI, addGameAPI };
+  const deleteGameAPI = async (game) => {};
+
+  return { loadQuestionsAPI, loadGamesAPI, addGameAPI, deleteGameAPI };
 };
 
 export default useAPI;
