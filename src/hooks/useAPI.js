@@ -1,5 +1,8 @@
 import { useCallback, useContext } from "react";
-import { loadQuestionsAction } from "../store/actions/trivial/actionsCreators";
+import {
+  loadGamesAction,
+  loadQuestionsAction,
+} from "../store/actions/trivial/actionsCreators";
 import TrivialContext from "../store/contexts/TrivialContext";
 
 const useAPI = () => {
@@ -48,10 +51,10 @@ const useAPI = () => {
   const loadGamesAPI = useCallback(async () => {
     const response = await fetch(gamesAPIurl);
     const gamesList = await response.json();
-    gamesDispatch();
-  });
+    gamesDispatch(loadGamesAction(gamesList));
+  }, [gamesDispatch]);
 
-  return loadQuestionsAPI;
+  return { loadQuestionsAPI, loadGamesAPI };
 };
 
 export default useAPI;
