@@ -57,17 +57,15 @@ const QuestionComponent = ({
   }
 
   return (
-    <>
-      <CardContainer isSelected={selected} backgroundColor={backgroundColor}>
-        <QuestionText questionTextColor={questionTextColor}>
-          {decodeString(question)}
-        </QuestionText>
-        <InfoHolder>
-          <TypeQuestionText>{getRenderType(type)}</TypeQuestionText>
-          <QuestionCategory>{category}</QuestionCategory>
-        </InfoHolder>
-      </CardContainer>
-    </>
+    <CardContainer isSelected={selected} backgroundColor={backgroundColor}>
+      <QuestionText questionTextColor={questionTextColor}>
+        {decodeString(question)}
+      </QuestionText>
+      <InfoHolder>
+        <TypeQuestionText>{getRenderType(type)}</TypeQuestionText>
+        <QuestionCategory>{category}</QuestionCategory>
+      </InfoHolder>
+    </CardContainer>
   );
 };
 
