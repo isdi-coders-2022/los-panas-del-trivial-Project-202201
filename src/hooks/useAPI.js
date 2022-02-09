@@ -3,6 +3,7 @@ import {
   addGameAction,
   loadGamesAction,
   loadQuestionsAction,
+  removeGameAction,
 } from "../store/actions/trivial/actionsCreators";
 import TrivialContext from "../store/contexts/TrivialContext";
 
@@ -10,7 +11,7 @@ const useAPI = () => {
   const getTrivialUrl = (category, difficulty) =>
     `https://opentdb.com/api.php?amount=20&category=${category}&difficulty=${difficulty}`;
 
-  const gamesAPIurl = "https://trivial-provider.herokuapp.com/games";
+  const gamesAPIurl = "https://trivial-provider.herokuapp.com/games/";
   const { allQuestionsDispatch, gamesDispatch } = useContext(TrivialContext);
 
   const loadQuestionsAPI = useCallback(
@@ -63,13 +64,22 @@ const useAPI = () => {
       },
       body: JSON.stringify(game),
     });
-
-    const newGame = response.json();
-
-    gamesDispatch(addGameAction(newGame));
+    if (response.ok) {
+      const newGame = response.json();
+      gamesDispatch(addGameAction(newGame));
+    }
   };
 
-  return { loadQuestionsAPI, loadGamesAPI, addGameAPI };
+  const deleteGameAPI = async (id) => {
+    const response = await fetch(`${gamesAPIurl}${id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      gamesDispatch(removeGameAction(id));
+    }
+  };
+
+  return { loadQuestionsAPI, loadGamesAPI, addGameAPI, deleteGameAPI };
 };
 
 export default useAPI;
