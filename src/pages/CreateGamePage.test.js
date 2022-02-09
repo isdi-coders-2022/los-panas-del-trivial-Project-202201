@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import TrivialContext from "../store/contexts/TrivialContext";
 import CreateGamePage from "./CreateGamePage";
 
@@ -8,9 +9,11 @@ describe("Given a CreateGamePage component", () => {
       const expectedText = "Create Game";
 
       render(
-        <TrivialContext.Provider value={{ allQuestionsDispatch: () => {} }}>
-          <CreateGamePage />
-        </TrivialContext.Provider>
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ allQuestionsDispatch: () => {} }}>
+            <CreateGamePage />
+          </TrivialContext.Provider>
+        </BrowserRouter>
       );
       const foundHeading = screen.getAllByRole("heading");
 
@@ -19,9 +22,11 @@ describe("Given a CreateGamePage component", () => {
 
     test("Then it should render a BackArrow component", () => {
       render(
-        <TrivialContext.Provider value={{ allQuestionsDispatch: () => {} }}>
-          <CreateGamePage />
-        </TrivialContext.Provider>
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ allQuestionsDispatch: () => {} }}>
+            <CreateGamePage />
+          </TrivialContext.Provider>
+        </BrowserRouter>
       );
 
       const foundArrow = screen.queryByTestId("arrow");
@@ -31,9 +36,11 @@ describe("Given a CreateGamePage component", () => {
 
     test("Then it should render a FormComponent", () => {
       render(
-        <TrivialContext.Provider value={{ allQuestionsDispatch: () => {} }}>
-          <CreateGamePage />
-        </TrivialContext.Provider>
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ allQuestionsDispatch: () => {} }}>
+            <CreateGamePage />
+          </TrivialContext.Provider>
+        </BrowserRouter>
       );
 
       const foundForm = screen.getAllByRole("textbox");

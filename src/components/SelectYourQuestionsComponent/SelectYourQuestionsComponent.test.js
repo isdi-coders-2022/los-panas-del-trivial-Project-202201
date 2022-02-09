@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import SelectYourQuestionsComponent from "./SelectYourQuestionsComponent";
 
@@ -8,9 +9,11 @@ describe("Given a SelectYourQuestionsComponent", () => {
       const expectedText = "Select Your Questions";
 
       render(
-        <TrivialContext.Provider value={{ currentAllQuestions: [] }}>
-          <SelectYourQuestionsComponent />
-        </TrivialContext.Provider>
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ currentAllQuestions: [] }}>
+            <SelectYourQuestionsComponent />
+          </TrivialContext.Provider>
+        </BrowserRouter>
       );
 
       const foundHeading = screen.queryByRole("heading");
@@ -22,9 +25,11 @@ describe("Given a SelectYourQuestionsComponent", () => {
       const expectedText = "Save";
 
       render(
-        <TrivialContext.Provider value={{ currentAllQuestions: [] }}>
-          <SelectYourQuestionsComponent />
-        </TrivialContext.Provider>
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ currentAllQuestions: [] }}>
+            <SelectYourQuestionsComponent />
+          </TrivialContext.Provider>
+        </BrowserRouter>
       );
 
       const foundHeading = screen.queryByRole("button");
@@ -34,9 +39,11 @@ describe("Given a SelectYourQuestionsComponent", () => {
 
     test("Then it should render a BackArrowComponent", () => {
       render(
-        <TrivialContext.Provider value={{ currentAllQuestions: [] }}>
-          <SelectYourQuestionsComponent />
-        </TrivialContext.Provider>
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ currentAllQuestions: [] }}>
+            <SelectYourQuestionsComponent />
+          </TrivialContext.Provider>
+        </BrowserRouter>
       );
 
       const foundHeading = screen.queryByTestId("arrow");
