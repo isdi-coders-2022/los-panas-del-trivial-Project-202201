@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { backgroundDark, primary, textPrimary } from "../../globalStyles";
 
 const CardContainer = styled.div`
@@ -44,6 +45,12 @@ const QuestionComponent = ({
       </CardContainer>
     </>
   );
+};
+
+QuestionComponent.propTypes = {
+  isSelected: PropTypes.bool,
+  questionText: PropTypes.string.isRequired,
+  typeQuestionText: PropTypes.string.isRequired,
 };
 
 export default QuestionComponent;
