@@ -12,11 +12,13 @@ const CardContainer = styled.div`
 const QuestionText = styled.p`
   color: ${(props) => props.questionTextColor};
   margin: 5px;
+  font-size: 18px;
 `;
 
 const TypeQuestionText = styled.p`
   color: #fff;
   margin: 5px;
+  font-size: 16px;
 `;
 
 const QuestionComponent = ({ isSelected }) => {
