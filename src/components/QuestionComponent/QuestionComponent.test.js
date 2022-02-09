@@ -42,4 +42,25 @@ describe("Given a QuestionComponent", () => {
       expect(foundElement).toBeInTheDocument();
     });
   });
+
+  describe("When it's instantiated with a typeQuestionText = 'boolean", () => {
+    test("Then it should render the text 'True / False'", () => {
+      const type = "boolean";
+      const expectedText = "True / False";
+      render(
+        <QuestionComponent
+          question={{
+            question: "",
+            type: type,
+            selected: false,
+            category: "",
+          }}
+        />
+      );
+
+      const foundElement = screen.queryByText(expectedText);
+
+      expect(foundElement).toBeInTheDocument();
+    });
+  });
 });
