@@ -28,7 +28,7 @@ const CreateGamePage = () => {
   return (
     <PageContainer>
       <BackArrowContainer>
-        <BackArrowComponent />
+        <BackArrowComponent actionOnClick={() => {}} />
       </BackArrowContainer>
       <TitleComponent text={"Create Game"} size={"medium"}></TitleComponent>
       <FormComponent
