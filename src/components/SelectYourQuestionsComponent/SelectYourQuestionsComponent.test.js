@@ -13,6 +13,14 @@ describe("Given a SelectYourQuestionsComponent", () => {
       expect(foundHeading.textContent).toBe(expectedText);
     });
 
-    test("Then it should render a button with the text 'Save'", () => {});
+    test("Then it should render a button with the text 'Save'", () => {
+      const expectedText = "Save";
+
+      render(<SelectYourQuestionsComponent />);
+
+      const foundHeading = screen.queryByRole("button");
+
+      expect(foundHeading.textContent).toBe(expectedText);
+    });
   });
 });
