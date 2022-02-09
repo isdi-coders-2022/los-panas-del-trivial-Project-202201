@@ -3,7 +3,9 @@ import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
 import { backgroundLight } from "../globalStyles";
 import FormComponent from "../components/FormComponent/FormComponent";
+import useAPI from "../hooks/useAPI";
 import { useState } from "react";
+
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -21,6 +23,8 @@ const BackArrowContainer = styled.div`
 `;
 
 const CreateGamePage = () => {
+
+  const { loadQuestionsAPI } = useAPI();
   const [name, setName] = useState("");
   const [creator, setCreator] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
@@ -37,6 +41,7 @@ const CreateGamePage = () => {
 
   const actionOnSubmit = () => {
     buildGame();
+    loadQuestionsAPI(difficulty)
   };
 
   return (
