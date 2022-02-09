@@ -6,6 +6,7 @@ const actionTypes = {
   addQuestion: "add-question",
   removeQuestion: "remove-question",
   loadQuestions: "load-all-questions",
+  selectQuestion: "select-question",
 };
 
 export default actionTypes;

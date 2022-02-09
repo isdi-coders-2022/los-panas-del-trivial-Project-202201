@@ -35,3 +35,8 @@ export const loadQuestionsAction = (questions) => ({
   type: actionTypes.loadQuestions,
   questions: questions,
 });
+
+export const selectQuestionsAction = (id) => ({
+  type: actionTypes.selectQuestion,
+  id: id,
+});
