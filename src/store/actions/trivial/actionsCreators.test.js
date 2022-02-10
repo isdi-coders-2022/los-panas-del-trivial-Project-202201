@@ -5,6 +5,7 @@ import {
   addQuestionAction,
   removeQuestionsAction,
   loadQuestionsAction,
+  emptyQuestionsAction,
 } from "./actionsCreators";
 
 describe("Given a addGameAction function", () => {
@@ -103,6 +104,20 @@ describe("Given loadQuestionsAction function", () => {
       };
 
       const action = loadQuestionsAction(questions);
+
+      expect(action).toEqual(expectedAction);
+    });
+  });
+});
+
+describe("Given emptyQuestionsAction function", () => {
+  describe("When it is called", () => {
+    test("Then it should return an action with type 'empty-questions'", () => {
+      const expectedAction = {
+        type: "empty-questions",
+      };
+
+      const action = emptyQuestionsAction();
 
       expect(action).toEqual(expectedAction);
     });

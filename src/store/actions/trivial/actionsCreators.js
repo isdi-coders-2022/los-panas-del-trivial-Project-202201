@@ -40,3 +40,7 @@ export const toggeleSelectQuestionsAction = (id) => ({
   type: actionTypes.toggleSelectQuestion,
   id: id,
 });
+
+export const emptyQuestionsAction = () => ({
+  type: actionTypes.emptyQuestions,
+});
