@@ -63,7 +63,7 @@ const useAPI = () => {
       body: JSON.stringify(game),
     });
     if (response.ok) {
-      const newGame = response.json();
+      const newGame = await response.json();
       gamesDispatch(addGameAction(newGame));
     }
   };
