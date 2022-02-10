@@ -1,8 +1,13 @@
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import GameComponent from "../components/GameComponent/GameComponent";
 import QuestionComponent from "../components/QuestionComponent/QuestionComponent";
+import TrivialContext from "../store/contexts/TrivialContext";
 
 const GameDetailsPage = () => {
-  const game = { name: "a", creator: "b", questions: [], difficulty: "medium" };
+  const params = useParams();
+  const { currentGames } = useContext(TrivialContext);
+  const game = currentGames.find((game) => game.id === params.id);
   return (
     <div>
       <h2>Game details</h2>
