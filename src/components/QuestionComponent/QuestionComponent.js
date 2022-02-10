@@ -49,7 +49,7 @@ const QuestionComponent = ({
       : String(element.childNodes[0].nodeValue);
   };
 
-  const getRenderType = (type) =>
+  const getRenderType = () =>
     type === "boolean" ? "True / False" : "Multiple Choice";
 
   if (selected) {
