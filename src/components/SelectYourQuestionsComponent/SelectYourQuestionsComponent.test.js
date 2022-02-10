@@ -16,7 +16,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
         </BrowserRouter>
       );
 
-      const foundHeading = screen.queryByRole("heading");
+      const foundHeading = screen.queryByRole("heading", { level: 1 });
 
       expect(foundHeading.textContent).toBe(expectedText);
     });
