@@ -1,9 +1,11 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BackArrowComponent from "../components/BackArrowComponent/BackArrowComponent";
 import GameComponent from "../components/GameComponent/GameComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import { backgroundLight } from "../globalStyles";
+import TrivialContext from "../store/contexts/TrivialContext";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -32,6 +34,8 @@ const GameList = styled.ul`
 
 const GameListPage = () => {
   const navigate = useNavigate();
+
+  const { currentGames } = useContext(TrivialContext);
 
   const gotoMainPage = () => {
     navigate(`/home`);
