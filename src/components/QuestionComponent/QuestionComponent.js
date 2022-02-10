@@ -36,6 +36,7 @@ const QuestionCategory = styled.p`
 
 const QuestionComponent = ({
   question: { question, type, selected, category },
+  actionOnClick,
 }) => {
   let backgroundColor = `${backgroundDark}`;
   let questionTextColor = `${textPrimary}`;
@@ -57,7 +58,7 @@ const QuestionComponent = ({
   }
 
   return (
-    <CardContainer isSelected={selected} backgroundColor={backgroundColor}>
+    <CardContainer onClick={actionOnClick} isSelected={selected} backgroundColor={backgroundColor}>
       <QuestionText questionTextColor={questionTextColor}>
         {decodeString(question)}
       </QuestionText>
