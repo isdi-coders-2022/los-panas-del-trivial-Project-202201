@@ -1,33 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import TrivialContext from "../store/contexts/TrivialContext";
+import TrivialContextProvider from "../store/contexts/TrivialContextProvider";
 import GameListPage from "./GameListPage";
 
 describe("Given GameListPage", () => {
   describe("When it is invoked", () => {
     test("Then it should render the backArrowComponent, the TitleComponent and a ul", () => {
-      const currentGames = [
-        {
-          name: "Pau",
-          creator: "Animals",
-          difficulty: "easy",
-          questions: [],
-          id: 1,
-        },
-        {
-          name: "Pau2",
-          creator: "Animals2",
-          difficulty: "hard",
-          questions: [],
-          id: 2,
-        },
-      ];
-
       render(
         <BrowserRouter>
-          <TrivialContext.Provider value={{ currentGames }}>
+          <TrivialContextProvider>
             <GameListPage />
-          </TrivialContext.Provider>
+          </TrivialContextProvider>
         </BrowserRouter>
       );
 
@@ -40,36 +24,17 @@ describe("Given GameListPage", () => {
       expect(list).toBeInTheDocument();
     });
 
-    test("The title component should display 'Game List'", () => {
-      const expectedTitle = "Game List";
-      const currentGames = [
-        {
-          name: "Pau",
-          creator: "Animals",
-          difficulty: "easy",
-          questions: [],
-          id: 1,
-        },
-        {
-          name: "Pau2",
-          creator: "Animals2",
-          difficulty: "hard",
-          questions: [],
-          id: 2,
-        },
-      ];
-
+    test("The title component should display 'Game List'", async () => {
       render(
         <BrowserRouter>
-          <TrivialContext.Provider value={{ currentGames }}>
+          <TrivialContextProvider>
             <GameListPage />
-          </TrivialContext.Provider>
+          </TrivialContextProvider>
         </BrowserRouter>
       );
 
-      const title = screen.queryByText(expectedTitle);
-
-      expect(title).toBeInTheDocument();
+      const prueba = await screen.findByText(/pruebamsw/i);
+      expect(prueba).toBeInTheDocument();
     });
   });
 });
