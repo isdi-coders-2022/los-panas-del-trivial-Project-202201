@@ -37,6 +37,8 @@ const IconContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  color: ${textPrimary};
 `;
 
 const GameName = styled.h2`
@@ -59,35 +61,44 @@ const GameCreator = styled(GameInfoItem)`
   color: #80807e;
 `;
 
-const GameComponent = ({
-  game: { id, name, creator, questions, difficulty },
-}) => {
+const GameComponent = ({ game }) => {
   const navigate = useNavigate();
   const goToEdit = () => {
-    navigate(`/game/edit/${id}`);
+    navigate(`/game/edit/${game.id}`);
   };
   const { deleteGame } = useContext(TrivialContext);
+
+  const firstLetterToUpperCase = (text) =>
+    text[0].toUpperCase() + text.substring(1);
+
+  const gameToRender = {
+    ...game,
+    name: firstLetterToUpperCase(game.name),
+    creator: firstLetterToUpperCase(game.creator),
+  };
 
   return (
     <GameContainer>
       <InfoContiner>
-        <GameName>{name}</GameName>
-        <GameInfoItem>{`Difficulty: ${difficulty}`}</GameInfoItem>
-        <GameInfoItem>{`Questions: ${questions.length}`}</GameInfoItem>
-        <GameCreator>{creator}</GameCreator>
+        <GameName>{gameToRender.name}</GameName>
+        <GameInfoItem>{`Difficulty: ${gameToRender.difficulty}`}</GameInfoItem>
+        <GameInfoItem>{`Questions: ${gameToRender.questions.length}`}</GameInfoItem>
+        <GameCreator>{gameToRender.creator}</GameCreator>
       </InfoContiner>
       <IconContainer>
         <FontAwesomeIcon
           onClick={goToEdit}
           icon={faPencil}
           data-testid="editIcon"
+          size="2x"
         />
         <FontAwesomeIcon
           onClick={() => {
-            deleteGame(id);
+            deleteGame(game.id);
           }}
           icon={faTrashAlt}
           data-testid="deleteIcon"
+          size="2x"
         />
       </IconContainer>
     </GameContainer>

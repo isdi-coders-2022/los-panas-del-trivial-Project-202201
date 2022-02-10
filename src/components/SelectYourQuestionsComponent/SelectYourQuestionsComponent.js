@@ -8,6 +8,12 @@ import TrivialContext from "../../store/contexts/TrivialContext";
 import QuestionComponent from "../QuestionComponent/QuestionComponent";
 import { useNavigate } from "react-router-dom";
 import FilterComponentHTML from "../FilterComponent/FilterComponent";
+import {
+  addQuestionAction,
+  removeQuestionsAction,
+  toggeleSelectQuestionsAction,
+} from "../../store/actions/trivial/actionsCreators";
+
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -65,6 +71,7 @@ const TotalSelectedQuestons = styled.p`
 
 const SelectYourQuestionsComponent = () => {
   const navigate = useNavigate();
+
   let questionType = (type) => {
     if (type.correct_answer === "True" || type.correct_answer === "False") {
       return "True/False";
@@ -72,7 +79,12 @@ const SelectYourQuestionsComponent = () => {
       return "Multiple Choice";
     }
   };
-  const { currentAllQuestions } = useContext(TrivialContext);
+  const {
+    currentAllQuestions,
+    allQuestionsDispatch,
+    currentQuestions,
+    questionDispatch,
+  } = useContext(TrivialContext);
 
   const decodeString = (str) => {
     var element = document.createElement("div");
@@ -103,16 +115,25 @@ const SelectYourQuestionsComponent = () => {
         </HeaderContainer>
         <FilterComponentHTML />
         <MainContainer>
-          {currentAllQuestions.map((question, index) => (
+          {currentAllQuestions.map((question) => (
             <QuestionComponent
-              key={index}
+              key={question.id}
               questionText={decodeString(question.question)}
               typeQuestionText={questionType(question)}
+              isSelected={question.selected}
+              actionOnClick={() => {
+                if (question.selected) {
+                  questionDispatch(removeQuestionsAction(question.id));
+                } else {
+                  questionDispatch(addQuestionAction(question));
+                }
+                allQuestionsDispatch(toggeleSelectQuestionsAction(question.id));
+              }}
             />
           ))}
         </MainContainer>
         <FooterContainer>
-          <TotalSelectedQuestons>20 selected questions</TotalSelectedQuestons>
+          <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
           <ButtonComponent text="Save" actionOnClick={() => {}} />
         </FooterContainer>
       </PageContainer>
