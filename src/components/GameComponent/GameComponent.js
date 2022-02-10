@@ -4,10 +4,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { backgroundDark, textPrimary } from "../../globalStyles";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import TrivialContext from "../../store/contexts/TrivialContext";
 import useAPI from "../../hooks/useAPI";
-import APIcontext from "../../store/contexts/APIContext";
 
 const GameContainer = styled.article`
   width: 365px;
