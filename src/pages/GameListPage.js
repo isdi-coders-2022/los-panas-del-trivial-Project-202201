@@ -40,6 +40,22 @@ const GameListPage = () => {
   const gotoMainPage = () => {
     navigate(`/home`);
   };
+  const demoGames = [
+    {
+      name: "Pau",
+      creator: "Animals",
+      difficulty: "easy",
+      questions: [],
+      id: 1,
+    },
+    {
+      name: "fads",
+      creator: "Animafssafdals",
+      difficulty: "easy",
+      questions: [],
+      id: 2,
+    },
+  ];
   return (
     <PageContainer>
       <BackArrowContainer>
@@ -47,8 +63,8 @@ const GameListPage = () => {
       </BackArrowContainer>
       <TitleComponent size="medium" text="Game List" />
       <GameList>
-        {currentGames.map((game) => (
-          <GameComponent game={game} />
+        {demoGames.map((game) => (
+          <GameComponent game={game} key={game.id} />
         ))}
       </GameList>
     </PageContainer>
