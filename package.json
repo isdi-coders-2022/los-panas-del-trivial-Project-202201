@@ -50,7 +50,9 @@
       "!src/**/*.test.js",
       "!src/index.js",
       "!src/reportWebVitals.js",
-      "!src/setupTests.js"
+      "!src/setupTests.js",
+      "!src/mocks/server.js",
+      "!src/mocks/handlers.js"
     ]
   }
 }
