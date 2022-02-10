@@ -94,7 +94,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
           category: "Animals",
           type: "multiple",
           difficulty: "easy",
-          question: "q",
+          question: "What is the scientific name for modern day humans?",
         },
       ];
       const expectedOutput =
