@@ -4,8 +4,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { backgroundDark, textPrimary } from "../../globalStyles";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import TrivialContext from "../../store/contexts/TrivialContext";
+import useAPI from "../../hooks/useAPI";
 
 const GameContainer = styled.article`
   width: 365px;
@@ -66,7 +65,8 @@ const GameComponent = ({ game }) => {
   const goToEdit = () => {
     navigate(`/game/edit/${game.id}`);
   };
-  const { deleteGame } = useContext(TrivialContext);
+
+  const { deleteGameAPI } = useAPI();
 
   const firstLetterToUpperCase = (text) =>
     text[0].toUpperCase() + text.substring(1);
@@ -94,7 +94,7 @@ const GameComponent = ({ game }) => {
         />
         <FontAwesomeIcon
           onClick={() => {
-            deleteGame(game.id);
+            deleteGameAPI(game.id);
           }}
           icon={faTrashAlt}
           data-testid="deleteIcon"
