@@ -5,6 +5,7 @@ import BackArrowComponent from "../components/BackArrowComponent/BackArrowCompon
 import GameComponent from "../components/GameComponent/GameComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import { backgroundLight } from "../globalStyles";
+import useAPI from "../hooks/useAPI";
 import TrivialContext from "../store/contexts/TrivialContext";
 
 const PageContainer = styled.div`
@@ -34,7 +35,7 @@ const GameList = styled.ul`
 
 const GameListPage = () => {
   const navigate = useNavigate();
-
+  const { loadGamesAPI } = useAPI();
   const { currentGames } = useContext(TrivialContext);
 
   const gotoMainPage = () => {
@@ -63,7 +64,7 @@ const GameListPage = () => {
       </BackArrowContainer>
       <TitleComponent size="medium" text="Game List" />
       <GameList>
-        {demoGames.map((game) => (
+        {currentGames.map((game) => (
           <GameComponent game={game} key={game.id} />
         ))}
       </GameList>
