@@ -67,7 +67,7 @@ const QuestionComponent = ({
         {decodeString(question)}
       </QuestionText>
       <InfoHolder>
-        <TypeQuestionText>{getRenderType(type)}</TypeQuestionText>
+        <TypeQuestionText>{getRenderType()}</TypeQuestionText>
         <QuestionCategory>{category}</QuestionCategory>
       </InfoHolder>
     </CardContainer>
