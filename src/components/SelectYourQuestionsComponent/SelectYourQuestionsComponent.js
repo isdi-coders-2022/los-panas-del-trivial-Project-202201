@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import QuestionComponent from "../QuestionComponent/QuestionComponent";
 import { useNavigate } from "react-router-dom";
-import FilterComponentHTML from "../FilterComponent/FilterComponent";
+import FilterComponent from "../FilterComponent/FilterComponent";
 import PropTypes from "prop-types";
 import {
   addQuestionAction,
@@ -123,7 +123,7 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
             />
           </TitleContainer>
         </HeaderContainer>
-        <FilterComponentHTML data={{ type, setType, category, setCategory }} />
+        <FilterComponent data={{ type, setType, category, setCategory }} />
         <MainContainer>
           {arrayToRender.map((question, index) => (
             <QuestionComponent
