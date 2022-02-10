@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import SelectYourQuestionsComponent from "../components/SelectYourQuestionsComponent/SelectYourQuestionsComponent";
 import { useNavigate } from "react-router-dom";
 import TrivialContext from "../store/contexts/TrivialContext";
+import { emptyQuestionsAction } from "../store/actions/trivial/actionsCreators";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -33,7 +34,8 @@ const CreateGamePage = () => {
   const [viewCreateGamePage, setViewCreateGamePage] = useState(true);
   const navigate = useNavigate();
 
-  const { currentQuestions } = useContext(TrivialContext);
+  const { currentQuestions, questionDispatch, allQuestionsDispatch } =
+    useContext(TrivialContext);
 
   const buildGame = () => {
     const gameInfo = {
@@ -67,6 +69,8 @@ const CreateGamePage = () => {
   };
 
   const gotoMainPage = () => {
+    allQuestionsDispatch(emptyQuestionsAction());
+    questionDispatch(emptyQuestionsAction());
     navigate(`/home`);
   };
 
