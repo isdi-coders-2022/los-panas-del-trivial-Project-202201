@@ -21,7 +21,6 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 80px;
 `;
 
 const HeaderContainer = styled.div`
@@ -54,6 +53,8 @@ const MainContainer = styled.ul`
 
 const FooterContainer = styled.div`
   height: 175px;
+  width: 100vw;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,27 +71,12 @@ const TotalSelectedQuestons = styled.p`
 const SelectYourQuestionsComponent = () => {
   const navigate = useNavigate();
 
-  let questionType = (type) => {
-    if (type.correct_answer === "True" || type.correct_answer === "False") {
-      return "True/False";
-    } else {
-      return "Multiple Choice";
-    }
-  };
   const {
     currentAllQuestions,
     allQuestionsDispatch,
     currentQuestions,
     questionDispatch,
   } = useContext(TrivialContext);
-
-  const decodeString = (str) => {
-    var element = document.createElement("div");
-    element.innerHTML = str;
-    return element.childNodes.length === 0
-      ? ""
-      : String(element.childNodes[0].nodeValue);
-  };
 
   const gotoMainPage = () => {
     navigate(`/home`);
@@ -112,12 +98,10 @@ const SelectYourQuestionsComponent = () => {
           </TitleContainer>
         </HeaderContainer>
         <MainContainer>
-          {currentAllQuestions.map((question) => (
+          {currentAllQuestions.map((question, index) => (
             <QuestionComponent
-              key={question.id}
-              questionText={decodeString(question.question)}
-              typeQuestionText={questionType(question)}
-              isSelected={question.selected}
+              key={index}
+              question={question}
               actionOnClick={() => {
                 if (question.selected) {
                   questionDispatch(removeQuestionsAction(question.id));
