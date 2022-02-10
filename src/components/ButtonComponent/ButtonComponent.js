@@ -30,6 +30,6 @@ const ButtonComponent = ({ actionOnClick, text }) => {
 
 ButtonComponent.propTypes = {
   text: PropTypes.string.isRequired,
-  actionOnClick: PropTypes.func.isRequired,
+  actionOnClick: PropTypes.func,
 };
 export default ButtonComponent;

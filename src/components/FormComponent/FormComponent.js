@@ -129,7 +129,7 @@ const FormComponent = ({
         </div>
       )}
       <ButtonContainer>
-        <ButtonComponent type="submit" actionOnClick={() => {}} text="Create" />
+        <ButtonComponent type="submit" text="Create" />
       </ButtonContainer>
     </FormContainer>
   );
