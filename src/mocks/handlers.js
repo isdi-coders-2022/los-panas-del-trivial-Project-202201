@@ -1,7 +1,8 @@
 import { rest } from "msw";
 
 export const handlers = [
-  rest.get("https://trivial-provider.herokuapp.com/games/", (req, res, ctx) => {
+  
+    rest.get("https://trivial-provider.herokuapp.com/games/", (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([
