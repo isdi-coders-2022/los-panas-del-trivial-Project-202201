@@ -77,8 +77,12 @@ const GameComponent = ({ game }) => {
     creator: firstLetterToUpperCase(game.creator),
   };
 
+  const viewGame = () => {
+    navigate(`/game/${game.id}`);
+  };
+
   return (
-    <GameContainer>
+    <GameContainer onClick={viewGame}>
       <InfoContiner>
         <GameName>{gameToRender.name}</GameName>
         <GameInfoItem>{`Difficulty: ${gameToRender.difficulty}`}</GameInfoItem>
@@ -87,13 +91,17 @@ const GameComponent = ({ game }) => {
       </InfoContiner>
       <IconContainer>
         <FontAwesomeIcon
-          onClick={goToEdit}
+          onClick={(event) => {
+            event.stopPropagation();
+            goToEdit();
+          }}
           icon={faPencil}
           data-testid="editIcon"
           size="2x"
         />
         <FontAwesomeIcon
-          onClick={() => {
+          onClick={(event) => {
+            event.stopPropagation();
             deleteGameAPI(game.id);
           }}
           icon={faTrashAlt}
