@@ -26,6 +26,7 @@ const QuestionComponent = ({
   questionText,
   typeQuestionText,
   isSelected = false,
+  actionOnClick,
 }) => {
   let backgroundColor = `${backgroundDark}`;
   let questionTextColor = `${textPrimary}`;
@@ -37,7 +38,11 @@ const QuestionComponent = ({
 
   return (
     <>
-      <CardContainer isSelected={isSelected} backgroundColor={backgroundColor}>
+      <CardContainer
+        onClick={actionOnClick}
+        isSelected={isSelected}
+        backgroundColor={backgroundColor}
+      >
         <QuestionText questionTextColor={questionTextColor}>
           {questionText}
         </QuestionText>
