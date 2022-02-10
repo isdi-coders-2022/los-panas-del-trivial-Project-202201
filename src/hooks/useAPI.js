@@ -9,9 +9,10 @@ import TrivialContext from "../store/contexts/TrivialContext";
 
 const useAPI = () => {
   const getTrivialUrl = (category, difficulty) =>
-    `https://opentdb.com/api.php?amount=20&category=${category}&difficulty=${difficulty}`;
+    `${process.env.REACT_APP_API_TRIVIAL_URL}category=${category}&difficulty=${difficulty}`;
 
-  const gamesAPIurl = "https://trivial-provider.herokuapp.com/games/";
+  const gamesAPIurl = process.env.REACT_APP_API_HEROKU_URL;
+
   const { allQuestionsDispatch, gamesDispatch } = useContext(TrivialContext);
 
   const loadQuestionsAPI = useCallback(
