@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { backgroundDark, textPrimary } from "../../globalStyles";
 
-const FormContainer = styled.form`
+const FilterContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -39,11 +39,10 @@ const SelectInput = styled.select`
 `;
 
 const FilterComponentHTML = ({
-  actionOnSubmit,
   data: { type, setType, category, setCategory },
 }) => {
   return (
-    <FormContainer onSubmit={actionOnSubmit}>
+    <FilterContainer>
       <FilterItem>
         <InputTitle>Category</InputTitle>
         <SelectInput
@@ -73,7 +72,7 @@ const FilterComponentHTML = ({
           <option value="multiple">Multiple Choice</option>
         </SelectInput>
       </FilterItem>
-    </FormContainer>
+    </FilterContainer>
   );
 };
 
