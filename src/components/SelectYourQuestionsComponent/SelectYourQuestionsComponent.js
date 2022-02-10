@@ -8,6 +8,7 @@ import TrivialContext from "../../store/contexts/TrivialContext";
 import QuestionComponent from "../QuestionComponent/QuestionComponent";
 import { useNavigate } from "react-router-dom";
 import FilterComponentHTML from "../FilterComponent/FilterComponent";
+import PropTypes from "prop-types";
 import {
   addQuestionAction,
   emptyQuestionsAction,
@@ -70,7 +71,7 @@ const TotalSelectedQuestons = styled.p`
   font-weight: semi-bold;
 `;
 
-const SelectYourQuestionsComponent = () => {
+const SelectYourQuestionsComponent = ({ onSave }) => {
   const navigate = useNavigate();
   const {
     currentAllQuestions,
@@ -146,6 +147,10 @@ const SelectYourQuestionsComponent = () => {
       </PageContainer>
     </>
   );
+};
+
+SelectYourQuestionsComponent.propTypes = {
+  onSave: PropTypes.func.isRequired,
 };
 
 export default SelectYourQuestionsComponent;
