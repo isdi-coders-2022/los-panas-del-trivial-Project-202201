@@ -53,7 +53,7 @@ const useAPI = () => {
     const response = await fetch(gamesAPIurl);
     const gamesList = await response.json();
     gamesDispatch(loadGamesAction(gamesList));
-  }, [gamesDispatch]);
+  }, [gamesAPIurl, gamesDispatch]);
 
   const addGameAPI = async (game) => {
     const response = await fetch(gamesAPIurl, {
