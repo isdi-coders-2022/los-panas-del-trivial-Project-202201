@@ -8,14 +8,19 @@ const gameReducer = (currentGames, action) => {
       newGames = [...currentGames, action.game];
       break;
     case actionTypes.modifyGameNames:
-      newGames = [...currentGames];
-      const gameToEdit = newGames.find(({ id }) => action.id === id);
-      gameToEdit.name = action.gameNames.name;
-      gameToEdit.creator = action.gameNames.creator;
+      newGames = currentGames.map((game) => {
+        if (game.id === action.id) {
+          return {
+            ...game,
+            name: action.gameNames.name,
+            creator: action.gameNames.creator,
+          };
+        }
+        return { ...game };
+      });
       break;
     case actionTypes.removeGame:
-      newGames = [...currentGames];
-      newGames.filter((game) => action.id !== game.id);
+      newGames = currentGames.filter((game) => action.id !== game.id);
       break;
     case actionTypes.loadGames:
       newGames = [...action.gamesList];
