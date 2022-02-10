@@ -10,10 +10,10 @@ import { useNavigate } from "react-router-dom";
 import FilterComponentHTML from "../FilterComponent/FilterComponent";
 import {
   addQuestionAction,
+  emptyQuestionsAction,
   removeQuestionsAction,
   toggeleSelectQuestionsAction,
 } from "../../store/actions/trivial/actionsCreators";
-
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -81,6 +81,8 @@ const SelectYourQuestionsComponent = () => {
   } = useContext(TrivialContext);
 
   const gotoMainPage = () => {
+    allQuestionsDispatch(emptyQuestionsAction());
+    questionDispatch(emptyQuestionsAction());
     navigate(`/home`);
   };
 

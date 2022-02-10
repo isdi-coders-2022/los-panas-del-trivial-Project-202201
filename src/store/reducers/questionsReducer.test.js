@@ -36,4 +36,19 @@ describe("Given questionsReducer", () => {
       expect(newQuestions).toEqual(expectedQuestions);
     });
   });
+
+  describe("When it's passed an array with 2 questions and the emptyQuestions action", () => {
+    test("Then it should return an empty array", () => {
+      const questions = [{ id: 3456456456 }, { id: 2 }];
+      const expectedQuestions = [];
+
+      const action = {
+        type: actionTypes.emptyQuestions,
+      };
+
+      const newQuestions = questionsReducer(questions, action);
+
+      expect(newQuestions).toEqual(expectedQuestions);
+    });
+  });
 });
