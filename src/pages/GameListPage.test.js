@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import TrivialContext from "../store/contexts/TrivialContext";
 import TrivialContextProvider from "../store/contexts/TrivialContextProvider";
 import GameListPage from "./GameListPage";
 
