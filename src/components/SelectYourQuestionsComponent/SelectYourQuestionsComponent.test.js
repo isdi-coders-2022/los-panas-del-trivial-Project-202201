@@ -72,7 +72,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
     });
   });
   describe("When it's instantiated with and array", () => {
-    test("Then it should render the object in every card", () => {
+    test("Then it should render the text in the card", () => {
       const questions = [
         {
           id: 1,
@@ -94,7 +94,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
           category: "Animals",
           type: "multiple",
           difficulty: "easy",
-          question: "What is the scientific name for modern day humans?",
+          question: "q",
         },
       ];
       const expectedOutput =
