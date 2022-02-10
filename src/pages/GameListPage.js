@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BackArrowComponent from "../components/BackArrowComponent/BackArrowComponent";
+import GameComponent from "../components/GameComponent/GameComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import { backgroundLight } from "../globalStyles";
 
@@ -41,7 +42,16 @@ const GameListPage = () => {
         <BackArrowComponent actionOnClick={gotoMainPage} />
       </BackArrowContainer>
       <TitleComponent size="medium" text="Game List" />
-      <GameList></GameList>
+      <GameList>
+        <GameComponent
+          game={{
+            name: "Pau",
+            creator: "Animals",
+            difficulty: "easy",
+            questions: [],
+          }}
+        />
+      </GameList>
     </PageContainer>
   );
 };
