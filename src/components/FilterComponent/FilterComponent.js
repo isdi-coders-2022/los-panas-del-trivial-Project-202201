@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { backgroundDark, textPrimary } from "../../globalStyles";
 
-const FormContainer = styled.form`
+const FilterContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -38,12 +38,19 @@ const SelectInput = styled.select`
   font-family: inherit;
 `;
 
-const FilterComponentHTML = ({ actionOnSubmit }) => {
+const FilterComponentHTML = ({
+  data: { type, setType, category, setCategory },
+}) => {
   return (
-    <FormContainer onSubmit={actionOnSubmit}>
+    <FilterContainer>
       <FilterItem>
         <InputTitle>Category</InputTitle>
-        <SelectInput>
+        <SelectInput
+          value={category}
+          onChange={(event) => {
+            setCategory(event.target.value);
+          }}
+        >
           <option value="Any Category"> Any Category </option>
           <option value="Sports"> Sports </option>
           <option value="Entertainment: Video Games">Video Games</option>
@@ -54,13 +61,18 @@ const FilterComponentHTML = ({ actionOnSubmit }) => {
       </FilterItem>
       <FilterItem>
         <InputTitle>Type</InputTitle>
-        <SelectInput>
+        <SelectInput
+          value={type}
+          onChange={(event) => {
+            setType(event.target.value);
+          }}
+        >
           <option value="Any Type">Any Type</option>
           <option value="boolean">True / False</option>
           <option value="multiple">Multiple Choice</option>
         </SelectInput>
       </FilterItem>
-    </FormContainer>
+    </FilterContainer>
   );
 };
 

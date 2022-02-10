@@ -3,7 +3,7 @@ import BackArrow from "../BackArrowComponent/BackArrowComponent";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import TitleComponent from "../TitleComponent/TitleComponent";
 import { backgroundLight, secondary } from "../../globalStyles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import QuestionComponent from "../QuestionComponent/QuestionComponent";
 import { useNavigate } from "react-router-dom";
@@ -72,13 +72,34 @@ const TotalSelectedQuestons = styled.p`
 
 const SelectYourQuestionsComponent = () => {
   const navigate = useNavigate();
-
   const {
     currentAllQuestions,
     allQuestionsDispatch,
     currentQuestions,
     questionDispatch,
   } = useContext(TrivialContext);
+
+  const [type, setType] = useState("Any Type");
+  const [category, setCategory] = useState("Any Category");
+
+  let arrayToRender;
+  if (type !== "Any Type" || category !== "Any Category") {
+    if (type !== "Any Type") {
+      arrayToRender = currentAllQuestions.filter((question) => {
+        return question.type === type;
+      });
+    } else {
+      arrayToRender = [...currentAllQuestions];
+    }
+
+    if (category !== "Any Category") {
+      arrayToRender = arrayToRender.filter(
+        (question) => question.category === category
+      );
+    }
+  } else {
+    arrayToRender = [...currentAllQuestions];
+  }
 
   const gotoMainPage = () => {
     allQuestionsDispatch(emptyQuestionsAction());
@@ -101,9 +122,9 @@ const SelectYourQuestionsComponent = () => {
             />
           </TitleContainer>
         </HeaderContainer>
-        <FilterComponentHTML />
+        <FilterComponentHTML data={{ type, setType, category, setCategory }} />
         <MainContainer>
-          {currentAllQuestions.map((question, index) => (
+          {arrayToRender.map((question, index) => (
             <QuestionComponent
               key={index}
               question={question}
