@@ -1,8 +1,12 @@
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BackArrowComponent from "../components/BackArrowComponent/BackArrowComponent";
+import GameComponent from "../components/GameComponent/GameComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import { backgroundLight } from "../globalStyles";
+import useAPI from "../hooks/useAPI";
+import TrivialContext from "../store/contexts/TrivialContext";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -31,17 +35,28 @@ const GameList = styled.ul`
 
 const GameListPage = () => {
   const navigate = useNavigate();
+  const { loadGamesAPI } = useAPI();
+  const { currentGames } = useContext(TrivialContext);
+
+  useEffect(() => {
+    loadGamesAPI();
+  }, [loadGamesAPI]);
 
   const gotoMainPage = () => {
     navigate(`/home`);
   };
+
   return (
     <PageContainer>
       <BackArrowContainer>
         <BackArrowComponent actionOnClick={gotoMainPage} />
       </BackArrowContainer>
       <TitleComponent size="medium" text="Game List" />
-      <GameList></GameList>
+      <GameList>
+        {currentGames.map((game) => (
+          <GameComponent game={game} key={game.id} />
+        ))}
+      </GameList>
     </PageContainer>
   );
 };
