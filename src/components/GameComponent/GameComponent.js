@@ -69,7 +69,7 @@ const GameComponent = ({ game }) => {
     navigate(`/game/edit/${game.id}`);
   };
 
-  const { deleteGameAPI } = useAPI(APIcontext);
+  const { deleteGameAPI } = useAPI();
 
   const firstLetterToUpperCase = (text) =>
     text[0].toUpperCase() + text.substring(1);
