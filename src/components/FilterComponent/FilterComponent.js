@@ -38,7 +38,7 @@ const SelectInput = styled.select`
   font-family: inherit;
 `;
 
-const FilterComponentHTML = ({
+const FilterComponent = ({
   data: { type, setType, category, setCategory },
 }) => {
   return (
@@ -76,4 +76,4 @@ const FilterComponentHTML = ({
   );
 };
 
-export default FilterComponentHTML;
+export default FilterComponent;
