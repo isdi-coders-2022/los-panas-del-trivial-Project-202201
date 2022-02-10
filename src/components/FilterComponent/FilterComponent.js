@@ -44,6 +44,7 @@ const FilterComponentHTML = ({ actionOnSubmit }) => {
       <FilterItem>
         <InputTitle>Category</InputTitle>
         <SelectInput>
+          <option value="Any Category"> Any Category </option>
           <option value="Sports"> Sports </option>
           <option value="Entertainment: Video Games">Video Games</option>
           <option value="Animals"> Animals </option>
@@ -54,6 +55,7 @@ const FilterComponentHTML = ({ actionOnSubmit }) => {
       <FilterItem>
         <InputTitle>Type</InputTitle>
         <SelectInput>
+          <option value="Any Type">Any Type</option>
           <option value="boolean">True / False</option>
           <option value="multiple">Multiple Choice</option>
         </SelectInput>
