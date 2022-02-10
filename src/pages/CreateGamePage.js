@@ -4,9 +4,10 @@ import styled from "styled-components";
 import { backgroundLight } from "../globalStyles";
 import FormComponent from "../components/FormComponent/FormComponent";
 import useAPI from "../hooks/useAPI";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SelectYourQuestionsComponent from "../components/SelectYourQuestionsComponent/SelectYourQuestionsComponent";
 import { useNavigate } from "react-router-dom";
+import TrivialContext from "../store/contexts/TrivialContext";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -24,21 +25,35 @@ const BackArrowContainer = styled.div`
 `;
 
 const CreateGamePage = () => {
-  const { loadQuestionsAPI } = useAPI();
+  const { loadQuestionsAPI, addGameAPI } = useAPI();
   const [name, setName] = useState("");
   const [creator, setCreator] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
-  const [, setNewGame] = useState({});
+  const [game, setNewGame] = useState({});
   const [viewCreateGamePage, setViewCreateGamePage] = useState(true);
   const navigate = useNavigate();
 
+  const { currentQuestions } = useContext(TrivialContext);
+
   const buildGame = () => {
-    const game = {
+    const gameInfo = {
       name,
       creator,
       difficulty,
     };
-    setNewGame(game);
+    setNewGame(gameInfo);
+  };
+
+  const createGame = () => {
+    const questionsToSend = currentQuestions.map((question) => {
+      const newQuestion = { ...question };
+      delete newQuestion.selected;
+      delete newQuestion.id;
+      return newQuestion;
+    });
+    const gameToSend = { ...game, questions: questionsToSend };
+    addGameAPI(gameToSend);
+    gotoMainPage();
   };
 
   const changeView = () => {
@@ -72,7 +87,7 @@ const CreateGamePage = () => {
         </PageContainer>
       );
     }
-    return <SelectYourQuestionsComponent />;
+    return <SelectYourQuestionsComponent onSave={createGame} />;
   };
   return getView();
 };
