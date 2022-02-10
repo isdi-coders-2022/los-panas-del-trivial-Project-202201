@@ -42,7 +42,7 @@ const QuestionComponent = ({
   let questionTextColor = `${textPrimary}`;
 
   const decodeString = (str) => {
-    var element = document.createElement("div");
+    const element = document.createElement("div");
     element.innerHTML = str;
     return element.childNodes.length === 0
       ? ""
