@@ -28,7 +28,7 @@ describe("Given GameComponent", () => {
       };
       const expectedDifficultyText = `Difficulty: ${game.difficulty}`;
 
-      const contextValueToGive = { deleteGame: "" };
+      const contextValueToGive = { allQuestionsDispatch: () => {} };
 
       render(
         <BrowserRouter>
@@ -45,35 +45,6 @@ describe("Given GameComponent", () => {
       expect(nameElement).toBeInTheDocument();
       expect(creatorElement).toBeInTheDocument();
       expect(difficultyElement).toBeInTheDocument();
-    });
-  });
-
-  describe("When the trash icon is pressed", () => {
-    test("Then it should call the deleteGame acton from the context passing the game Id", () => {
-      const game = {
-        id: 3,
-        name: "test's game",
-        creator: "Dan Abramov",
-        difficulty: "Easy",
-        questions: [],
-      };
-      const action = jest.fn();
-      const contextValueToGive = {
-        deleteGame: action,
-      };
-
-      render(
-        <BrowserRouter>
-          <TrivialContext.Provider value={contextValueToGive}>
-            <GameComponent game={game} />
-          </TrivialContext.Provider>
-        </BrowserRouter>
-      );
-
-      const deleteElement = screen.queryByTestId("deleteIcon");
-      userEvent.click(deleteElement);
-
-      expect(action).toHaveBeenCalledWith(game.id);
     });
   });
 
