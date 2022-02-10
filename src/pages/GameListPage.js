@@ -47,14 +47,9 @@ const GameListPage = () => {
       </BackArrowContainer>
       <TitleComponent size="medium" text="Game List" />
       <GameList>
-        <GameComponent
-          game={{
-            name: "Pau",
-            creator: "Animals",
-            difficulty: "easy",
-            questions: [],
-          }}
-        />
+        {currentGames.map((game) => (
+          <GameComponent game={game} />
+        ))}
       </GameList>
     </PageContainer>
   );
