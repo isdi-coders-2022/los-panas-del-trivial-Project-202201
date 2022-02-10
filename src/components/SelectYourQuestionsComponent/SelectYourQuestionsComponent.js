@@ -65,13 +65,7 @@ const TotalSelectedQuestons = styled.p`
 
 const SelectYourQuestionsComponent = () => {
   const navigate = useNavigate();
-  let questionType = (type) => {
-    if (type.correct_answer === "True" || type.correct_answer === "False") {
-      return "True/False";
-    } else {
-      return "Multiple Choice";
-    }
-  };
+
   const { currentAllQuestions } = useContext(TrivialContext);
 
   const gotoMainPage = () => {
