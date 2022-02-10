@@ -19,6 +19,10 @@ const questionsReducer = (currentSelectedQuestions, action) => {
       });
       break;
 
+    case actionTypes.emptyQuestions:
+      newSelectedQuestions = [];
+      break;
+
     default:
       newSelectedQuestions = [...currentSelectedQuestions];
       break;

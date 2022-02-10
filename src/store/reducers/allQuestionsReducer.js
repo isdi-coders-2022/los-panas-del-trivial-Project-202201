@@ -8,7 +8,7 @@ const allQuestionsReducer = (currentAllQuestions, action) => {
       newAllQuestions = action.questions.map((question, index) => ({
         ...question,
         id: index,
-        selected: 0,
+        selected: false,
       }));
       break;
 
@@ -19,6 +19,10 @@ const allQuestionsReducer = (currentAllQuestions, action) => {
         }
         return { ...question };
       });
+      break;
+
+    case actionTypes.emptyQuestions:
+      newAllQuestions = [];
       break;
 
     default:
