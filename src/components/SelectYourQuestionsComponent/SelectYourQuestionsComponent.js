@@ -103,7 +103,7 @@ const SelectYourQuestionsComponent = () => {
             />
           </TitleContainer>
         </HeaderContainer>
-        <FilterComponentHTML />
+        <FilterComponentHTML data={{ type, setType, category, setCategory }} />
         <MainContainer>
           {currentAllQuestions.map((question, index) => (
             <QuestionComponent

@@ -38,12 +38,20 @@ const SelectInput = styled.select`
   font-family: inherit;
 `;
 
-const FilterComponentHTML = ({ actionOnSubmit }) => {
+const FilterComponentHTML = ({
+  actionOnSubmit,
+  data: { type, setType, category, setCategory },
+}) => {
   return (
     <FormContainer onSubmit={actionOnSubmit}>
       <FilterItem>
         <InputTitle>Category</InputTitle>
-        <SelectInput>
+        <SelectInput
+          value={category}
+          onChange={(event) => {
+            setCategory(event.target.value);
+          }}
+        >
           <option value="Any Category"> Any Category </option>
           <option value="Sports"> Sports </option>
           <option value="Entertainment: Video Games">Video Games</option>
@@ -54,7 +62,12 @@ const FilterComponentHTML = ({ actionOnSubmit }) => {
       </FilterItem>
       <FilterItem>
         <InputTitle>Type</InputTitle>
-        <SelectInput>
+        <SelectInput
+          value={type}
+          onChange={(event) => {
+            setType(event.target.value);
+          }}
+        >
           <option value="Any Type">Any Type</option>
           <option value="boolean">True / False</option>
           <option value="multiple">Multiple Choice</option>
