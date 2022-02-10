@@ -21,6 +21,10 @@ const allQuestionsReducer = (currentAllQuestions, action) => {
       });
       break;
 
+    case actionTypes.emptyQuestions:
+      newAllQuestions = [];
+      break;
+
     default:
       newAllQuestions = [...currentAllQuestions];
       break;
