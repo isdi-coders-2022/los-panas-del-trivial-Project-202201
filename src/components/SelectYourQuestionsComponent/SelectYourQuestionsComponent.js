@@ -3,7 +3,7 @@ import BackArrow from "../BackArrowComponent/BackArrowComponent";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import TitleComponent from "../TitleComponent/TitleComponent";
 import { backgroundLight, secondary } from "../../globalStyles";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import QuestionComponent from "../QuestionComponent/QuestionComponent";
 import { useNavigate } from "react-router-dom";
