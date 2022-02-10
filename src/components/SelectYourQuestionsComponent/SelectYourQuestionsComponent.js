@@ -142,7 +142,7 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
         </MainContainer>
         <FooterContainer>
           <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
-          <ButtonComponent text="Save" actionOnClick={() => {}} />
+          <ButtonComponent text="Save" actionOnClick={onSave} />
         </FooterContainer>
       </PageContainer>
     </>

@@ -25,7 +25,7 @@ const BackArrowContainer = styled.div`
 `;
 
 const CreateGamePage = () => {
-  const { loadQuestionsAPI } = useAPI();
+  const { loadQuestionsAPI, addGameAPI } = useAPI();
   const [name, setName] = useState("");
   const [creator, setCreator] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
@@ -46,6 +46,8 @@ const CreateGamePage = () => {
 
   const createGame = () => {
     const gameToSend = { ...game, questions: currentQuestions };
+    addGameAPI(gameToSend);
+    gotoMainPage();
   };
 
   const changeView = () => {
@@ -79,7 +81,7 @@ const CreateGamePage = () => {
         </PageContainer>
       );
     }
-    return <SelectYourQuestionsComponent />;
+    return <SelectYourQuestionsComponent onSave={createGame} />;
   };
   return getView();
 };
