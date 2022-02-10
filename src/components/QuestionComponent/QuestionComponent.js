@@ -78,7 +78,7 @@ QuestionComponent.propTypes = {
   question: PropTypes.shape({
     question: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    selected: PropTypes.bool.isRequired,
+    selected: PropTypes.bool,
     category: PropTypes.string.isRequired,
   }),
 };
