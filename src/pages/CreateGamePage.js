@@ -45,7 +45,13 @@ const CreateGamePage = () => {
   };
 
   const createGame = () => {
-    const gameToSend = { ...game, questions: currentQuestions };
+    const questionsToSend = currentQuestions.map((question) => {
+      const newQuestion = { ...question };
+      delete newQuestion.selected;
+      delete newQuestion.id;
+      return newQuestion;
+    });
+    const gameToSend = { ...game, questions: questionsToSend };
     addGameAPI(gameToSend);
     gotoMainPage();
   };
