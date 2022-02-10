@@ -91,4 +91,19 @@ describe("Given a allQuestionsReducer reducer", () => {
       expect(newAllQuestions).toEqual(expectedQuestions);
     });
   });
+
+  describe("When it's passed an array with 2 questions and the emptyQuestions action", () => {
+    test("Then it should return an empty array", () => {
+      const questions = [{ id: 3456456456 }, { id: 2 }];
+      const expectedQuestions = [];
+
+      const action = {
+        type: "empty-questions",
+      };
+
+      const newQuestions = allQuestionsReducer(questions, action);
+
+      expect(newQuestions).toEqual(expectedQuestions);
+    });
+  });
 });
