@@ -8,9 +8,16 @@ describe("Given a SelectYourQuestionsComponent", () => {
     test("Then it should render a heading with the text 'Select Your Questions'", () => {
       const expectedText = "Select Your Questions";
 
+      const providerValue = {
+        currentAllQuestions: [],
+        currentQuestions: [],
+        allQuestionsDispatch: () => {},
+        questionDispatch: () => {},
+      };
+
       render(
         <BrowserRouter>
-          <TrivialContext.Provider value={{ currentAllQuestions: [] }}>
+          <TrivialContext.Provider value={providerValue}>
             <SelectYourQuestionsComponent />
           </TrivialContext.Provider>
         </BrowserRouter>
@@ -23,10 +30,16 @@ describe("Given a SelectYourQuestionsComponent", () => {
 
     test("Then it should render a button with the text 'Save'", () => {
       const expectedText = "Save";
+      const providerValue = {
+        currentAllQuestions: [],
+        currentQuestions: [],
+        allQuestionsDispatch: () => {},
+        questionDispatch: () => {},
+      };
 
       render(
         <BrowserRouter>
-          <TrivialContext.Provider value={{ currentAllQuestions: [] }}>
+          <TrivialContext.Provider value={providerValue}>
             <SelectYourQuestionsComponent />
           </TrivialContext.Provider>
         </BrowserRouter>
@@ -38,9 +51,16 @@ describe("Given a SelectYourQuestionsComponent", () => {
     });
 
     test("Then it should render a BackArrowComponent", () => {
+      const providerValue = {
+        currentAllQuestions: [],
+        currentQuestions: [],
+        allQuestionsDispatch: () => {},
+        questionDispatch: () => {},
+      };
+
       render(
         <BrowserRouter>
-          <TrivialContext.Provider value={{ currentAllQuestions: [] }}>
+          <TrivialContext.Provider value={providerValue}>
             <SelectYourQuestionsComponent />
           </TrivialContext.Provider>
         </BrowserRouter>

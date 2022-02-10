@@ -13,13 +13,18 @@ jest.mock("react-router-dom", () => ({
 
 describe("Given GameComponent", () => {
   describe("When it recieves a game", () => {
-    test("Then it should render the game's info", () => {
+    test("Then it should render the game's formatted info", () => {
       const game = {
         id: 3,
         name: "test's game",
         creator: "Dan Abramov",
         difficulty: "Easy",
         questions: [],
+      };
+
+      const expectedInfo = {
+        name: "Test's game",
+        creator: "Dan Abramov",
       };
       const expectedDifficultyText = `Difficulty: ${game.difficulty}`;
 
@@ -33,8 +38,8 @@ describe("Given GameComponent", () => {
         </BrowserRouter>
       );
 
-      const nameElement = screen.queryByText(game.name);
-      const creatorElement = screen.queryByText(game.creator);
+      const nameElement = screen.queryByText(expectedInfo.name);
+      const creatorElement = screen.queryByText(expectedInfo.creator);
       const difficultyElement = screen.queryByText(expectedDifficultyText);
 
       expect(nameElement).toBeInTheDocument();

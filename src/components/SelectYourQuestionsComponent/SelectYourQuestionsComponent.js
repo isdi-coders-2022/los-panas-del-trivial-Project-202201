@@ -7,6 +7,11 @@ import { useContext } from "react";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import QuestionComponent from "../QuestionComponent/QuestionComponent";
 import { useNavigate } from "react-router-dom";
+import {
+  addQuestionAction,
+  removeQuestionsAction,
+  toggeleSelectQuestionsAction,
+} from "../../store/actions/trivial/actionsCreators";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -66,7 +71,12 @@ const TotalSelectedQuestons = styled.p`
 const SelectYourQuestionsComponent = () => {
   const navigate = useNavigate();
 
-  const { currentAllQuestions } = useContext(TrivialContext);
+  const {
+    currentAllQuestions,
+    allQuestionsDispatch,
+    currentQuestions,
+    questionDispatch,
+  } = useContext(TrivialContext);
 
   const gotoMainPage = () => {
     navigate(`/home`);
@@ -89,11 +99,22 @@ const SelectYourQuestionsComponent = () => {
         </HeaderContainer>
         <MainContainer>
           {currentAllQuestions.map((question, index) => (
-            <QuestionComponent key={index} question={question} />
+            <QuestionComponent
+              key={index}
+              question={question}
+              actionOnClick={() => {
+                if (question.selected) {
+                  questionDispatch(removeQuestionsAction(question.id));
+                } else {
+                  questionDispatch(addQuestionAction(question));
+                }
+                allQuestionsDispatch(toggeleSelectQuestionsAction(question.id));
+              }}
+            />
           ))}
         </MainContainer>
         <FooterContainer>
-          <TotalSelectedQuestons>20 selected questions</TotalSelectedQuestons>
+          <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
           <ButtonComponent text="Save" actionOnClick={() => {}} />
         </FooterContainer>
       </PageContainer>
