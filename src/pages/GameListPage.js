@@ -37,26 +37,12 @@ const GameListPage = () => {
   const navigate = useNavigate();
   const { loadGamesAPI } = useAPI();
   const { currentGames } = useContext(TrivialContext);
+  loadGamesAPI();
 
   const gotoMainPage = () => {
     navigate(`/home`);
   };
-  const demoGames = [
-    {
-      name: "Pau",
-      creator: "Animals",
-      difficulty: "easy",
-      questions: [],
-      id: 1,
-    },
-    {
-      name: "fads",
-      creator: "Animafssafdals",
-      difficulty: "easy",
-      questions: [],
-      id: 2,
-    },
-  ];
+
   return (
     <PageContainer>
       <BackArrowContainer>
