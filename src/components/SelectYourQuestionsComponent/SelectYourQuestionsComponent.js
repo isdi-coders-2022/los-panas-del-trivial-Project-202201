@@ -3,7 +3,7 @@ import BackArrow from "../BackArrowComponent/BackArrowComponent";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import TitleComponent from "../TitleComponent/TitleComponent";
 import { backgroundLight, secondary } from "../../globalStyles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import QuestionComponent from "../QuestionComponent/QuestionComponent";
 import { useNavigate } from "react-router-dom";
@@ -72,6 +72,8 @@ const TotalSelectedQuestons = styled.p`
 
 const SelectYourQuestionsComponent = () => {
   const navigate = useNavigate();
+  const [type, setType] = useState("Any Type");
+  const [category, setCategory] = useState("Any Category");
 
   const {
     currentAllQuestions,
