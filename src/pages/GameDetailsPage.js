@@ -63,7 +63,7 @@ const GameDetailsPage = () => {
             <BackArrowComponent actionOnClick={gotoGamesList} />
           </BackArrowContainer>
 
-          <TitleComponent size="medium" text="Game List" />
+          <TitleComponent size="medium" text="Game Details" />
           <GameContainer>
             <GameComponent game={game} />
           </GameContainer>
