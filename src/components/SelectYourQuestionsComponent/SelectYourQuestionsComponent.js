@@ -15,6 +15,7 @@ import {
   removeQuestionsAction,
   toggeleSelectQuestionsAction,
 } from "../../store/actions/trivial/actionsCreators";
+import ArrowPagesComponent from "../ArrowPagesComponent/ArrowPagesComponent";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -64,6 +65,15 @@ const FooterContainer = styled.div`
   flex-direction: column;
 `;
 
+const ArrowsContainer = styled.div`
+  padding-top: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+`;
+
 const TotalSelectedQuestons = styled.p`
   font-family: "Nunito";
   color: #fff;
@@ -82,6 +92,8 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
 
   const [type, setType] = useState("Any Type");
   const [category, setCategory] = useState("Any Category");
+
+  const [currentPage, setCurrentPage] = useState(0);
 
   let arrayToRender;
 
@@ -103,50 +115,110 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
     arrayToRender = [...currentAllQuestions];
   }
 
+  const questionsPerPage = 20;
+  const pages = [];
+  const numPages = Math.ceil(arrayToRender.length / questionsPerPage);
+
+  if (arrayToRender.length > questionsPerPage) {
+    let currentOffset = 0;
+
+    for (let i = 0; i < numPages; i++) {
+      const pageQuestions = arrayToRender.slice(
+        currentOffset,
+        currentOffset + questionsPerPage
+      );
+      pages.push(pageQuestions);
+      currentOffset += questionsPerPage;
+    }
+  } else {
+    pages.push(arrayToRender);
+  }
+
+  const changePage = (mode) => {
+    if (mode) {
+      setCurrentPage(currentPage + 1);
+    } else {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   const gotoMainPage = () => {
     allQuestionsDispatch(emptyQuestionsAction());
     questionDispatch(emptyQuestionsAction());
     navigate(`/home`);
   };
 
+  const changeType = (type) => {
+    setType(type);
+    setCurrentPage(0);
+  };
+
+  const changeCategory = (category) => {
+    setCategory(category);
+    setCurrentPage(0);
+  };
+
   return (
-    <>
-      <PageContainer>
-        <HeaderContainer>
-          <ArrowContainer>
-            <BackArrow actionOnClick={gotoMainPage} />
-          </ArrowContainer>
-          <TitleContainer>
-            <TitleComponent
-              size="small"
-              textColor={secondary}
-              text="Select Your Questions"
-            />
-          </TitleContainer>
-        </HeaderContainer>
-        <FilterComponent data={{ type, setType, category, setCategory }} />
-        <MainContainer>
-          {arrayToRender.map((question, index) => (
-            <QuestionComponent
-              key={index}
-              question={question}
+    <PageContainer>
+      <HeaderContainer>
+        <ArrowContainer>
+          <BackArrow actionOnClick={gotoMainPage} />
+        </ArrowContainer>
+        <TitleContainer>
+          <TitleComponent
+            size="small"
+            textColor={secondary}
+            text="Select Your Questions"
+          />
+        </TitleContainer>
+      </HeaderContainer>
+      <FilterComponent
+        data={{
+          type,
+          setType: changeType,
+          category,
+          setCategory: changeCategory,
+        }}
+      />
+      <MainContainer>
+        {pages[currentPage].map((question, index) => (
+          <QuestionComponent
+            key={index}
+            question={question}
+            actionOnClick={() => {
+              if (question.selected) {
+                questionDispatch(removeQuestionsAction(question.id));
+              } else {
+                questionDispatch(addQuestionAction(question));
+              }
+              allQuestionsDispatch(toggeleSelectQuestionsAction(question.id));
+            }}
+          />
+        ))}
+      </MainContainer>
+      <FooterContainer>
+        {numPages > 1 && (
+          <ArrowsContainer>
+            <ArrowPagesComponent
+              disabled={currentPage === 0}
               actionOnClick={() => {
-                if (question.selected) {
-                  questionDispatch(removeQuestionsAction(question.id));
-                } else {
-                  questionDispatch(addQuestionAction(question));
-                }
-                allQuestionsDispatch(toggeleSelectQuestionsAction(question.id));
+                changePage(false);
               }}
+              showSide={true}
             />
-          ))}
-        </MainContainer>
-        <FooterContainer>
-          <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
-          <ButtonComponent text="Save" actionOnClick={onSave} />
-        </FooterContainer>
-      </PageContainer>
-    </>
+            <ArrowPagesComponent
+              disabled={currentPage === numPages - 1}
+              actionOnClick={() => {
+                changePage(true);
+              }}
+              showSide={false}
+            />
+          </ArrowsContainer>
+        )}
+        <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
+        <ButtonComponent text="Save" actionOnClick={onSave} />
+      </FooterContainer>
+    </PageContainer>
   );
 };
 
