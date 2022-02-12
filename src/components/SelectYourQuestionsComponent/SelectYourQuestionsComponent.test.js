@@ -167,6 +167,48 @@ describe("Given a SelectYourQuestionsComponent", () => {
   });
 
   describe("When the selected is true and it's clicked", () => {
-    test("Then it should call the action", () => {});
+    test("Then it should call the action", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+      ];
+
+      const action = jest.fn();
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch: action,
+        questionDispatch: action,
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const findQuestion = screen.getAllByRole("listitem");
+
+      userEvent.click(findQuestion[1]);
+
+      expect(action).toBeCalled();
+    });
   });
 });
