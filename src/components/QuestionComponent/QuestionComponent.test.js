@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import QuestionComponent from "./QuestionComponent";
+import userEvent from "@testing-library/user-event";
 
 describe("Given a QuestionComponent", () => {
   describe("When it's instantiated with a questionText = 'hola", () => {
@@ -82,6 +83,27 @@ describe("Given a QuestionComponent", () => {
       const foundElement = screen.queryByText(expectedText);
 
       expect(foundElement).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's instantiated with the property selected = true", () => {
+    test("Then it should render backgroundColor = #242423", () => {
+      const expectedColor = "background-color: #9882AC";
+
+      render(
+        <QuestionComponent
+          question={{
+            question: "",
+            type: "",
+            selected: true,
+            category: "",
+          }}
+        />
+      );
+
+      const foundElement = screen.getByRole("listitem");
+
+      expect(foundElement).toHaveStyle(expectedColor);
     });
   });
 });
