@@ -59,7 +59,7 @@ const EditGamePage = () => {
         editing
         name={{ name, setName }}
         creator={{ creator, setCreator }}
-        difficulty={{ difficulty, setDifficulty }}
+        difficulty={{ difficulty: game.difficulty }}
         onSubmit={actionOnSubmit}
       ></FormComponent>
     </PageContainer>

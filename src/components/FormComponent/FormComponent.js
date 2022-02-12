@@ -107,7 +107,7 @@ const FormComponent = ({
       {editing ? (
         <DifficultyContainer>
           <InputTitle>Difficulty</InputTitle>
-          <SelectInput name="difficulty" id="difficulty">
+          <SelectInput name="difficulty" id="difficulty" value={difficulty}>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
@@ -150,7 +150,7 @@ FormComponent.propTypes = {
   }).isRequired,
   difficulty: PropTypes.shape({
     difficulty: PropTypes.string.isRequired,
-    setDifficulty: PropTypes.func.isRequired,
+    setDifficulty: PropTypes.func,
   }).isRequired,
 };
 
