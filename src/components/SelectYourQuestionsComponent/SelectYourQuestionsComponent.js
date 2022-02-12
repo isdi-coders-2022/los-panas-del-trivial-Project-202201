@@ -15,8 +15,7 @@ import {
   removeQuestionsAction,
   toggeleSelectQuestionsAction,
 } from "../../store/actions/trivial/actionsCreators";
-import ArrowLeftComponent from "../ArrowLeftComponent/ArrowLeftComponent";
-import ArrowRightComponent from "../ArrowRightComponent/ArrowRightComponent";
+import ArrowPagesComponent from "../ArrowPagesComponent/ArrowPagesComponent";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -181,16 +180,19 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
       </MainContainer>
       <FooterContainer>
         <ArrowsContainer>
-          <ArrowLeftComponent
+          <ArrowPagesComponent
             disabled={currentPage === 0}
             actionOnClick={() => {
               changePage(false);
             }}
+            showSide={true}
           />
-          <ArrowRightComponent
+          <ArrowPagesComponent
+            disabled={currentPage === numPages}
             actionOnClick={() => {
               changePage(true);
             }}
+            showSide={false}
           />
         </ArrowsContainer>
         <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
