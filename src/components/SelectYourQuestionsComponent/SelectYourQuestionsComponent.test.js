@@ -19,7 +19,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent />
+            <SelectYourQuestionsComponent onSave={() => {}} />
           </TrivialContext.Provider>
         </BrowserRouter>
       );
@@ -41,7 +41,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent />
+            <SelectYourQuestionsComponent onSave={() => {}} />
           </TrivialContext.Provider>
         </BrowserRouter>
       );
@@ -62,7 +62,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent />
+            <SelectYourQuestionsComponent onSave={() => {}} />
           </TrivialContext.Provider>
         </BrowserRouter>
       );
@@ -110,7 +110,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent />
+            <SelectYourQuestionsComponent onSave={() => {}} />
           </TrivialContext.Provider>
         </BrowserRouter>
       );
@@ -153,7 +153,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent />
+            <SelectYourQuestionsComponent onSave={() => {}} />
           </TrivialContext.Provider>
         </BrowserRouter>
       );
@@ -199,7 +199,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent />
+            <SelectYourQuestionsComponent onSave={() => {}} />
           </TrivialContext.Provider>
         </BrowserRouter>
       );
@@ -213,6 +213,6 @@ describe("Given a SelectYourQuestionsComponent", () => {
   });
 
   describe("When the BackArrow is clicked", () => {
-    test("Then it should navigate to Main Page", () => {});
+    test("Then it should call the action", () => {});
   });
 });
