@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import GameListPage from "./pages/GameListPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import GameDetailsPage from "./pages/GameDetailsPage";
+import EditGamePage from "./pages/EditGamePage";
 
 function App() {
   return (
@@ -16,10 +17,7 @@ function App() {
         <Route index element={<NotFoundPage />} />
         <Route path=":id" element={<GameDetailsPage />} />
         <Route path="new" element={<CreateGamePage />} />
-        <Route
-          path="edit/:id"
-          element={"Placeholder for element <EditGamePage />"}
-        />
+        <Route path="edit/:id" element={<EditGamePage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
