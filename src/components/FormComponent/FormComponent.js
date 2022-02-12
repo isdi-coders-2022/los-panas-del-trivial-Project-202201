@@ -37,6 +37,8 @@ const DifficultyContainer = styled.div`
   select {
     color: gray;
   }
+
+  pointer-events: none;
 `;
 
 const SelectInput = styled.select`
@@ -129,7 +131,7 @@ const FormComponent = ({
         </div>
       )}
       <ButtonContainer>
-        <ButtonComponent type="submit" text="Create" />
+        <ButtonComponent type="submit" text={editing ? "Edit" : "Create"} />
       </ButtonContainer>
     </FormContainer>
   );
