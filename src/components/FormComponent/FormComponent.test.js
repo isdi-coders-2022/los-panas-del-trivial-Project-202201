@@ -115,4 +115,31 @@ describe("Given FormComponent", () => {
       });
     });
   });
+
+  describe("When it is the value of the difficulty is changed", () => {
+    test("Then it should call the setDifficulty action", () => {
+      const name = { name: "", setName: () => {} };
+      const creator = { creator: "", setCreator: () => {} };
+      const setDifficulty = jest.fn();
+      const difficulty = { difficulty: "Easy", setDifficulty };
+
+      const action = () => {};
+
+      render(
+        <FormComponent
+          name={name}
+          creator={creator}
+          difficulty={difficulty}
+          onSubmit={action}
+        />
+      );
+
+      const difficultyInput = screen.getByRole("combobox");
+      fireEvent.change(difficultyInput, {
+        target: { value: "Difficult" },
+      });
+
+      expect(setDifficulty).toHaveBeenCalledTimes(1);
+    });
+  });
 });
