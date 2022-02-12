@@ -181,8 +181,17 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
       </MainContainer>
       <FooterContainer>
         <ArrowsContainer>
-          <ArrowLeftComponent actionOnClick={gotoMainPage} />
-          <ArrowRightComponent actionOnClick={gotoMainPage} />
+          <ArrowLeftComponent
+            disabled={currentPage === 0}
+            actionOnClick={() => {
+              changePage(false);
+            }}
+          />
+          <ArrowRightComponent
+            actionOnClick={() => {
+              changePage(true);
+            }}
+          />
         </ArrowsContainer>
         <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
         <ButtonComponent text="Save" actionOnClick={onSave} />
