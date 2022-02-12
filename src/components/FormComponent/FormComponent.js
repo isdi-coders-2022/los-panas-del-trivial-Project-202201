@@ -81,10 +81,10 @@ const FormComponent = ({
         <InputField
           type="text"
           name="name"
-          value={name}
+          value={creator}
           id="name"
           onChange={(event) => {
-            setName(event.target.value);
+            setCreator(event.target.value);
           }}
           placeholder="Input your name"
           required
@@ -96,9 +96,9 @@ const FormComponent = ({
           type="text"
           name="gameName"
           id="gameName"
-          value={creator}
+          value={name}
           onChange={(event) => {
-            setCreator(event.target.value);
+            setName(event.target.value);
           }}
           placeholder="Input the game's name"
           required
