@@ -28,7 +28,7 @@ const useAPI = () => {
 
       const getCategoryQuestionsFetch = async (url) => {
         const categoryResponse = await fetch(url);
-        return await categoryResponse.json();
+        return categoryResponse.json();
       };
 
       const trivialPromises = allUrlToFetch.map((urlToFetch) =>
