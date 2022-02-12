@@ -128,6 +128,7 @@ const FormComponent = ({
             onChange={(event) => {
               setDifficulty(event.target.value);
             }}
+            data-testid="select"
           >
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
