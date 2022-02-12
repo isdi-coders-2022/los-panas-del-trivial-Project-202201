@@ -113,6 +113,22 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
     arrayToRender = [...currentAllQuestions];
   }
 
+  const questionsPerPage = 20;
+  const pages = [];
+
+  if (arrayToRender.length > questionsPerPage) {
+    let currentOffset = 0;
+
+    const numPages = Math.ceil(arrayToRender.length / questionsPerPage);
+    for (let i = 0; i < numPages; i++) {
+      const pageQuestions = arrayToRender.slice(
+        currentOffset,
+        currentOffset + questionsPerPage
+      );
+      currentOffset += questionsPerPage;
+    }
+  }
+
   const arrayToRenderPaginated = [...arrayToRender];
   const questionsPage1 = arrayToRenderPaginated.slice(0, 20);
   // const questionsPage2 = arrayToRenderPaginated.slice(20, 40);
