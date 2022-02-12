@@ -28,7 +28,7 @@ const useAPI = () => {
 
       const getCategoryQuestionsFetch = async (url) => {
         const categoryResponse = await fetch(url);
-        return await categoryResponse.json();
+        return categoryResponse.json();
       };
 
       const trivialPromises = allUrlToFetch.map((urlToFetch) =>
@@ -37,8 +37,8 @@ const useAPI = () => {
 
       const responses = await Promise.all(trivialPromises);
 
-      responses.map((response) => {
-        return response.results.forEach((result) => allQuestions.push(result));
+      responses.forEach((response) => {
+        response.results.forEach((result) => allQuestions.push(result));
       });
 
       allQuestionsDispatch(loadQuestionsAction(allQuestions));
