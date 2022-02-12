@@ -4,6 +4,7 @@ import {
   loadGamesAction,
   loadQuestionsAction,
   removeGameAction,
+  modifyGameNamesAction,
 } from "../store/actions/trivial/actionsCreators";
 import TrivialContext from "../store/contexts/TrivialContext";
 
@@ -82,7 +83,26 @@ const useAPI = () => {
     }
   };
 
-  return { loadQuestionsAPI, loadGamesAPI, addGameAPI, deleteGameAPI };
+  const updateGameAPI = async (id, gameNames) => {
+    const response = await fetch(`${gamesAPIurl}${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(gameNames),
+    });
+    if (response.ok) {
+      gamesDispatch(modifyGameNamesAction(gameNames, id));
+    }
+  };
+
+  return {
+    loadQuestionsAPI,
+    loadGamesAPI,
+    addGameAPI,
+    deleteGameAPI,
+    updateGameAPI,
+  };
 };
 
 export default useAPI;
