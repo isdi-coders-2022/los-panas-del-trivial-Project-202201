@@ -131,22 +131,46 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
           </TitleContainer>
         </HeaderContainer>
         <FilterComponent data={{ type, setType, category, setCategory }} />
-        <MainContainer>
-          {arrayToRender.map((question, index) => (
-            <QuestionComponent
-              key={index}
-              question={question}
-              actionOnClick={() => {
-                if (question.selected) {
-                  questionDispatch(removeQuestionsAction(question.id));
-                } else {
-                  questionDispatch(addQuestionAction(question));
-                }
-                allQuestionsDispatch(toggeleSelectQuestionsAction(question.id));
-              }}
-            />
-          ))}
-        </MainContainer>
+
+        {arrayToRenderPaginated.length < 21 ? (
+          <MainContainer>
+            {arrayToRender.map((question, index) => (
+              <QuestionComponent
+                key={index}
+                question={question}
+                actionOnClick={() => {
+                  if (question.selected) {
+                    questionDispatch(removeQuestionsAction(question.id));
+                  } else {
+                    questionDispatch(addQuestionAction(question));
+                  }
+                  allQuestionsDispatch(
+                    toggeleSelectQuestionsAction(question.id)
+                  );
+                }}
+              />
+            ))}
+          </MainContainer>
+        ) : (
+          <MainContainer>
+            {questionsPage1.map((question, index) => (
+              <QuestionComponent
+                key={index}
+                question={question}
+                actionOnClick={() => {
+                  if (question.selected) {
+                    questionDispatch(removeQuestionsAction(question.id));
+                  } else {
+                    questionDispatch(addQuestionAction(question));
+                  }
+                  allQuestionsDispatch(
+                    toggeleSelectQuestionsAction(question.id)
+                  );
+                }}
+              />
+            ))}
+          </MainContainer>
+        )}
 
         <FooterContainer>
           <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
