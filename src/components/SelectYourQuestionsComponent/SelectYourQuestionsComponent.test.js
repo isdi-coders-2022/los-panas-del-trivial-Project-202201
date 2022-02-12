@@ -120,7 +120,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
     });
   });
 
-  describe("When the element it's clicked", () => {
+  describe("When the card it's clicked", () => {
     test("Then it should call the action", () => {
       const questions = [
         {
@@ -149,6 +149,20 @@ describe("Given a SelectYourQuestionsComponent", () => {
         allQuestionsDispatch: action,
         questionDispatch: action,
       };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const findQuestion = screen.getAllByRole("listitem");
+
+      userEvent.click(findQuestion[1]);
+
+      expect(action).toBeCalled();
     });
   });
 });
