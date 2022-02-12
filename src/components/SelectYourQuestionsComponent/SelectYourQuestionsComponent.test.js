@@ -213,6 +213,28 @@ describe("Given a SelectYourQuestionsComponent", () => {
   });
 
   describe("When the BackArrow is clicked", () => {
-    test("Then it should call the action", () => {});
+    test("Then it should call the action", () => {
+      const action = jest.fn();
+
+      const providerValue = {
+        currentAllQuestions: [],
+        currentQuestions: [],
+        allQuestionsDispatch: action,
+        questionDispatch: action,
+      };
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const findArrow = screen.queryByTestId("arrow");
+
+      userEvent.click(findArrow);
+
+      expect(action).toHaveBeenCalled();
+    });
   });
 });
