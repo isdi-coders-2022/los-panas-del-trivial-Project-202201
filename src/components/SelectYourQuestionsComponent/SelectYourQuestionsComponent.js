@@ -16,6 +16,7 @@ import {
   toggeleSelectQuestionsAction,
 } from "../../store/actions/trivial/actionsCreators";
 import ArrowLeftComponent from "../ArrowLeftComponent/ArrowLeftComponent";
+import ArrowRightComponent from "../ArrowRightComponent/ArrowRightComponent";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -63,6 +64,15 @@ const FooterContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+`;
+
+const ArrowsContainer = styled.div`
+  padding-top: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const TotalSelectedQuestons = styled.p`
@@ -174,7 +184,10 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
         )}
 
         <FooterContainer>
-          <ArrowLeftComponent actionOnClick={gotoMainPage} />
+          <ArrowsContainer>
+            <ArrowLeftComponent actionOnClick={gotoMainPage} />
+            <ArrowRightComponent actionOnClick={gotoMainPage} />
+          </ArrowsContainer>
           <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
           <ButtonComponent text="Save" actionOnClick={onSave} />
         </FooterContainer>
