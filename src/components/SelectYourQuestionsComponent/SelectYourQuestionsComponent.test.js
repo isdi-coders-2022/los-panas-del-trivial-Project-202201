@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import SelectYourQuestionsComponent from "./SelectYourQuestionsComponent";
@@ -117,5 +118,9 @@ describe("Given a SelectYourQuestionsComponent", () => {
 
       expect(findText).toBeInTheDocument();
     });
+  });
+
+  describe("When the element it's clicked", () => {
+    test("Then it should call the action", () => {});
   });
 });

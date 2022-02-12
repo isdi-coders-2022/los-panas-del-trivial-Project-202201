@@ -84,6 +84,7 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
   const [category, setCategory] = useState("Any Category");
 
   let arrayToRender;
+
   if (type !== "Any Type" || category !== "Any Category") {
     if (type !== "Any Type") {
       arrayToRender = currentAllQuestions.filter((question) => {
