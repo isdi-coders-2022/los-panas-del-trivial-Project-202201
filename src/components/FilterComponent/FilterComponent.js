@@ -52,6 +52,7 @@ const FilterComponent = ({
             setCategory(event.target.value);
           }}
         >
+          <title>category</title>
           <option value="Any Category"> Any Category </option>
           <option value="Sports"> Sports </option>
           <option value="Entertainment: Video Games">Video Games</option>
@@ -64,6 +65,7 @@ const FilterComponent = ({
         <InputTitle>Type</InputTitle>
         <SelectInput
           value={type}
+          name="type"
           onChange={(event) => {
             setType(event.target.value);
           }}
