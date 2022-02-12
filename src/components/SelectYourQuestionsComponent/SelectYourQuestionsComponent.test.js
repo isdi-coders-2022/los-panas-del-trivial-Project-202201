@@ -211,4 +211,8 @@ describe("Given a SelectYourQuestionsComponent", () => {
       expect(action).toBeCalled();
     });
   });
+
+  describe("When the BackArrow is clicked", () => {
+    test("Then it should navigate to Main Page", () => {});
+  });
 });
