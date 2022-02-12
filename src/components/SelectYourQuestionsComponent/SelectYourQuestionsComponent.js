@@ -104,10 +104,10 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
 
   const arrayToRenderPaginated = [...arrayToRender];
   const questionsPage1 = arrayToRenderPaginated.slice(0, 20);
-  const questionsPage2 = arrayToRenderPaginated.slice(20, 40);
-  const questionsPage3 = arrayToRenderPaginated.slice(40, 60);
-  const questionsPage4 = arrayToRenderPaginated.slice(60, 80);
-  const questionsPage5 = arrayToRenderPaginated.slice(80, 100);
+  // const questionsPage2 = arrayToRenderPaginated.slice(20, 40);
+  // const questionsPage3 = arrayToRenderPaginated.slice(40, 60);
+  // const questionsPage4 = arrayToRenderPaginated.slice(60, 80);
+  // const questionsPage5 = arrayToRenderPaginated.slice(80, 100);
 
   const gotoMainPage = () => {
     allQuestionsDispatch(emptyQuestionsAction());
