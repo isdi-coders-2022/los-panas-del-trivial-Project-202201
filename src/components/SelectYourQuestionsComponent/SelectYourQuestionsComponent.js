@@ -15,6 +15,7 @@ import {
   removeQuestionsAction,
   toggeleSelectQuestionsAction,
 } from "../../store/actions/trivial/actionsCreators";
+import ArrowLeftComponent from "../ArrowLeftComponent/ArrowLeftComponent";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -173,6 +174,7 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
         )}
 
         <FooterContainer>
+          <ArrowLeftComponent actionOnClick={gotoMainPage} />
           <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
           <ButtonComponent text="Save" actionOnClick={onSave} />
         </FooterContainer>
