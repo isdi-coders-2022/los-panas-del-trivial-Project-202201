@@ -35,7 +35,7 @@ const useAPI = () => {
 
       async function getAllQuestionsFetch(url) {
         const categoryResponse = await fetch(url);
-        return categoryResponse;
+        return await categoryResponse.json();
       }
 
       const trivialPromises = allUrlToFetch.map(
@@ -44,12 +44,11 @@ const useAPI = () => {
 
       const responses = await Promise.all(trivialPromises);
 
-      const questionResponses = responses.map(async (response) => {
-        const results = await response.json();
-        results.results.forEach((result) => allQuestions.push(result));
+      responses.map(async (response) => {
+        response.results.forEach((result) => allQuestions.push(result));
       });
 
-      allQuestionsDispatch(loadQuestionsAction(questionResponses));
+      allQuestionsDispatch(loadQuestionsAction(allQuestions));
     },
     [allQuestionsDispatch]
   );
