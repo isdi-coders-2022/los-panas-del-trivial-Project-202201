@@ -20,30 +20,26 @@ const useAPI = () => {
     async (difficulty) => {
       let allQuestions = [];
 
-      const responseSports = await fetch(getTrivialUrl(21, difficulty));
-      const questionsSports = await responseSports.json();
-      const questionsListSports = questionsSports.results;
-      allQuestions.push(...questionsListSports);
+      let categories = [21, 27, 15, 18, 22];
 
-      const responseAnimals = await fetch(getTrivialUrl(27, difficulty));
-      const questionsAnimals = await responseAnimals.json();
-      const questionsListAnimals = questionsAnimals.results;
-      allQuestions.push(...questionsListAnimals);
+      const allUrlToFetch = categories.map((category) =>
+        getTrivialUrl(category, difficulty)
+      );
 
-      const responseVideogames = await fetch(getTrivialUrl(15, difficulty));
-      const questionsVideogames = await responseVideogames.json();
-      const questionsListVideogames = questionsVideogames.results;
-      allQuestions.push(...questionsListVideogames);
+      const getCategoryQuestionsFetch = async (url) => {
+        const categoryResponse = await fetch(url);
+        return await categoryResponse.json();
+      };
 
-      const responseComputers = await fetch(getTrivialUrl(18, difficulty));
-      const questionsComputers = await responseComputers.json();
-      const questionsListComputers = questionsComputers.results;
-      allQuestions.push(...questionsListComputers);
+      const trivialPromises = allUrlToFetch.map((urlToFetch) =>
+        getCategoryQuestionsFetch(urlToFetch)
+      );
 
-      const responseGeography = await fetch(getTrivialUrl(22, difficulty));
-      const questionsGeography = await responseGeography.json();
-      const questionsListGeography = questionsGeography.results;
-      allQuestions.push(...questionsListGeography);
+      const responses = await Promise.all(trivialPromises);
+
+      responses.map((response) => {
+        return response.results.forEach((result) => allQuestions.push(result));
+      });
 
       allQuestionsDispatch(loadQuestionsAction(allQuestions));
     },
