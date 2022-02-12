@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import SelectYourQuestionsComponent from "./SelectYourQuestionsComponent";
@@ -18,7 +19,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent />
+            <SelectYourQuestionsComponent onSave={() => {}} />
           </TrivialContext.Provider>
         </BrowserRouter>
       );
@@ -40,7 +41,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent />
+            <SelectYourQuestionsComponent onSave={() => {}} />
           </TrivialContext.Provider>
         </BrowserRouter>
       );
@@ -61,7 +62,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent />
+            <SelectYourQuestionsComponent onSave={() => {}} />
           </TrivialContext.Provider>
         </BrowserRouter>
       );
@@ -109,13 +110,131 @@ describe("Given a SelectYourQuestionsComponent", () => {
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent />
+            <SelectYourQuestionsComponent onSave={() => {}} />
           </TrivialContext.Provider>
         </BrowserRouter>
       );
       const findText = screen.queryByText(expectedOutput);
 
       expect(findText).toBeInTheDocument();
+    });
+  });
+
+  describe("When the selected is false and it's clicked", () => {
+    test("Then it should call the action", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: false,
+        },
+        {
+          id: 2,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 2",
+          selected: false,
+        },
+      ];
+
+      const action = jest.fn();
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch: action,
+        questionDispatch: action,
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const findQuestion = screen.getAllByRole("listitem");
+
+      userEvent.click(findQuestion[1]);
+
+      expect(action).toBeCalled();
+    });
+  });
+
+  describe("When the selected is true and it's clicked", () => {
+    test("Then it should call the action", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+      ];
+
+      const action = jest.fn();
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch: action,
+        questionDispatch: action,
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const findQuestion = screen.getAllByRole("listitem");
+
+      userEvent.click(findQuestion[1]);
+
+      expect(action).toBeCalled();
+    });
+  });
+
+  describe("When the BackArrow is clicked", () => {
+    test("Then it should call the action", () => {
+      const action = jest.fn();
+
+      const providerValue = {
+        currentAllQuestions: [],
+        currentQuestions: [],
+        allQuestionsDispatch: action,
+        questionDispatch: action,
+      };
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const findArrow = screen.queryByTestId("arrow");
+
+      userEvent.click(findArrow);
+
+      expect(action).toHaveBeenCalled();
     });
   });
 });

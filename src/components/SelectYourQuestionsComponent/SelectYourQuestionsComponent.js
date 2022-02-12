@@ -96,6 +96,7 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   let arrayToRender;
+
   if (type !== "Any Type" || category !== "Any Category") {
     if (type !== "Any Type") {
       arrayToRender = currentAllQuestions.filter((question) => {
