@@ -6,6 +6,7 @@ import FormComponent from "../components/FormComponent/FormComponent";
 import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import TrivialContext from "../store/contexts/TrivialContext";
+import useAPI from "../hooks/useAPI";
 
 const PageContainer = styled.div`
   background-color: ${backgroundLight};
@@ -26,18 +27,26 @@ const EditGamePage = () => {
   const params = useParams();
   const { currentGames } = useContext(TrivialContext);
   const navigate = useNavigate();
+  const { updateGameAPI } = useAPI();
+
   const game = currentGames.find(
     (currentGame) => currentGame.id === +params.id
   );
 
   const [name, setName] = useState(game.name);
   const [creator, setCreator] = useState(game.creator);
-  const [difficulty, setDifficulty] = useState(game.difficulty);
-
-  const actionOnSubmit = () => {};
 
   const gotoGamesList = () => {
     navigate(`/games-list`);
+  };
+
+  const actionOnSubmit = () => {
+    const gameNames = {
+      name: name,
+      creator: creator,
+    };
+    updateGameAPI(game.id, gameNames);
+    gotoGamesList();
   };
 
   return (
@@ -50,7 +59,7 @@ const EditGamePage = () => {
         editing
         name={{ name, setName }}
         creator={{ creator, setCreator }}
-        difficulty={{ difficulty, setDifficulty }}
+        difficulty={{ difficulty: game.difficulty }}
         onSubmit={actionOnSubmit}
       ></FormComponent>
     </PageContainer>

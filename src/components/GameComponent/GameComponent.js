@@ -81,6 +81,10 @@ const GameComponent = ({ game }) => {
     navigate(`/game/${game.id}`);
   };
 
+  const gotoGamesList = () => {
+    navigate(`/games-list`);
+  };
+
   return (
     <GameContainer onClick={viewGame}>
       <InfoContiner>
@@ -103,6 +107,7 @@ const GameComponent = ({ game }) => {
           onClick={(event) => {
             event.stopPropagation();
             deleteGameAPI(game.id);
+            gotoGamesList();
           }}
           icon={faTrashAlt}
           data-testid="deleteIcon"
