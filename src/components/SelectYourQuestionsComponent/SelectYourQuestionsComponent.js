@@ -94,6 +94,8 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
   const [type, setType] = useState("Any Type");
   const [category, setCategory] = useState("Any Category");
 
+  const [currentPage, setCurrentPage] = useState(0);
+
   let arrayToRender;
   if (type !== "Any Type" || category !== "Any Category") {
     if (type !== "Any Type") {
@@ -125,16 +127,12 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
         currentOffset,
         currentOffset + questionsPerPage
       );
+      pages.push(pageQuestions);
       currentOffset += questionsPerPage;
     }
+  } else {
+    pages.push(arrayToRender);
   }
-
-  const arrayToRenderPaginated = [...arrayToRender];
-  const questionsPage1 = arrayToRenderPaginated.slice(0, 20);
-  // const questionsPage2 = arrayToRenderPaginated.slice(20, 40);
-  // const questionsPage3 = arrayToRenderPaginated.slice(40, 60);
-  // const questionsPage4 = arrayToRenderPaginated.slice(60, 80);
-  // const questionsPage5 = arrayToRenderPaginated.slice(80, 100);
 
   const gotoMainPage = () => {
     allQuestionsDispatch(emptyQuestionsAction());
@@ -143,72 +141,45 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
   };
 
   return (
-    <>
-      <PageContainer>
-        <HeaderContainer>
-          <ArrowContainer>
-            <BackArrow actionOnClick={gotoMainPage} />
-          </ArrowContainer>
-          <TitleContainer>
-            <TitleComponent
-              size="small"
-              textColor={secondary}
-              text="Select Your Questions"
-            />
-          </TitleContainer>
-        </HeaderContainer>
-        <FilterComponent data={{ type, setType, category, setCategory }} />
-
-        {arrayToRenderPaginated.length < 21 ? (
-          <MainContainer>
-            {arrayToRender.map((question, index) => (
-              <QuestionComponent
-                key={index}
-                question={question}
-                actionOnClick={() => {
-                  if (question.selected) {
-                    questionDispatch(removeQuestionsAction(question.id));
-                  } else {
-                    questionDispatch(addQuestionAction(question));
-                  }
-                  allQuestionsDispatch(
-                    toggeleSelectQuestionsAction(question.id)
-                  );
-                }}
-              />
-            ))}
-          </MainContainer>
-        ) : (
-          <MainContainer>
-            {questionsPage1.map((question, index) => (
-              <QuestionComponent
-                key={index}
-                question={question}
-                actionOnClick={() => {
-                  if (question.selected) {
-                    questionDispatch(removeQuestionsAction(question.id));
-                  } else {
-                    questionDispatch(addQuestionAction(question));
-                  }
-                  allQuestionsDispatch(
-                    toggeleSelectQuestionsAction(question.id)
-                  );
-                }}
-              />
-            ))}
-          </MainContainer>
-        )}
-
-        <FooterContainer>
-          <ArrowsContainer>
-            <ArrowLeftComponent actionOnClick={gotoMainPage} />
-            <ArrowRightComponent actionOnClick={gotoMainPage} />
-          </ArrowsContainer>
-          <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
-          <ButtonComponent text="Save" actionOnClick={onSave} />
-        </FooterContainer>
-      </PageContainer>
-    </>
+    <PageContainer>
+      <HeaderContainer>
+        <ArrowContainer>
+          <BackArrow actionOnClick={gotoMainPage} />
+        </ArrowContainer>
+        <TitleContainer>
+          <TitleComponent
+            size="small"
+            textColor={secondary}
+            text="Select Your Questions"
+          />
+        </TitleContainer>
+      </HeaderContainer>
+      <FilterComponent data={{ type, setType, category, setCategory }} />
+      <MainContainer>
+        {pages[currentPage].map((question, index) => (
+          <QuestionComponent
+            key={index}
+            question={question}
+            actionOnClick={() => {
+              if (question.selected) {
+                questionDispatch(removeQuestionsAction(question.id));
+              } else {
+                questionDispatch(addQuestionAction(question));
+              }
+              allQuestionsDispatch(toggeleSelectQuestionsAction(question.id));
+            }}
+          />
+        ))}
+      </MainContainer>
+      <FooterContainer>
+        <ArrowsContainer>
+          <ArrowLeftComponent actionOnClick={gotoMainPage} />
+          <ArrowRightComponent actionOnClick={gotoMainPage} />
+        </ArrowsContainer>
+        <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
+        <ButtonComponent text="Save" actionOnClick={onSave} />
+      </FooterContainer>
+    </PageContainer>
   );
 };
 
