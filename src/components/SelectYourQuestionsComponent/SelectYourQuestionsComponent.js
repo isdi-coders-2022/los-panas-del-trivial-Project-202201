@@ -196,22 +196,24 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
         ))}
       </MainContainer>
       <FooterContainer>
-        <ArrowsContainer>
-          <ArrowPagesComponent
-            disabled={currentPage === 0}
-            actionOnClick={() => {
-              changePage(false);
-            }}
-            showSide={true}
-          />
-          <ArrowPagesComponent
-            disabled={currentPage === numPages - 1}
-            actionOnClick={() => {
-              changePage(true);
-            }}
-            showSide={false}
-          />
-        </ArrowsContainer>
+        {numPages > 1 && (
+          <ArrowsContainer>
+            <ArrowPagesComponent
+              disabled={currentPage === 0}
+              actionOnClick={() => {
+                changePage(false);
+              }}
+              showSide={true}
+            />
+            <ArrowPagesComponent
+              disabled={currentPage === numPages - 1}
+              actionOnClick={() => {
+                changePage(true);
+              }}
+              showSide={false}
+            />
+          </ArrowsContainer>
+        )}
         <TotalSelectedQuestons>{`${currentQuestions.length} selected questions`}</TotalSelectedQuestons>
         <ButtonComponent text="Save" actionOnClick={onSave} />
       </FooterContainer>
