@@ -25,6 +25,14 @@ const useAPI = () => {
       const categoryComputers = 18;
       const categoryGeography = 22;
 
+      const allUrlToFetch = [
+        getTrivialUrl(`${categorySports}`, difficulty),
+        getTrivialUrl(`${categoryAnimals}`, difficulty),
+        getTrivialUrl(`${categoryVideoGames}`, difficulty),
+        getTrivialUrl(`${categoryComputers}`, difficulty),
+        getTrivialUrl(`${categoryGeography}`, difficulty),
+      ];
+
       const responseSports = await fetch(
         getTrivialUrl(`${categorySports}`, difficulty)
       );
