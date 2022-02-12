@@ -83,7 +83,7 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
   const [type, setType] = useState("Any Type");
   const [category, setCategory] = useState("Any Category");
 
-  let arrayToRender;
+  let arrayToRender; //if array to render >20 dividir en mes arrays i tambe canviar linea 127 amb conditional rendering
   if (type !== "Any Type" || category !== "Any Category") {
     if (type !== "Any Type") {
       arrayToRender = currentAllQuestions.filter((question) => {
