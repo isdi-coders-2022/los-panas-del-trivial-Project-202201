@@ -3,16 +3,31 @@ import FilterComponent from "./FilterComponent";
 
 describe("Given a FilterComponent", () => {
   describe("When it's rendered", () => {
-    test("Then, it should display Any Category option", () => {
-      const text = "Sports";
+    test("Then, it should have the options Any Type and Any Category selected", () => {
+      const defaultType = "Any Type";
+      const defaultCategory = "Any Category";
 
       render(
-        <FilterComponent data={("Type", () => {}, "Any Type", () => {})} />
+        <FilterComponent
+          data={{
+            type: defaultType,
+            setType: () => {},
+            category: defaultCategory,
+            setCategory: () => {},
+          }}
+        />
       );
 
-      const foundText = screen.getByText(text);
+      // const categorySelect = screen.getByRole("combobox", { name: "category" });
+      const anyTypeOption = screen.getByRole("option", { name: defaultType });
+      const anyCategoryOption = screen.getByRole("option", {
+        name: defaultCategory,
+      });
 
-      expect(foundText).toBeInTheDocument();
+      expect(anyTypeOption.selected).toBeTruthy();
+      expect(anyCategoryOption.selected).toBeTruthy();
     });
   });
 });
+
+// fireEvent.change(getByTestId("select"), { target: { value: 2 } });

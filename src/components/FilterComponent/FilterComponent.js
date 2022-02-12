@@ -47,6 +47,7 @@ const FilterComponent = ({
         <InputTitle>Category</InputTitle>
         <SelectInput
           value={category}
+          name="category"
           onChange={(event) => {
             setCategory(event.target.value);
           }}
