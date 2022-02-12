@@ -33,48 +33,25 @@ const useAPI = () => {
         getTrivialUrl(`${categoryGeography}`, difficulty),
       ];
 
-      const responses = await Promise.all(allUrlToFetch);
+      async function getAllQuestionsFetch(url) {
+        const categoryResponse = await fetch(url);
+        return categoryResponse;
+      }
 
-      const questionResponses = responses.map((response) => {
-        return allQuestions.push(response.json().results);
+      const trivialPromises = allUrlToFetch.map(
+        async (urlToFetch) => await getAllQuestionsFetch(urlToFetch)
+      );
+
+      const responses = await Promise.all(trivialPromises);
+
+      const questionResponses = responses.map(async (response) => {
+        const results = await response.json();
+        allQuestions.push(results.results);
       });
 
-      // const responseSports = await fetch(
-      //   getTrivialUrl(`${categorySports}`, difficulty)
-      // );
-      // const questionsSports = await responseSports.json();
-      // const questionsListSports = questionsSports.results;
-      // allQuestions.push(...questionsListSports);
+      const allQuestionsAPI = questionResponses.map((questionResponse) => {});
 
-      // const responseAnimals = await fetch(
-      //   getTrivialUrl(`${categoryAnimals}`, difficulty)
-      // );
-      // const questionsAnimals = await responseAnimals.json();
-      // const questionsListAnimals = questionsAnimals.results;
-      // allQuestions.push(...questionsListAnimals);
-
-      // const responseVideogames = await fetch(
-      //   getTrivialUrl(`${categoryVideoGames}`, difficulty)
-      // );
-      // const questionsVideogames = await responseVideogames.json();
-      // const questionsListVideogames = questionsVideogames.results;
-      // allQuestions.push(...questionsListVideogames);
-
-      // const responseComputers = await fetch(
-      //   getTrivialUrl(`${categoryComputers}`, difficulty)
-      // );
-      // const questionsComputers = await responseComputers.json();
-      // const questionsListComputers = questionsComputers.results;
-      // allQuestions.push(...questionsListComputers);
-
-      // const responseGeography = await fetch(
-      //   getTrivialUrl(`${categoryGeography}`, difficulty)
-      // );
-      // const questionsGeography = await responseGeography.json();
-      // const questionsListGeography = questionsGeography.results;
-      // allQuestions.push(...questionsListGeography);
-
-      allQuestionsDispatch(loadQuestionsAction(questionResponses));
+      allQuestionsDispatch(loadQuestionsAction(allQuestionsAPI));
     },
     [allQuestionsDispatch]
   );
