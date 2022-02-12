@@ -29,7 +29,7 @@ const InputField = styled.input`
   font-family: inherit;
 `;
 
-const DifficultyContainer = styled.div`
+const DifficultyDisabledContainer = styled.div`
   h2 {
     color: gray;
   }
@@ -81,10 +81,10 @@ const FormComponent = ({
         <InputField
           type="text"
           name="name"
-          value={name}
+          value={creator}
           id="name"
           onChange={(event) => {
-            setName(event.target.value);
+            setCreator(event.target.value);
           }}
           placeholder="Input your name"
           required
@@ -96,23 +96,28 @@ const FormComponent = ({
           type="text"
           name="gameName"
           id="gameName"
-          value={creator}
+          value={name}
           onChange={(event) => {
-            setCreator(event.target.value);
+            setName(event.target.value);
           }}
           placeholder="Input the game's name"
           required
         />
       </label>
       {editing ? (
-        <DifficultyContainer>
+        <DifficultyDisabledContainer>
           <InputTitle>Difficulty</InputTitle>
-          <SelectInput name="difficulty" id="difficulty">
+          <SelectInput
+            name="difficulty"
+            id="difficulty"
+            defaultValue={difficulty}
+            readOnly
+          >
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </SelectInput>
-        </DifficultyContainer>
+        </DifficultyDisabledContainer>
       ) : (
         <div>
           <InputTitle>Difficulty</InputTitle>
@@ -150,7 +155,7 @@ FormComponent.propTypes = {
   }).isRequired,
   difficulty: PropTypes.shape({
     difficulty: PropTypes.string.isRequired,
-    setDifficulty: PropTypes.func.isRequired,
+    setDifficulty: PropTypes.func,
   }).isRequired,
 };
 
