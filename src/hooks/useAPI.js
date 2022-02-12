@@ -85,7 +85,7 @@ const useAPI = () => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ ...gameNames }),
+      body: JSON.stringify(gameNames),
     });
     if (response.ok) {
       gamesDispatch(modifyGameNamesAction(gameNames, id));
