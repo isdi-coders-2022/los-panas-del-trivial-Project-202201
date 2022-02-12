@@ -44,13 +44,12 @@ const useAPI = () => {
 
       const responses = await Promise.all(trivialPromises);
 
-      responses.forEach(async (response) => {
+      const questionResponses = responses.map(async (response) => {
         const results = await response.json();
         results.results.forEach((result) => allQuestions.push(result));
-        return allQuestions;
       });
 
-      allQuestionsDispatch(loadQuestionsAction(allQuestions));
+      allQuestionsDispatch(loadQuestionsAction(questionResponses));
     },
     [allQuestionsDispatch]
   );
