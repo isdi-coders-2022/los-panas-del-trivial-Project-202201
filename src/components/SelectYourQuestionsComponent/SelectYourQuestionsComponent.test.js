@@ -120,7 +120,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
     });
   });
 
-  describe("When the card it's clicked", () => {
+  describe("When the selected is false and it's clicked", () => {
     test("Then it should call the action", () => {
       const questions = [
         {
@@ -164,5 +164,9 @@ describe("Given a SelectYourQuestionsComponent", () => {
 
       expect(action).toBeCalled();
     });
+  });
+
+  describe("When the selected is true and it's clicked", () => {
+    test("Then it should call the action", () => {});
   });
 });
