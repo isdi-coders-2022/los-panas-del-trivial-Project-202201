@@ -28,13 +28,17 @@ const EditGamePage = () => {
   const { currentGames } = useContext(TrivialContext);
   const navigate = useNavigate();
   const { updateGameAPI } = useAPI();
+
   const game = currentGames.find(
     (currentGame) => currentGame.id === +params.id
   );
 
   const [name, setName] = useState(game.name);
   const [creator, setCreator] = useState(game.creator);
-  const [difficulty, setDifficulty] = useState(game.difficulty);
+
+  const gotoGamesList = () => {
+    navigate(`/games-list`);
+  };
 
   const actionOnSubmit = () => {
     const gameNames = {
@@ -43,10 +47,6 @@ const EditGamePage = () => {
     };
     updateGameAPI(game.id, gameNames);
     gotoGamesList();
-  };
-
-  const gotoGamesList = () => {
-    navigate(`/games-list`);
   };
 
   return (

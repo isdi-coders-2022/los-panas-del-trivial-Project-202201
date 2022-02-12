@@ -29,7 +29,7 @@ const InputField = styled.input`
   font-family: inherit;
 `;
 
-const DifficultyContainer = styled.div`
+const DifficultyDisabledContainer = styled.div`
   h2 {
     color: gray;
   }
@@ -105,14 +105,19 @@ const FormComponent = ({
         />
       </label>
       {editing ? (
-        <DifficultyContainer>
+        <DifficultyDisabledContainer>
           <InputTitle>Difficulty</InputTitle>
-          <SelectInput name="difficulty" id="difficulty" value={difficulty}>
+          <SelectInput
+            name="difficulty"
+            id="difficulty"
+            defaultValue={difficulty}
+            readOnly
+          >
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </SelectInput>
-        </DifficultyContainer>
+        </DifficultyDisabledContainer>
       ) : (
         <div>
           <InputTitle>Difficulty</InputTitle>
