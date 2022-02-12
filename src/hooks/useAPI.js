@@ -20,27 +20,19 @@ const useAPI = () => {
     async (difficulty) => {
       let allQuestions = [];
 
-      const categorySports = 21;
-      const categoryAnimals = 27;
-      const categoryVideoGames = 15;
-      const categoryComputers = 18;
-      const categoryGeography = 22;
+      let categories = [21, 27, 15, 18, 22];
 
-      const allUrlToFetch = [
-        getTrivialUrl(`${categorySports}`, difficulty),
-        getTrivialUrl(`${categoryAnimals}`, difficulty),
-        getTrivialUrl(`${categoryVideoGames}`, difficulty),
-        getTrivialUrl(`${categoryComputers}`, difficulty),
-        getTrivialUrl(`${categoryGeography}`, difficulty),
-      ];
+      const allUrlToFetch = categories.map((category) =>
+        getTrivialUrl(category, difficulty)
+      );
 
-      async function getAllQuestionsFetch(url) {
+      const getCategoryQuestionsFetch = async (url) => {
         const categoryResponse = await fetch(url);
         return await categoryResponse.json();
-      }
+      };
 
-      const trivialPromises = allUrlToFetch.map(
-        async (urlToFetch) => await getAllQuestionsFetch(urlToFetch)
+      const trivialPromises = allUrlToFetch.map((urlToFetch) =>
+        getCategoryQuestionsFetch(urlToFetch)
       );
 
       const responses = await Promise.all(trivialPromises);
