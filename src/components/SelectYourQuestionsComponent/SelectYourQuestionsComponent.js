@@ -117,11 +117,11 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
 
   const questionsPerPage = 20;
   const pages = [];
+  const numPages = Math.ceil(arrayToRender.length / questionsPerPage);
 
   if (arrayToRender.length > questionsPerPage) {
     let currentOffset = 0;
 
-    const numPages = Math.ceil(arrayToRender.length / questionsPerPage);
     for (let i = 0; i < numPages; i++) {
       const pageQuestions = arrayToRender.slice(
         currentOffset,
@@ -133,6 +133,14 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
   } else {
     pages.push(arrayToRender);
   }
+
+  const changePage = (mode) => {
+    if (mode) {
+      setCurrentPage(currentPage + 1);
+    } else {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   const gotoMainPage = () => {
     allQuestionsDispatch(emptyQuestionsAction());
