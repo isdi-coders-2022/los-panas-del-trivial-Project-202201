@@ -147,6 +147,16 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
     navigate(`/home`);
   };
 
+  const changeType = (type) => {
+    setType(type);
+    setCurrentPage(0);
+  };
+
+  const changeCategory = (category) => {
+    setCategory(category);
+    setCurrentPage(0);
+  };
+
   return (
     <PageContainer>
       <HeaderContainer>
@@ -161,7 +171,14 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
           />
         </TitleContainer>
       </HeaderContainer>
-      <FilterComponent data={{ type, setType, category, setCategory }} />
+      <FilterComponent
+        data={{
+          type,
+          setType: changeType,
+          category,
+          setCategory: changeCategory,
+        }}
+      />
       <MainContainer>
         {pages[currentPage].map((question, index) => (
           <QuestionComponent
@@ -188,7 +205,7 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
             showSide={true}
           />
           <ArrowPagesComponent
-            disabled={currentPage === numPages}
+            disabled={currentPage === numPages - 1}
             actionOnClick={() => {
               changePage(true);
             }}
