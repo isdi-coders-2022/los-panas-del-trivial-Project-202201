@@ -106,4 +106,27 @@ describe("Given a QuestionComponent", () => {
       expect(foundElement).toHaveStyle(expectedColor);
     });
   });
+
+  describe("When it's clicked", () => {
+    test("Then it should call the actionOnClick", () => {
+      const actionOnClick = jest.fn();
+      const questionText = "hello";
+      render(
+        <QuestionComponent
+          question={{
+            question: questionText,
+            type: "",
+            selected: false,
+            category: "",
+          }}
+          actionOnClick={actionOnClick}
+        />
+      );
+
+      const foundQuestion = screen.queryByText(questionText);
+      userEvent.click(foundQuestion);
+
+      expect(actionOnClick).toHaveBeenCalled();
+    });
+  });
 });
