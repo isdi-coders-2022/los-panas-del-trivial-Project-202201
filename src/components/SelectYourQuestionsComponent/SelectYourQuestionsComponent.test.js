@@ -4,6 +4,13 @@ import { BrowserRouter } from "react-router-dom";
 import TrivialContext from "../../store/contexts/TrivialContext";
 import SelectYourQuestionsComponent from "./SelectYourQuestionsComponent";
 
+const mockNavigate = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
+
 describe("Given a SelectYourQuestionsComponent", () => {
   describe("When it's instantiated", () => {
     test("Then it should render a heading with the text 'Select Your Questions'", () => {
@@ -72,8 +79,8 @@ describe("Given a SelectYourQuestionsComponent", () => {
       expect(foundHeading).toBeInTheDocument();
     });
   });
-  describe("When it's instantiated with and array", () => {
-    test("Then it should render the text in the card", () => {
+  describe("When it's instantiated passing questions in the currentAllQuestions array", () => {
+    test("Then it should render the questions", () => {
       const questions = [
         {
           id: 1,
@@ -98,7 +105,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
           question: "What is the scientific name for modern day humans?",
         },
       ];
-      const expectedOutput =
+      const expectedTextToFind =
         "What is the scientific name for modern day humans?";
       const providerValue = {
         currentAllQuestions: questions,
@@ -114,114 +121,24 @@ describe("Given a SelectYourQuestionsComponent", () => {
           </TrivialContext.Provider>
         </BrowserRouter>
       );
-      const findText = screen.queryByText(expectedOutput);
+      const foundElement = screen.queryByText(expectedTextToFind);
 
-      expect(findText).toBeInTheDocument();
-    });
-  });
-
-  describe("When the selected is false and it's clicked", () => {
-    test("Then it should call the action", () => {
-      const questions = [
-        {
-          id: 1,
-          category: "Animals",
-          type: "boolean",
-          difficulty: "easy",
-          question: "question 1",
-          selected: false,
-        },
-        {
-          id: 2,
-          category: "Animals",
-          type: "boolean",
-          difficulty: "easy",
-          question: "question 2",
-          selected: false,
-        },
-      ];
-
-      const action = jest.fn();
-
-      const providerValue = {
-        currentAllQuestions: questions,
-        currentQuestions: [],
-        allQuestionsDispatch: action,
-        questionDispatch: action,
-      };
-
-      render(
-        <BrowserRouter>
-          <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent onSave={() => {}} />
-          </TrivialContext.Provider>
-        </BrowserRouter>
-      );
-
-      const findQuestion = screen.getAllByRole("listitem");
-
-      userEvent.click(findQuestion[1]);
-
-      expect(action).toBeCalled();
-    });
-  });
-
-  describe("When the selected is true and it's clicked", () => {
-    test("Then it should call the action", () => {
-      const questions = [
-        {
-          id: 1,
-          category: "Animals",
-          type: "boolean",
-          difficulty: "easy",
-          question: "question 1",
-          selected: true,
-        },
-        {
-          id: 2,
-          category: "Animals",
-          type: "boolean",
-          difficulty: "easy",
-          question: "question 2",
-          selected: true,
-        },
-      ];
-
-      const action = jest.fn();
-
-      const providerValue = {
-        currentAllQuestions: questions,
-        currentQuestions: [],
-        allQuestionsDispatch: action,
-        questionDispatch: action,
-      };
-
-      render(
-        <BrowserRouter>
-          <TrivialContext.Provider value={providerValue}>
-            <SelectYourQuestionsComponent onSave={() => {}} />
-          </TrivialContext.Provider>
-        </BrowserRouter>
-      );
-
-      const findQuestion = screen.getAllByRole("listitem");
-
-      userEvent.click(findQuestion[1]);
-
-      expect(action).toBeCalled();
+      expect(foundElement).toBeInTheDocument();
     });
   });
 
   describe("When the BackArrow is clicked", () => {
-    test("Then it should call the action", () => {
-      const action = jest.fn();
-
+    test("Then it should call navigate with '/home' and call the dispatchers", () => {
+      const allQuestionsDispatch = jest.fn();
+      const questionDispatch = jest.fn();
+      const expectedPath = "/home";
       const providerValue = {
         currentAllQuestions: [],
         currentQuestions: [],
-        allQuestionsDispatch: action,
-        questionDispatch: action,
+        allQuestionsDispatch,
+        questionDispatch,
       };
+
       render(
         <BrowserRouter>
           <TrivialContext.Provider value={providerValue}>
@@ -231,10 +148,616 @@ describe("Given a SelectYourQuestionsComponent", () => {
       );
 
       const findArrow = screen.queryByTestId("arrow");
-
       userEvent.click(findArrow);
 
-      expect(action).toHaveBeenCalled();
+      expect(allQuestionsDispatch).toHaveBeenCalledTimes(1);
+      expect(questionDispatch).toHaveBeenCalledTimes(1);
+      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+    });
+  });
+
+  describe("When a question is not selected and clicked", () => {
+    test("Then it should call the allQuestions and questions dispatchers", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 2",
+          selected: false,
+        },
+      ];
+
+      const allQuestionsDispatch = jest.fn();
+      const questionDispatch = jest.fn();
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch,
+        questionDispatch,
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const findQuestion = screen.getAllByRole("listitem");
+
+      userEvent.click(findQuestion[1]);
+
+      expect(allQuestionsDispatch).toHaveBeenCalledTimes(1);
+      expect(questionDispatch).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("When a question is selected and clicked", () => {
+    test("Then it should call the allQuestions and questions dispatchers", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+      ];
+
+      const allQuestionsDispatch = jest.fn();
+      const questionDispatch = jest.fn();
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch,
+        questionDispatch,
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const findQuestion = screen.getAllByRole("listitem");
+
+      userEvent.click(findQuestion[1]);
+
+      expect(allQuestionsDispatch).toHaveBeenCalledTimes(1);
+      expect(questionDispatch).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("When a category filter is applied", () => {
+    test("Then it should not render the not matching questions", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Sports",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+      ];
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch: () => {},
+        questionDispatch: () => {},
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const filters = screen.getAllByRole("combobox");
+      const sportsCategory = screen.getByRole("option", {
+        name: "Sports",
+      });
+
+      userEvent.selectOptions(filters[0], sportsCategory);
+
+      const sportsQuestions = screen.queryByText("question 2");
+      const animalsQuestions = screen.queryByText("question 1");
+
+      expect(sportsQuestions).toBeInTheDocument();
+      expect(animalsQuestions).not.toBeInTheDocument();
+    });
+  });
+
+  describe("When a type filter is applied", () => {
+    test("Then it should not render the not matching questions", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+      ];
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch: () => {},
+        questionDispatch: () => {},
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const filters = screen.getAllByRole("combobox");
+      const multipleChoiceType = screen.getByRole("option", {
+        name: "Multiple Choice",
+      });
+
+      userEvent.selectOptions(filters[1], multipleChoiceType);
+
+      const sportsQuestions = screen.queryByText("question 2");
+      const animalsQuestions = screen.queryByText("question 1");
+
+      expect(sportsQuestions).toBeInTheDocument();
+      expect(animalsQuestions).not.toBeInTheDocument();
+    });
+  });
+
+  describe("When the allQuestions array is longer than 20 questions", () => {
+    test("Then it should not render the page controlls", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 3,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 4,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 5,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 6,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 7,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 8,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 9,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 10,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 11,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 12,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 13,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 14,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 15,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 16,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 17,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 18,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 19,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 20,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 21,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+      ];
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch: () => {},
+        questionDispatch: () => {},
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const arrowContainer = screen.getByTestId("arrowsContainer");
+
+      expect(arrowContainer).toBeInTheDocument();
+    });
+  });
+
+  describe("When the allQuestions array is longer than 20 questions and the right arrow is pressed and then the left arrow is pressed", () => {
+    test("Then it should only render questions from index 0 to 20, then from index 20 to 40 and then again from index 0 to 20", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 3,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 4,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 5,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 6,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 7,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 8,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 9,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 10,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 11,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 12,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 13,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 14,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 15,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 16,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 17,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 18,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 19,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 20,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "page1 question",
+          selected: true,
+        },
+        {
+          id: 21,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "page2 question",
+          selected: true,
+        },
+      ];
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch: () => {},
+        questionDispatch: () => {},
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      let page1Question = screen.queryByText("page1 question");
+      let page2Question = screen.queryByText("page2 question");
+      const pageArrows = screen.getAllByTestId("pageArrow");
+
+      expect(page1Question).toBeInTheDocument();
+      expect(page2Question).not.toBeInTheDocument();
+
+      userEvent.click(pageArrows[1]);
+
+      page1Question = screen.queryByText("page1 question");
+      page2Question = screen.queryByText("page2 question");
+
+      expect(page1Question).not.toBeInTheDocument();
+      expect(page2Question).toBeInTheDocument();
+
+      userEvent.click(pageArrows[0]);
+
+      page1Question = screen.queryByText("page1 question");
+      page2Question = screen.queryByText("page2 question");
+
+      expect(page1Question).toBeInTheDocument();
+      expect(page2Question).not.toBeInTheDocument();
     });
   });
 });

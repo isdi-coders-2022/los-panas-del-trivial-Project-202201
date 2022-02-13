@@ -77,4 +77,64 @@ describe("Given GameComponent", () => {
       expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
     });
   });
+
+  describe("When it's clicked on", () => {
+    test("Then it should call the navigate function with the path '/game/3'", () => {
+      const game = {
+        id: 3,
+        name: "test's game",
+        creator: "Dan Abramov",
+        difficulty: "Easy",
+        questions: [],
+      };
+      const expectedPath = "/game/3";
+
+      const contextValueToGive = {
+        deleteGame: () => {},
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={contextValueToGive}>
+            <GameComponent game={game} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const gameCard = screen.queryByRole("article");
+      userEvent.click(gameCard);
+
+      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+    });
+  });
+
+  describe("When the delete icon is clicked", () => {
+    test("Then it should call the navigate function with the path '/games-list' and call the deleteGameAPI function", () => {
+      const game = {
+        id: 3,
+        name: "test's game",
+        creator: "Dan Abramov",
+        difficulty: "Easy",
+        questions: [],
+      };
+      const expectedPath = "/games-list";
+
+      const contextValueToGive = {
+        deleteGame: () => {},
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={contextValueToGive}>
+            <GameComponent game={game} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const deleteIcon = screen.queryByTestId("deleteIcon");
+      userEvent.click(deleteIcon);
+
+      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+    });
+  });
 });

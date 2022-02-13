@@ -1,19 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { secondary } from "../../globalStyles";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { secondary, backgroundLight } from "../../globalStyles";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const ArrowPages = styled.button`
+  background-color: ${backgroundLight};
+  border: none;
+`;
 
 const ArrowPagesComponent = ({ actionOnClick, disabled, showSide }) => {
   return (
-    <button onClick={actionOnClick} disabled={disabled}>
+    <ArrowPages onClick={actionOnClick} disabled={disabled}>
       <FontAwesomeIcon
-        data-testid="arrow"
+        data-testid="pageArrow"
         icon={showSide ? faAngleLeft : faAngleRight}
-        size="2x"
-        color={secondary}
+        size="3x"
+        color={disabled ? "dimgray" : secondary}
       />
-    </button>
+    </ArrowPages>
   );
 };
 
