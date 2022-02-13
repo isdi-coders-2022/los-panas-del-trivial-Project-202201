@@ -5,3 +5,6 @@ export const backgroundLight = "#333533"; //Jet
 export const backgroundDark = "#242423"; //Eerie Black
 
 export const textPrimary = "#B2A1D1"; // Blue Bell
+
+export const breakpointS = "895px"; // Small screens
+export const breakpointM = "1025px"; // Small screens
