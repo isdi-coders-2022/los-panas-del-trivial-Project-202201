@@ -148,7 +148,7 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
     navigate(`/home`);
   };
 
-  const changeType = (type) => {
+  const changeType = () => {
     setType(type);
     setCurrentPage(0);
   };
