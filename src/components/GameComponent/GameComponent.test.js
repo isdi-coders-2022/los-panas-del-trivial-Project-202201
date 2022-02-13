@@ -77,4 +77,34 @@ describe("Given GameComponent", () => {
       expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
     });
   });
+
+  describe("When it's clicked on", () => {
+    test("Then it should call the navigate function with the path '/game/3'", () => {
+      const game = {
+        id: 3,
+        name: "test's game",
+        creator: "Dan Abramov",
+        difficulty: "Easy",
+        questions: [],
+      };
+      const expectedPath = "/game/3";
+
+      const contextValueToGive = {
+        deleteGame: () => {},
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={contextValueToGive}>
+            <GameComponent game={game} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const gameCard = screen.queryByRole("article");
+      userEvent.click(gameCard);
+
+      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+    });
+  });
 });
