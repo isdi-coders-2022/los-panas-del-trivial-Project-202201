@@ -36,4 +36,32 @@ describe("Given a GameDetailsPage component", () => {
       expect(creatorElement).toBeInTheDocument();
     });
   });
+
+  describe("When it gets an invalid id with params", () => {
+    test("Then it should render a the page not found component", () => {
+      const expectedText = "404";
+
+      const currentGames = [
+        {
+          id: 2,
+          name: "test's game",
+          creator: "Dan Abramov",
+          difficulty: "Easy",
+          questions: [],
+        },
+      ];
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ currentGames }}>
+            <GameDetailsPage />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const notFoundElement = screen.getByText(expectedText);
+
+      expect(notFoundElement).toBeInTheDocument();
+    });
+  });
 });
