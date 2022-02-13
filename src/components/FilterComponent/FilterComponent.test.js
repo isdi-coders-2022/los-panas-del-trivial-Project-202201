@@ -66,5 +66,3 @@ describe("Given a FilterComponent", () => {
     });
   });
 });
-
-// fireEvent.change(getByTestId("select"), { target: { value: 2 } });
