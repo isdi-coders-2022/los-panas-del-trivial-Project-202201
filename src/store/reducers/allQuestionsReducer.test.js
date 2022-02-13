@@ -45,6 +45,7 @@ describe("Given a allQuestionsReducer reducer", () => {
       expect(newAllQuestions).toEqual(expectedQuestions);
     });
   });
+
   describe("When it receives an array with two unselected questions and an action to selected the first one", () => {
     test("Then it should return an array with one selected question and one unselected question", () => {
       const currentQuestions = [
@@ -104,6 +105,20 @@ describe("Given a allQuestionsReducer reducer", () => {
       const newQuestions = allQuestionsReducer(questions, action);
 
       expect(newQuestions).toEqual(expectedQuestions);
+    });
+  });
+
+  describe("When it's passed an array with 2 questions and an invalid action", () => {
+    test("Then it should return an the same inputed array", () => {
+      const questions = [{ id: 3456456456 }, { id: 2 }];
+
+      const action = {
+        type: "asdfdfhgfdhgfh",
+      };
+
+      const newQuestions = allQuestionsReducer(questions, action);
+
+      expect(newQuestions).toEqual(questions);
     });
   });
 });

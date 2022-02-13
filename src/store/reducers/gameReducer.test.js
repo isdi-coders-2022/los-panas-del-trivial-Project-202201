@@ -103,8 +103,8 @@ describe("Given a gameReducer function", () => {
     });
   });
 
-  describe("When it receives a 'modify-game-names' action, to add a new game with id 4", () => {
-    test("Then it should return an array of games including the new game with id 4", () => {
+  describe("When it receives a 'modify-game-names' action, to modify the game with id 4", () => {
+    test("Then it should return an array of games with the game with id 4 changed", () => {
       const currentGames = [
         {
           id: 3,
@@ -113,23 +113,38 @@ describe("Given a gameReducer function", () => {
           difficulty: "Easy",
           questions: [],
         },
+        {
+          id: 4,
+          name: "a",
+          creator: "a",
+          difficulty: "Easy",
+          questions: [],
+        },
       ];
+
+      const gameNames = {
+        name: "newGameName",
+        creator: "newCreator",
+      };
 
       const action = {
         type: actionTypes.modifyGameNames,
-        id: 3,
-      };
-
-      action.gameNames = {
-        name: "Ringo",
-        creator: "Star",
+        id: 4,
+        gameNames,
       };
 
       const expectedNewGames = [
         {
           id: 3,
-          name: "Ringo",
-          creator: "Star",
+          name: "Janis",
+          creator: "Joplin",
+          difficulty: "Easy",
+          questions: [],
+        },
+        {
+          id: 4,
+          name: "newGameName",
+          creator: "newCreator",
           difficulty: "Easy",
           questions: [],
         },
@@ -138,6 +153,35 @@ describe("Given a gameReducer function", () => {
       const newGameArray = gameReducer(currentGames, action);
 
       expect(newGameArray).toEqual(expectedNewGames);
+    });
+  });
+
+  describe("When it's passed an array with 2 games and an invalid action", () => {
+    test("Then it should return an the same inputed array", () => {
+      const currentGames = [
+        {
+          id: 3,
+          name: "Janis",
+          creator: "Joplin",
+          difficulty: "Easy",
+          questions: [],
+        },
+        {
+          id: 54675756,
+          name: "Janis",
+          creator: "Joplin",
+          difficulty: "Easy",
+          questions: [],
+        },
+      ];
+
+      const action = {
+        type: "asdfdfhgfdhgfh",
+      };
+
+      const newGames = gameReducer(currentGames, action);
+
+      expect(newGames).toEqual(currentGames);
     });
   });
 });
