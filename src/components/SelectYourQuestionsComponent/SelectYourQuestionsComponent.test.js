@@ -500,8 +500,8 @@ describe("Given a SelectYourQuestionsComponent", () => {
     });
   });
 
-  describe("When the allQuestions array is longer than 20 questions and the right arrow is pressed", () => {
-    test("Then it should only render questions from index 20 to 40", () => {
+  describe("When the allQuestions array is longer than 20 questions and the right arrow is pressed and then the left arrow is pressed", () => {
+    test("Then it should only render questions from index 0 to 20, then from index 20 to 40 and then again from index 0 to 20", () => {
       const questions = [
         {
           id: 1,
@@ -688,20 +688,28 @@ describe("Given a SelectYourQuestionsComponent", () => {
         </BrowserRouter>
       );
 
-      const page1QuestionInPage1 = screen.queryByText("page1 question");
-      const page2QuestionInPage1 = screen.queryByText("page2 question");
+      let page1Question = screen.queryByText("page1 question");
+      let page2Question = screen.queryByText("page2 question");
       const pageArrows = screen.getAllByTestId("pageArrow");
 
-      expect(page1QuestionInPage1).toBeInTheDocument();
-      expect(page2QuestionInPage1).not.toBeInTheDocument();
+      expect(page1Question).toBeInTheDocument();
+      expect(page2Question).not.toBeInTheDocument();
 
       userEvent.click(pageArrows[1]);
 
-      const page1QuestionInPage2 = screen.queryByText("page1 question");
-      const page2QuestionInPage2 = screen.queryByText("page2 question");
+      page1Question = screen.queryByText("page1 question");
+      page2Question = screen.queryByText("page2 question");
 
-      expect(page1QuestionInPage2).not.toBeInTheDocument();
-      expect(page2QuestionInPage2).toBeInTheDocument();
+      expect(page1Question).not.toBeInTheDocument();
+      expect(page2Question).toBeInTheDocument();
+
+      userEvent.click(pageArrows[0]);
+
+      page1Question = screen.queryByText("page1 question");
+      page2Question = screen.queryByText("page2 question");
+
+      expect(page1Question).toBeInTheDocument();
+      expect(page2Question).not.toBeInTheDocument();
     });
   });
 });
