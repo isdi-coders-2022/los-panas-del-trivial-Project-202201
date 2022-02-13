@@ -51,4 +51,18 @@ describe("Given questionsReducer", () => {
       expect(newQuestions).toEqual(expectedQuestions);
     });
   });
+
+  describe("When it's passed an array with 2 questions and an invalid action", () => {
+    test("Then it should return an the same inputed array", () => {
+      const questions = [{ id: 3456456456 }, { id: 2 }];
+
+      const action = {
+        type: "asdfdfhgfdhgfh",
+      };
+
+      const newQuestions = questionsReducer(questions, action);
+
+      expect(newQuestions).toEqual(questions);
+    });
+  });
 });
