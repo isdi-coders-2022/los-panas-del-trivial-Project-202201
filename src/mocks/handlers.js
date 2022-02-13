@@ -38,7 +38,10 @@ export const handlers = [
     );
   }),
 
-  rest.delete(`${process.env.REACT_APP_API_HEROKU_URL}`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({}));
-  }),
+  rest.delete(
+    `${process.env.REACT_APP_API_HEROKU_URL}${1}`,
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({}));
+    }
+  ),
 ];

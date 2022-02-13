@@ -36,4 +36,8 @@ describe("Given GameListPage", () => {
       expect(prueba).toBeInTheDocument();
     });
   });
+
+  describe("When the delete button is clicked", () => {
+    test("Then it should delete the item", () => {});
+  });
 });
