@@ -107,4 +107,34 @@ describe("Given GameComponent", () => {
       expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
     });
   });
+
+  describe("When the delete icon is clicked", () => {
+    test("Then it should call the navigate function with the path '/games-list' and call the deleteGameAPI function", () => {
+      const game = {
+        id: 3,
+        name: "test's game",
+        creator: "Dan Abramov",
+        difficulty: "Easy",
+        questions: [],
+      };
+      const expectedPath = "/games-list";
+
+      const contextValueToGive = {
+        deleteGame: () => {},
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={contextValueToGive}>
+            <GameComponent game={game} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const deleteIcon = screen.queryByTestId("deleteIcon");
+      userEvent.click(deleteIcon);
+
+      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+    });
+  });
 });
