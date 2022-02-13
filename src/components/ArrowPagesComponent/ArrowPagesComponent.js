@@ -14,7 +14,7 @@ const ArrowPagesComponent = ({ actionOnClick, disabled, showSide }) => {
   return (
     <ArrowPages onClick={actionOnClick} disabled={disabled}>
       <FontAwesomeIcon
-        data-testid="arrow"
+        data-testid="pageArrow"
         icon={showSide ? faAngleLeft : faAngleRight}
         size="3x"
         color={disabled ? "dimgray" : secondary}
