@@ -97,6 +97,7 @@ const FormComponent = ({
           name="gameName"
           id="gameName"
           value={name}
+          autocomplete="off"
           onChange={(event) => {
             setName(event.target.value);
           }}
