@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import TrivialContext from "../store/contexts/TrivialContext";
 import CreateGamePage from "./CreateGamePage";
@@ -84,9 +84,11 @@ describe("Given a CreateGamePage component", () => {
   });
 
   describe("When the user creates a game", () => {
-    test("Then it should call the addGameAPI function, the allQuestions and questions dispatchers and the navigate with path '/home'", () => {
+    test("Then it should call the addGameAPI function, the allQuestions and questions dispatchers and the navigate with path '/home'", async () => {
       const allQuestionsDispatch = jest.fn();
       const questionDispatch = jest.fn();
+      const gamesDispatch = jest.fn();
+
       const expectedPath = "/home";
       const questions = [
         {
@@ -122,6 +124,7 @@ describe("Given a CreateGamePage component", () => {
         questionDispatch,
         currentAllQuestions: questions,
         currentQuestions: selectedQuestions,
+        gamesDispatch,
       };
 
       render(
@@ -140,6 +143,9 @@ describe("Given a CreateGamePage component", () => {
       expect(allQuestionsDispatch).toHaveBeenCalledTimes(1);
       expect(questionDispatch).toHaveBeenCalledTimes(1);
       expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+
+      await waitFor(async () => expect(gamesDispatch).toHaveBeenCalled());
+      expect(gamesDispatch).toHaveBeenCalled();
     });
   });
 });
