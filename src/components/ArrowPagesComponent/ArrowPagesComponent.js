@@ -17,7 +17,7 @@ const ArrowPagesComponent = ({ actionOnClick, disabled, showSide }) => {
         data-testid="arrow"
         icon={showSide ? faAngleLeft : faAngleRight}
         size="3x"
-        color={secondary}
+        color={disabled ? "dimgray" : secondary}
       />
     </ArrowPages>
   );
