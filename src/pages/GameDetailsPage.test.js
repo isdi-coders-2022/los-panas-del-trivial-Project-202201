@@ -1,11 +1,15 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import TrivialContext from "../store/contexts/TrivialContext";
 import GameDetailsPage from "./GameDetailsPage";
 
+const mockNavigate = jest.fn();
+
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({ id: "3" }),
+  useNavigate: () => mockNavigate,
 }));
 
 describe("Given a GameDetailsPage component", () => {
@@ -62,6 +66,35 @@ describe("Given a GameDetailsPage component", () => {
       const notFoundElement = screen.getByText(expectedText);
 
       expect(notFoundElement).toBeInTheDocument();
+    });
+  });
+
+  describe("When the backarrow component is clicked", () => {
+    test("Then it should call navigate with the path '/games-list'", () => {
+      const expectedPath = "/games-list";
+
+      const currentGames = [
+        {
+          id: 3,
+          name: "test's game",
+          creator: "Dan Abramov",
+          difficulty: "Easy",
+          questions: [],
+        },
+      ];
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ currentGames }}>
+            <GameDetailsPage />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const backArrow = screen.getByTestId("arrow");
+      userEvent.click(backArrow);
+
+      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
     });
   });
 });
