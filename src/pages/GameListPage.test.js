@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import TrivialContextProvider from "../store/contexts/TrivialContextProvider";
 import GameListPage from "./GameListPage";
@@ -38,6 +39,25 @@ describe("Given GameListPage", () => {
   });
 
   describe("When the delete button is clicked", () => {
-    test("Then it should delete the item", () => {});
+    test.only("Then it should delete the item", async () => {
+      const firstGameName = /pruebamsw/i;
+      const secondGameName = /secondGame/i;
+      render(
+        <BrowserRouter>
+          <TrivialContextProvider>
+            <GameListPage />
+          </TrivialContextProvider>
+        </BrowserRouter>
+      );
+
+      let foundFirstGame = await screen.findByText(firstGameName);
+      let foundSecondGAme = await screen.findByText(secondGameName);
+
+      expect(foundFirstGame).toBeInTheDocument();
+      expect(foundSecondGAme).toBeInTheDocument();
+
+      const deleteButton = screen.getAllByTestId("deleteIcon");
+      userEvent.click(deleteButton[0]);
+    });
   });
 });

@@ -10,14 +10,14 @@ export const handlers = [
           creator: "sdfg",
           difficulty: "easy",
           questions: [],
-          id: 4,
+          id: 1,
         },
         {
-          name: "jhg",
+          name: "secondGame",
           creator: "ghj",
           difficulty: "easy",
           questions: [],
-          id: 7,
+          id: 2,
         },
       ])
     );
@@ -28,11 +28,11 @@ export const handlers = [
       ctx.status(201),
       ctx.json([
         {
-          name: "pruebamsw",
+          name: "postPrueba",
           creator: "sdfg",
           difficulty: "easy",
           questions: [],
-          id: 1,
+          id: 3,
         },
       ])
     );
@@ -41,7 +41,7 @@ export const handlers = [
   rest.delete(
     `${process.env.REACT_APP_API_HEROKU_URL}${1}`,
     (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json({}));
+      return res(ctx.status(200));
     }
   ),
 ];
