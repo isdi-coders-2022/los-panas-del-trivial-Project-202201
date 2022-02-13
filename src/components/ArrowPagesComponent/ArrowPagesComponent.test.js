@@ -1,4 +1,5 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import ArrowPagesComponent from "./ArrowPagesComponent";
 
 describe("Given a ArrowPagesComponent", () => {
@@ -6,7 +7,18 @@ describe("Given a ArrowPagesComponent", () => {
     test("Then it should call the action", () => {
       const action = jest.fn();
 
-      render(<ArrowPagesComponent actionOnClick={action} />);
+      render(
+        <ArrowPagesComponent
+          actionOnClick={action}
+          showSide={true}
+          disabled={false}
+        />
+      );
+
+      const foundButton = screen.getByRole("button");
+      userEvent.click(foundButton);
+
+      expect(action).toHaveBeenCalled();
     });
   });
 });
