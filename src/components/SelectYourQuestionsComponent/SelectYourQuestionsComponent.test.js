@@ -156,7 +156,55 @@ describe("Given a SelectYourQuestionsComponent", () => {
     });
   });
 
-  describe("When a question is clicked", () => {
+  describe("When a question is not selected and clicked", () => {
+    test("Then it should call the allQuestions and questions dispatchers", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 2",
+          selected: false,
+        },
+      ];
+
+      const allQuestionsDispatch = jest.fn();
+      const questionDispatch = jest.fn();
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch,
+        questionDispatch,
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const findQuestion = screen.getAllByRole("listitem");
+
+      userEvent.click(findQuestion[1]);
+
+      expect(allQuestionsDispatch).toHaveBeenCalledTimes(1);
+      expect(questionDispatch).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("When a question is selected and clicked", () => {
     test("Then it should call the allQuestions and questions dispatchers", () => {
       const questions = [
         {
