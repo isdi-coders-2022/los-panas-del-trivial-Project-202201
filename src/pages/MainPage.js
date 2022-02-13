@@ -7,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 const PageContainer = styled.div`
   background-color: ${secondary};
   height: 100vh;
+  @media (min-width: 600px) {
+    display: flex;
+    flex-direction: row;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -31,6 +35,13 @@ const ContainerInferior = styled.div`
   position: absolute;
   bottom: 0px;
   height: 70%;
+  @media (min-width: 600px) {
+    border-radius: 50px 0 0 50px;
+    position: absolute;
+    height: 100%;
+    width: 65%;
+    right: 0;
+  }
 `;
 
 const ButtonsContainer = styled.div`
