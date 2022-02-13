@@ -1,15 +1,16 @@
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
-import { backgroundLight, secondary } from "../globalStyles";
+import { backgroundLight, breakpointS, secondary } from "../globalStyles";
 import { useNavigate } from "react-router-dom";
 
 const PageContainer = styled.div`
   background-color: ${secondary};
   height: 100vh;
-  @media (min-width: 600px) {
+  @media (min-width: ${breakpointS}) {
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
 `;
 
@@ -35,11 +36,11 @@ const ContainerGameDark = styled.div`
   position: absolute;
   bottom: 0px;
   height: 70%;
-  @media (min-width: 600px) {
+  @media (min-width: ${breakpointS}) {
     border-radius: 50px 0 0 50px;
     position: absolute;
     height: 100%;
-    width: 65%;
+    width: 70%;
     right: 0;
   }
 `;
