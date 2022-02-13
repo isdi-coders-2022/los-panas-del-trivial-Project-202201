@@ -4,6 +4,13 @@ import { BrowserRouter } from "react-router-dom";
 import TrivialContextProvider from "../store/contexts/TrivialContextProvider";
 import GameListPage from "./GameListPage";
 
+const mockNavigate = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
+
 describe("Given GameListPage", () => {
   describe("When it is invoked", () => {
     test("Then it should render the backArrowComponent, the TitleComponent and a ul", () => {
@@ -67,6 +74,21 @@ describe("Given GameListPage", () => {
   });
 
   describe("When the backArrow is clicked", () => {
-    test("Then it should go to MainPage", () => {});
+    test("Then it should go to MainPage", async () => {
+      render(
+        <BrowserRouter>
+          <TrivialContextProvider>
+            <GameListPage />
+          </TrivialContextProvider>
+        </BrowserRouter>
+      );
+
+      const expectedPath = "/home";
+
+      const backButton = screen.getByTestId("arrow");
+      userEvent.click(backButton);
+
+      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+    });
   });
 });
