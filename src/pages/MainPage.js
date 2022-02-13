@@ -28,7 +28,7 @@ const TextMedium = styled.h2`
   padding-bottom: 50px;
 `;
 
-const ContainerInferior = styled.div`
+const ContainerGameDark = styled.div`
   background-color: ${backgroundLight};
   border-radius: 50px 50px 0 0;
   width: 100%;
@@ -73,7 +73,7 @@ const MainPage = () => {
             textColor={"#242423"}
           ></TitleComponent>
         </TitleContainer>
-        <ContainerInferior>
+        <ContainerGameDark>
           <TextMedium>Let's Play!</TextMedium>
           <ButtonsContainer>
             <ButtonComponent
@@ -85,7 +85,7 @@ const MainPage = () => {
               actionOnClick={gotoCreateGame}
             ></ButtonComponent>
           </ButtonsContainer>
-        </ContainerInferior>
+        </ContainerGameDark>
       </PageContainer>
     </>
   );
