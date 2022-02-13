@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import TrivialContext from "../store/contexts/TrivialContext";
@@ -65,8 +65,9 @@ describe("Given a EditGamePage component", () => {
   });
 
   describe("When it's instantiated and the button is clicked", () => {
-    test("Then it should navigate to the path '/games-list'", () => {
+    test("Then it should navigate to the path '/games-list' and called the updataGameAPI", async () => {
       const expectedPath = "/games-list";
+      const gamesDispatch = jest.fn();
       const currentGames = [
         {
           id: 3,
@@ -79,7 +80,7 @@ describe("Given a EditGamePage component", () => {
 
       render(
         <BrowserRouter>
-          <TrivialContext.Provider value={{ currentGames }}>
+          <TrivialContext.Provider value={{ currentGames, gamesDispatch }}>
             <EditGamePage />
           </TrivialContext.Provider>
         </BrowserRouter>
@@ -89,6 +90,10 @@ describe("Given a EditGamePage component", () => {
       userEvent.click(editButton);
 
       expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+
+      await waitFor(async () => expect(gamesDispatch).toHaveBeenCalled());
+
+      expect(gamesDispatch).toHaveBeenCalled();
     });
   });
 });
