@@ -2,7 +2,6 @@ import BackArrowComponent from "../components/BackArrowComponent/BackArrowCompon
 import TitleComponent from "../components/TitleComponent/TitleComponent";
 import styled from "styled-components";
 import {
-  backgroundDark,
   backgroundLight,
   breakpointM,
   breakpointS,
