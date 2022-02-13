@@ -148,13 +148,13 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
     navigate(`/home`);
   };
 
-  const changeType = () => {
-    setType(type);
+  const changeType = (passedType) => {
+    setType(passedType);
     setCurrentPage(0);
   };
 
-  const changeCategory = () => {
-    setCategory(category);
+  const changeCategory = (passedCategory) => {
+    setCategory(passedCategory);
     setCurrentPage(0);
   };
 
