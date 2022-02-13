@@ -305,4 +305,198 @@ describe("Given a SelectYourQuestionsComponent", () => {
       expect(animalsQuestions).not.toBeInTheDocument();
     });
   });
+
+  describe("When the allQuestions array is longer than 20 questions", () => {
+    test("Then it should not render the page controlls", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 3,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 4,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 5,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 6,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 7,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 8,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 9,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 10,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 11,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 12,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 13,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 14,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 15,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 16,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 17,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 18,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 19,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 20,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+        {
+          id: 21,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+      ];
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch: () => {},
+        questionDispatch: () => {},
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const arrowContainer = screen.getByTestId("arrowsContainer");
+
+      expect(arrowContainer).toBeInTheDocument();
+    });
+  });
 });

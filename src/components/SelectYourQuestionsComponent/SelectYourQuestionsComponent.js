@@ -198,7 +198,7 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
       </MainContainer>
       <FooterContainer>
         {numPages > 1 && (
-          <ArrowsContainer>
+          <ArrowsContainer data-testid="arrowsContainer">
             <ArrowPagesComponent
               disabled={currentPage === 0}
               actionOnClick={() => {
