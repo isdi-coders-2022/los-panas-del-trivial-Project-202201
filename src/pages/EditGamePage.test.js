@@ -65,7 +65,7 @@ describe("Given a EditGamePage component", () => {
   });
 
   describe("When it's instantiated and the button is clicked", () => {
-    test("Then it should render a 'Game List' heading", () => {
+    test("Then it should navigate to the path '/games-list'", () => {
       const expectedPath = "/games-list";
       const currentGames = [
         {
