@@ -153,7 +153,7 @@ const SelectYourQuestionsComponent = ({ onSave }) => {
     setCurrentPage(0);
   };
 
-  const changeCategory = (category) => {
+  const changeCategory = () => {
     setCategory(category);
     setCurrentPage(0);
   };
