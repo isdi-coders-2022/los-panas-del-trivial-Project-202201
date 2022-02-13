@@ -39,7 +39,7 @@ describe("Given GameListPage", () => {
   });
 
   describe("When the delete button is clicked", () => {
-    test.only("Then it should delete the item", async () => {
+    test("Then it should delete the item", async () => {
       const firstGameName = /pruebamsw/i;
       const secondGameName = /secondGame/i;
       render(
@@ -64,5 +64,9 @@ describe("Given GameListPage", () => {
       expect(foundFirstGame).not.toBeInTheDocument();
       expect(foundSecondGAme).toBeInTheDocument();
     });
+  });
+
+  describe("When the backArrow is clicked", () => {
+    test("Then it should go to MainPage", () => {});
   });
 });
