@@ -97,4 +97,48 @@ describe("Given a GameDetailsPage component", () => {
       expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
     });
   });
+
+  describe("When it grabs a game with some questions", () => {
+    test("Then it should render the game's questrions", () => {
+      const expectedText = "hello?";
+      const expectedQuestions = 2;
+
+      const currentGames = [
+        {
+          id: 3,
+          name: "test's game",
+          creator: "Dan Abramov",
+          difficulty: "Easy",
+          questions: [
+            {
+              question: "hello?",
+              difficulty: "Easy",
+              type: "multiple",
+              category: "Sports",
+            },
+            {
+              question: "hello2?",
+              difficulty: "Easy",
+              type: "multiple",
+              category: "Sports",
+            },
+          ],
+        },
+      ];
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ currentGames }}>
+            <GameDetailsPage />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const questionElements = screen.getAllByRole("listitem");
+      const questionText = screen.getByText(expectedText);
+
+      expect(questionElements.length).toBe(expectedQuestions);
+      expect(questionText).toBeInTheDocument();
+    });
+  });
 });

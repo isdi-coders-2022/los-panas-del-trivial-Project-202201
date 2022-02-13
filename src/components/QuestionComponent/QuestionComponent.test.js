@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import QuestionComponent from "./QuestionComponent";
 import userEvent from "@testing-library/user-event";
+import QuestionComponent from "./QuestionComponent";
 
 describe("Given a QuestionComponent", () => {
   describe("When it's instantiated with a questionText = 'hola", () => {
