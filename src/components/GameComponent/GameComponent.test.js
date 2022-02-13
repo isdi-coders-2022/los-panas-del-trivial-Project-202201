@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
-import TrivialContext from "../../store/contexts/TrivialContext";
+import TrivialContextProvider from "../../store/contexts/TrivialContextProvider";
 import GameComponent from "./GameComponent";
 
 const mockNavigate = jest.fn();
@@ -28,13 +28,11 @@ describe("Given GameComponent", () => {
       };
       const expectedDifficultyText = `Difficulty: ${game.difficulty}`;
 
-      const contextValueToGive = { allQuestionsDispatch: () => {} };
-
       render(
         <BrowserRouter>
-          <TrivialContext.Provider value={contextValueToGive}>
+          <TrivialContextProvider>
             <GameComponent game={game} />
-          </TrivialContext.Provider>
+          </TrivialContextProvider>
         </BrowserRouter>
       );
 
@@ -59,15 +57,11 @@ describe("Given GameComponent", () => {
       };
       const expectedPath = "/game/edit/3";
 
-      const contextValueToGive = {
-        deleteGame: () => {},
-      };
-
       render(
         <BrowserRouter>
-          <TrivialContext.Provider value={contextValueToGive}>
+          <TrivialContextProvider>
             <GameComponent game={game} />
-          </TrivialContext.Provider>
+          </TrivialContextProvider>
         </BrowserRouter>
       );
 
@@ -89,15 +83,11 @@ describe("Given GameComponent", () => {
       };
       const expectedPath = "/game/3";
 
-      const contextValueToGive = {
-        deleteGame: () => {},
-      };
-
       render(
         <BrowserRouter>
-          <TrivialContext.Provider value={contextValueToGive}>
+          <TrivialContextProvider>
             <GameComponent game={game} />
-          </TrivialContext.Provider>
+          </TrivialContextProvider>
         </BrowserRouter>
       );
 
@@ -119,15 +109,11 @@ describe("Given GameComponent", () => {
       };
       const expectedPath = "/games-list";
 
-      const contextValueToGive = {
-        deleteGame: () => {},
-      };
-
       render(
         <BrowserRouter>
-          <TrivialContext.Provider value={contextValueToGive}>
+          <TrivialContextProvider>
             <GameComponent game={game} />
-          </TrivialContext.Provider>
+          </TrivialContextProvider>
         </BrowserRouter>
       );
 

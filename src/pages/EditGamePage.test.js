@@ -65,7 +65,7 @@ describe("Given a EditGamePage component", () => {
   });
 
   describe("When it's instantiated and the button is clicked", () => {
-    test("Then it should navigate to the path '/games-list' and called the updataGameAPI", async () => {
+    test("Then it should navigate to the path '/games-list'", async () => {
       const expectedPath = "/games-list";
       const gamesDispatch = jest.fn();
       const currentGames = [
@@ -89,11 +89,10 @@ describe("Given a EditGamePage component", () => {
       const editButton = screen.queryByRole("button");
       userEvent.click(editButton);
 
-      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
-
-      await waitFor(async () => expect(gamesDispatch).toHaveBeenCalled());
+      await waitFor(() => expect(gamesDispatch).toHaveBeenCalled());
 
       expect(gamesDispatch).toHaveBeenCalled();
+      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
     });
   });
 });
