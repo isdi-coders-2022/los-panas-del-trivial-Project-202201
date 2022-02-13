@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import TrivialContext from "../store/contexts/TrivialContext";
 import EditGamePage from "./EditGamePage";
@@ -37,28 +38,57 @@ describe("Given a EditGamePage component", () => {
 
       expect(foundHeading.textContent).toBe(expectedTitle);
     });
+
+    test("Then it should render a BackArrow component", () => {
+      const currentGames = [
+        {
+          id: 3,
+          name: "test's game",
+          creator: "Dan Abramov",
+          difficulty: "Easy",
+          questions: [],
+        },
+      ];
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ currentGames }}>
+            <EditGamePage />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const foundArrow = screen.queryByTestId("arrow");
+
+      expect(foundArrow).toBeInTheDocument();
+    });
   });
-  test("Then it should render a BackArrow component", () => {
-    const currentGames = [
-      {
-        id: 3,
-        name: "test's game",
-        creator: "Dan Abramov",
-        difficulty: "Easy",
-        questions: [],
-      },
-    ];
 
-    render(
-      <BrowserRouter>
-        <TrivialContext.Provider value={{ currentGames }}>
-          <EditGamePage />
-        </TrivialContext.Provider>
-      </BrowserRouter>
-    );
+  describe("When it's instantiated and the button is clicked", () => {
+    test("Then it should render a 'Game List' heading", () => {
+      const expectedPath = "/games-list";
+      const currentGames = [
+        {
+          id: 3,
+          name: "test's game",
+          creator: "Dan Abramov",
+          difficulty: "Easy",
+          questions: [],
+        },
+      ];
 
-    const foundArrow = screen.queryByTestId("arrow");
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={{ currentGames }}>
+            <EditGamePage />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
 
-    expect(foundArrow).toBeInTheDocument();
+      const editButton = screen.queryByRole("button");
+      userEvent.click(editButton);
+
+      expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
+    });
   });
 });
