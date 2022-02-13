@@ -204,7 +204,7 @@ describe("Given a SelectYourQuestionsComponent", () => {
     });
   });
 
-  describe("When a filter is applied", () => {
+  describe("When a category filter is applied", () => {
     test("Then it should not render the not matching questions", () => {
       const questions = [
         {
@@ -246,6 +246,57 @@ describe("Given a SelectYourQuestionsComponent", () => {
       });
 
       userEvent.selectOptions(filters[0], sportsCategory);
+
+      const sportsQuestions = screen.queryByText("question 2");
+      const animalsQuestions = screen.queryByText("question 1");
+
+      expect(sportsQuestions).toBeInTheDocument();
+      expect(animalsQuestions).not.toBeInTheDocument();
+    });
+  });
+
+  describe("When a type filter is applied", () => {
+    test("Then it should not render the not matching questions", () => {
+      const questions = [
+        {
+          id: 1,
+          category: "Animals",
+          type: "boolean",
+          difficulty: "easy",
+          question: "question 1",
+          selected: true,
+        },
+        {
+          id: 2,
+          category: "Sports",
+          type: "multiple",
+          difficulty: "easy",
+          question: "question 2",
+          selected: true,
+        },
+      ];
+
+      const providerValue = {
+        currentAllQuestions: questions,
+        currentQuestions: [],
+        allQuestionsDispatch: () => {},
+        questionDispatch: () => {},
+      };
+
+      render(
+        <BrowserRouter>
+          <TrivialContext.Provider value={providerValue}>
+            <SelectYourQuestionsComponent onSave={() => {}} />
+          </TrivialContext.Provider>
+        </BrowserRouter>
+      );
+
+      const filters = screen.getAllByRole("combobox");
+      const multipleChoiceType = screen.getByRole("option", {
+        name: "Multiple Choice",
+      });
+
+      userEvent.selectOptions(filters[1], multipleChoiceType);
 
       const sportsQuestions = screen.queryByText("question 2");
       const animalsQuestions = screen.queryByText("question 1");
