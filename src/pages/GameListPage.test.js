@@ -58,6 +58,11 @@ describe("Given GameListPage", () => {
 
       const deleteButton = screen.getAllByTestId("deleteIcon");
       userEvent.click(deleteButton[0]);
+
+      await waitFor(async () => expect(foundFirstGame).not.toBeInTheDocument());
+
+      expect(foundFirstGame).not.toBeInTheDocument();
+      expect(foundSecondGAme).toBeInTheDocument();
     });
   });
 });
