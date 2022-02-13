@@ -21,4 +21,8 @@ describe("Given a ArrowPagesComponent", () => {
       expect(action).toHaveBeenCalled();
     });
   });
+
+  describe("When the button receives an actionOnClick and it's disabled", () => {
+    test("Then it shouldn't call the action", () => {});
+  });
 });
