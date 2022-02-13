@@ -24,17 +24,22 @@ const PageContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 80px;
+
   @media (min-width: ${breakpointS}) {
     background-color: ${secondary};
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 `;
 
-const TitleContainer = styled.div`
-  height: 30vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const TitleContainerLeft = styled.div`
+  display: none;
   @media (min-width: ${breakpointS}) {
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     left: 3%;
   }
@@ -43,13 +48,21 @@ const TitleContainer = styled.div`
     left: 8%;
   }
 `;
+
+const TitleContainerRight = styled.div`
+  padding-bottom: 20px;
+  @media (min-width: ${breakpointS}) {
+    display: none;
+  }
+`;
+
 const ContainerGameDark = styled.div`
   background-color: ${backgroundLight};
   border-radius: 50px 50px 0 0;
   width: 100%;
   position: absolute;
   bottom: 0px;
-  height: 70%;
+  height: 100%;
   @media (min-width: ${breakpointS}) {
     border-radius: 50px 0 0 50px;
     position: absolute;
@@ -120,21 +133,23 @@ const CreateGamePage = () => {
     if (viewCreateGamePage) {
       return (
         <PageContainer>
-          <TitleContainer>
+          <TitleContainerLeft>
             <TitleComponent
               text={"Create Game"}
               size={"medium"}
               textColor={`$backgroundDark`}
             ></TitleComponent>
-          </TitleContainer>
+          </TitleContainerLeft>
           <ContainerGameDark>
             <BackArrowContainer>
               <BackArrowComponent actionOnClick={gotoMainPage} />
             </BackArrowContainer>
-            <TitleComponent
-              text={"Create Game"}
-              size={"medium"}
-            ></TitleComponent>
+            <TitleContainerRight>
+              <TitleComponent
+                text={"Create Game"}
+                size={"medium"}
+              ></TitleComponent>
+            </TitleContainerRight>
             <FormComponent
               name={{ name, setName }}
               creator={{ creator, setCreator }}
